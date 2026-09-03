@@ -117,6 +117,94 @@ To perform website footprinting using ShellGPT, run sgpt --chat footprint --shel
 
 
 ---------------------------------------------------------------------
+
+Perform Host Discovery using Nmap
+
+
+nmap -sn -PR [Target IP Address]. The -sn disables port scan, and -PR performs ARP ping scan The host is active when an ARP response is received
+nmap -sn -PU [Target IP Address]. According to the scan findings, the target host is operational, he -PU option does a UDP ping scan
+ICMP ECHO ping scan. Execute the following command: nmap -sn -PE [Target IP Address].
+nmap -sn -PE 192.168.56.2-254
+nmap -sn -PP [Target IP Address] The -PP carries out the ICMP timestamp ping scan.
+nmap -sn -PM [target IP address]. This ICMP Address Mask Ping Scan approach is an alternative to the usual ICMP ECHO ping scan, identifying whether the target host is alive, especially when administrators disable ICMP ECHO pings.
+nmap -sn -PS [target IP address]. This TCP SYN Ping Scan technique sends empty TCP SYN packets to the target host, and the ACK response means the host is active.
+nmap -sn -PA [target IP address]. The TCP ACK Ping Scan method sends empty TCP ACK packets to the target host; an RST response indicates that the host is active.
+nmap -sn -PO [target IP address]. The IP Protocol Ping Scan method delivers probing packets from several IP protocols to the target host. A host is active if any probe returns a response.
+ The Zenmap appears; enter nmap -sT -v [Target IP Address] in the Command field and Click on the Scan button. The TCP connect/full open scan is carried out by the -sT, and the verbose output (which includes all hosts and ports) is enabled by the -v. All of the target machine's open TCP ports and services are shown in the scan results.
+ In the Command field of Zenmap, enter nmap -sS -v [Target IP Address] and Click the Scan button.
+Stealth scan/TCP half-open scan is done with -sS, and verbose output (which includes all hosts and ports) is enabled with -v. The scan results show the target machine's open TCP ports and services.
+enter nmap -sX -v [Target IP Address] and Click the Scan button. The -sX option performs the Xmas scan, and the -v option allows for verbose output (including all hosts and ports). The scan results show that the ports are either open or filtered on the target machine, indicating that a firewall has been configured.
+
+enter nmap -sM -v [Target IP Address] and Click on the Scan button. The -sM option performs the TCP Maimon scan, and the -v option allows for verbose output (including all hosts and ports). The scan results display whether the target machine's ports are open or filtered, suggesting a firewall has been configured.
+
+enter nmap -sA -v [Target IP Address] and Click on the Scan button. The -sA option performs an ACK flag probe scan, and the -v option enables verbose output (which includes all hosts and ports). The scan results show that the target machine's ports are filtered.
+
+nmAP -T4 -A -v targetip
+
+nmap -A 1.1.1.*
+
+Perform OS Discovery using Nmap Script Engine (NSE)
+
+nmap -A [Target IP Address]. The scan results, open ports, running services, their versions, and the target details, such as the operating system, computer name, and NetBIOS computer name, are displayed in the Host script results section. Use the -A to run an aggressive scan. It takes around ten minutes for the scan to finish.
+
+
+nmap -O [Target IP Address]. The scan results show the name of the operating system operating on the target machine, details about open ports, and the services that are using the open ports. The -O is used to perform the OS discovery.
+
+nmap --script smb-os-discovery.nse [Target IP Address]. The scan results are shown under the Host script results section, along with the target OS, machine name, NetBIOS computer name, and other information. The --script outlines the custom script and smb-os-discovery.nse: tries to use the SMB protocol (ports 445 or 139) to find the OS, computer name, domain, workgroup, and current time.
+
+
+can beyond IDSFirewall using Various Evasion Techniques
+
+hsa firewall off 
+nmap -f [Target IP Address]. The -f switch splits the IP packet into tiny fragment packets.fragmented packets that you may inspect.
+ nmap -g 80 [Target IP Address]. In this command, you can use the -g or --source-port option to manipulate the source port. All open TCP ports and the names of the services that are using scroll-down, and you can observe the TCP packets indicating that port number 80 is used to scan other ports of the target host
+ 
+ nmap -mtu 8 [Target IP Address]. The Maximum Transmission Unit (MTU) of this command is 8 bytes of packets, as indicated by the -mtu option.  you can observe the fragmented packets having a maximum length of 8 bytes.
+ 
+ nmap -D RND:10 [Target IP Address]. In this command, -D performs a decoy scan, and RND generates random and non-reserved IP addresses (here, 10). ou can observe the packets displaying the various IP addresses in the source part of the Wireshark window
+ 
+  nmap -sT -Pn --spoof-mac 0 [Target IP Address]. In this command, --spoof-mac 0 represents randomizing the MAC address, -sT performs the TCP connect/full open scan, -Pn is used to skip the host discovery.
+  
+ Scan a Target Network using Metasploit
+  
+ Metasploit can help identify open ports and services on the target network, which can be a starting point for further enumeration and exploitation.
+ 
+ 
+  sudo su
+  msfdb init 
+  Use the service postgresql start command to start the PostgreSQL service. Postgresql is connected to the Metasploit initialized database. Use the msfconsole command to launch the Metasploit Framework. 
+  db_status
+  nmap -Pn -sS -A -oX Test 192.168.2.0/24 command to scan the entire subnet. 
+  -Pn flag scans without DNS resolution (-n = no DNS resolution) because it is slow.
+-sS flag specifies the TCP SYN Scan.
+-A flag specifies the aggressive mode.
+-oX Test flag puts the XML output in a file named Test. 
+
+Use the db_import Test command to import and save the gathered data into the Test file. 
+
+Use the hosts command to list all the gathered hosts on the network. 
+ Use the services command to list all the open ports and services running on them. 
+ Use the search command to search the keyword portscan. It lists all the modules that include the keyword portscan. 
+ search portscan
+ Use the use auxiliary/scanner/portscan/syn command to use this module for SYN scanning. Use the following commands to set the parameters;
+set PORTS 80
+set RHOSTS target_IP
+set THREADS number_of_threads
+run
+
+Use the back command to exit the module. Use the use auxiliary/scanner/portscan/tcp command to use the TCP scanner module. Set the target host using the set RHOSTS 192.168.2.100 command and enter run to execute. 
+
+use auxiliary/scanner/smb/smb_version command to find the SMB version.
+set RHOSTS target_IP 
+set THREADS 10
+run
+
+sgpt --chat scan --shell "Use Hping3 to perform ICMP scanning on the target IP address 10.0.2.20 and stop after 10 iterations" to perform ICMP scan on target IP address
+run sgpt --chat scan --shell “Run a hping3 ACK scan on port 80 of target IP 10.0.2.20” command.
+
+
+
+---------------------------------------------------------------------
 Detect Web Application Vulnerabilities using Wapiti Web Application Security Scanner
 The Wapiti web-application vulnerability scanner identifies security weaknesses in web applications by crawling websites and performing black-box testing. It detects issues like SQL injections, XSS, and other vulnerabilities.
 Parrot 
