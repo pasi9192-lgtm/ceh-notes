@@ -258,6 +258,25 @@ run the sgpt --shell “Perform NetBIOS enumeration on target IP 10.0.2.15” co
 sgpt --shell “Get NetBIOS info for IP 10.0.2.15 and display the associated names".
 
 ------------------------------------------------------------------
+Perform Vulnerability Research in Common Weakness Enumeration (CWE)
+ https://cwe.mitre .org
+ 
+Perform Vulnerability Analysis using OpenVAS
+ 
+sudo su
+apt-get update && apt-get upgrade -y to automatically update the package index and upgrade all installed packages to their latest versions.
+apt-get install docker.io -y to install Docker in the ParrotOS.
+docker run -d -p 443:443 –-name openvas mikesplain/openvas to launch OpenVAS.
+open browser  https://127.0.0.1/ to go to the OpenVAS login page.
+Log in with username and password admin/admin
+
+Click on the Scans. Then Click on the Tasks
+The Task Wizard window opens; enter the target machine IP address in the IP address or hostname field. Then Click on the Start Scan button.
+
+sgpt --chat nikto --shell “Launch nikto to execute a scan against the URL https://www.certifiedhacker.com to identify potential vulnerabilities.”
+
+
+-----------------------------------------
 Detect Web Application Vulnerabilities using Wapiti Web Application Security Scanner
 The Wapiti web-application vulnerability scanner identifies security weaknesses in web applications by crawling websites and performing black-box testing. It detects issues like SQL injections, XSS, and other vulnerabilities.
 Parrot 
