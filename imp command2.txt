@@ -205,6 +205,59 @@ run sgpt --chat scan --shell “Run a hping3 ACK scan on port 80 of target IP 10
 
 
 ---------------------------------------------------------------------
+Perform NetBIOS Enumeration using Windows Command-Line Utilities
+cmd -  nbtstat -a [IP address of the remote machine]  -  -a displays the NetBIOS name table of a remote computer
+nbtstat -c    - -c lists the contents of the NetBIOS name cache of the remote computer.
+
+Perform SNMP enumeration using SnmpWalk
+
+SNMP (Simple Network Management Protocol) is an application layer protocol that runs on UDP (User Datagram Protocol) and maintains and manages routers, hubs, and switches on an IP network.
+
+snmpwalk -v1 -c public [target IP]
+-v: specifies the SNMP version number (1 or 2c or 3) and -c: sets a community string.
+The result displays all the OIDs, variables and other associated information.
+snmpwalk -v2c -c public [Target IP Address]
+-v: specifies the SNMP version (here, 2c is selected) and -c: sets a community string.
+
+Perform LDAP Enumeration
+Connect ad
+
+Perform NFS enumeration using RPCScan and SuperEnum
+ NFS (Network File System) is a type of file system that enables computer users to access, view, store, and update files over a remote server. This remote data can be accessed by the client computer in the same way that it is accessed on the local system
+ Add Roles and Features Wizard and Expand File and Storage Services and select the checkbox for Server for NFS under the File and iSCSI Services option, as shown in the screenshot. Click Next.
+
+nmap -p 2049 [Target IP Address] - nfs 
+cd SuperEnum
+Run echo "10.10.1.19" >> Target.txt 
+execute ./superenum command. Under Enter IP List filename with path, type Target.txt, and press Enter.
+If you get an error running the ./superenum script, execute chmod +x superenum command,
+The script starts scanning the target IP address for open NFS and other services.
+perform NFS enumeration using RPCScan. To do so, run cd RPCScan command 
+python3 rpc-scan.py [Target IP address] --rpc
+Perform DNS Enumeration
+dig ns [Target Domain]
+On Linux-based systems, the dig command is used to query the DNS name servers to retrieve information about target host addresses, name servers, mail exchanges, etc
+dig @[NameServer] [Target Domain] axfr    -  axfr retrieves zone information.
+After retrieving DNS name server information, the attacker can use one of the servers to test whether the target DNS allows zone transfers or not. here, zone transfers are not allowed for the target domain; this is why the command resulted in the message: Transfer failed. A penetration tester should attempt DNS zone transfers on different domains of the target organization.
+DNS enumeration on Windows DNS servers
+execute command nslookup.
+set querytype=soa
+Type the target domain site.com
+set querytype=soa sets the query type to SOA (Start of Authority) record to retrieve administrative information about the DNS zone of the target domain
+In the nslookup interactive mode, execute command ls -d [Name Server] (here, the name is ns1.bluehost.com).
+In this command, ls -d requests a zone transfer of the specified name server.
+
+SMTP Enumeration using Nmap
+
+nmap -p 25 --script=smtp-enum-users [Target IP Address]  - The result appears displaying a list of all the possible mail users on the target machine
+
+nmap -p 25 --script=smtp-open-relay [Target IP Address]  - result appears displaying a list of open SMTP relays on the target machine
+nmap -p 25 --script=smtp-commands [Target IP Address] - A list of all the SMTP commands available in the Nmap directory appears. 
+Enumerate Information using Global Network Inventory -  scans single or multiple computers by IP range or domain, as defined by the Global Network Inventory host file.
+run the sgpt --shell “Perform NetBIOS enumeration on target IP 10.0.2.15” command to perform NetBIOS enumeration on the target system.
+sgpt --shell “Get NetBIOS info for IP 10.0.2.15 and display the associated names".
+
+------------------------------------------------------------------
 Detect Web Application Vulnerabilities using Wapiti Web Application Security Scanner
 The Wapiti web-application vulnerability scanner identifies security weaknesses in web applications by crawling websites and performing black-box testing. It detects issues like SQL injections, XSS, and other vulnerabilities.
 Parrot 
