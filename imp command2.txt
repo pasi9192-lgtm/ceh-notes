@@ -1108,6 +1108,58 @@ show options
 	note the size of MSS.txt
 
 
+----
+
+
+
+You are assigned to crack RDP credentials of user Maurice from the target subnet 192.168.10.0/24 and determine the password as answer. 
+
+- nmap -p 3389 192.168.10.0/24 --open
+- hydra -l Maurice -P rockyou.txt 192.168.10.222 rdp
+
+
+
+
+You are assigned to perform malware scanning on a malware file Tools.rar stored in Downloads folder and determine the last four digits of the file’s SHA-256 hash value. (
+
+- sha256sum Tools.rar
+
+
+
+
+You are assigned to monitor a suspicious process running in a machine whose log file Logfile.PML is saved in Pictures folder Analyse the logfile and determine the Parent PID of the malicious file H3ll0.exe process from the log file. 
+
+- Copy that log file to windows
+- Install procmon.exe in the malware analysis folder
+- open that file in procmon
+- Search H3II0 and double click to open. now you find the Paren PID
+
+
+
+You are tasked with analyzing the ELF executable file named Tornado.elf, located in the Downloads folder of. Determine the entropy value of the file up to two decimal places.
+
+- Copy that file to windows
+- open that file with DIE tool inside the static malware analysis folder
+- Click Entropy button to see value
+
+ 
+
+You are assigned to scan the target subnets to identify the remote packet capture feature that is enabled to analyse the traffic on the target machine remotetly. Scan the target subnets and determine the IP address using rpcap service
+- nmap -p 2002 192.168.10.0/24
+
+
+
+An insider attack occurred in an organization and the confidential data regarding an upcoming event is sniffed and encrypted in a image file stealth.jpeg stored in Desktop of . You are assigned to extract the hidden data inside the cover file using steghide tool and determine the tender quotation value. 
+
+download , go to path and open cmd run below command 
+- steghide extract -sf stealth.jpg
+- open hidden.txt
+
+
+
+=
+Perform vulnerability search using searchsploit tool and determine the path of AirDrop 2.0 vulnerability.
+- Searchsploit AirDrop 2.0
 
 
 
