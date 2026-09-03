@@ -277,6 +277,73 @@ sgpt --chat nikto --shell “Launch nikto to execute a scan against the URL http
 
 
 -----------------------------------------
+7 Perform Process Monitoring using Process Monitor
+
+
+Process monitoring will help in understanding the processes that malware initiates and takes over after execution. You should also observe the child processes, associated handles, loaded libraries, functions, and execution flow of boot time processes to define the entire nature of a file or program, gather information about processes running before the execution of the malware, and compare them with the processes running after execution. This method will reduce the time taken to analyze the processes and help in easy identification of all processes that malware starts.
+
+
+
+
+Perform Port Monitoring using TCPView and CurrPorts
+
+
+You can identify the malware trying to access a particular port by installing port monitoring tools such as TCPView and CurrPorts.
+
+
+CPView TCPView is a Windows program that shows the detailed listings of all the TCP and UDP endpoints on the system, including the local and remote addresses, and the state of the TCP connections.
+
+
+CurrPorts CurrPorts is a piece of network monitoring software that displays a list of all the currently open TCP/IP and UDP ports on a local computer
+
+
+ Perform Static Malware Analysis
+ 
+ Perform Malware Scanning using Hybrid Analysis
+ 
+ Hybrid Analysis is a free service that analyzes suspicious files and URLs and facilitates the quick detection of unknown threats such as viruses, worms, Trojans, and other kinds of malware.
+
+
+, Google Chrome) and go to https://www.hybrid-analysis.com 
+ Drag & Drop For Instant Analysis section to upload a virus file.
+ 
+  Analyze ELF Executable File using Detect It Easy (DIE)
+  
+  
+  The Executable and Linkable Format (ELF) is a generic executable file format in Linux environment. It contains three main components including ELF header, sections, and segments. Each component plays an independent role in the loading and execution of ELF executables. The static analysis of an ELF file involves investigating an ELF executable file without running or installing it. It also involves accessing the binary code and extracting valuable artifacts from the program. Numerous tools can be used to perform static analysis on ELF files. In this task, we will be using Detect It Easy (DIE) tool to analyze ELF file.
+
+
+
+Detect It Easy (DIE) is an application used for determining the types of files. Apart from the Windows, DIE is also available for Linux and Mac OS. It has a completely open architecture of signatures and can easily add its own algorithms for detecting or modifying the existing signatures. It detects a file's compiler, linker, packer, etc. using a signature-based detection method.
+Detect It Easy automatically scans the file and result appears showing the Operating system, compiler and language details in the middle pane,
+
+
+Hash button from the top right corner of the window to view the information related to hash. Close the window after viewing the information.
+Click Entropy button from the top right corner of the window. Here, you can observe the status, size and graph of entropy. Close the window after viewing the Entrophy information.
+ MIME, Hex, Signatures and Demangle
+packaging/obfuscation tools such as Macro_Pack (https://github.com), UPX (https://upx.github.io), ASPack (http://www.aspack.com), or VMprotect (https://vmpsoft.com) to identify packing/obfuscation methods.
+
+
+Perform Malware Disassembly using IDA and OllyDbg  - upload .exe file fopr analysis
+
+
+Static analysis also includes the dismantling of a given executable into binary format to study its functionalities and features. This process helps identify the language used for programming the malware, look for APIs that reveal its function, and retrieve other information. Based on the reconstructed assembly code, you can inspect the program logic and recognize its threat potential. This process uses debugging tools such as IDA Pro and OllyDbg.
+
+new debugging option, "Set permanent breakpoints on system calls." When active, it requests OllyDbg to set breakpoints on KERNEL32.UnhandledExceptionFilter(), NTDLL.KiUserExceptionDispatcher(), NTDLL.ZwContinue(), and NTDLL.NtQueryInformationProcess().
+
+
+Gain Control over a Victim Machine using the njRAT RAT Trojan
+
+Create a Virus using the JPS Virus Maker Tool and Infect the Target System
+
+
+
+
+
+
+
+
+----------------------------
 Detect Web Application Vulnerabilities using Wapiti Web Application Security Scanner
 The Wapiti web-application vulnerability scanner identifies security weaknesses in web applications by crawling websites and performing black-box testing. It detects issues like SQL injections, XSS, and other vulnerabilities.
 Parrot 
