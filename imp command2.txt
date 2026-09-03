@@ -1,3 +1,122 @@
+1)Gather Information using Advanced Google Hacking Techniques
+In the search bar, copy and paste this search command intitle:login site:eccouncil.org. The intitle and site Google advanced operators used in this search command limit the results to pages on the eccouncil.org website that have the login pages
+EC-Council filetype:pdf ceh
+CEH-brochure.pdf 
+allinurl: EC-Council career
+inurl: copy site:www.eccouncil.org query returns only pages in the EC-Council site where the URL has the word “copy.”
+Only sites with the terms "detect" and "malware" in the title are returned by the allintitle: detect malware query.
+Only sites with the terms "detect" and "malware" in the title are returned by the allintitle: detect malware query.
+Anti-virus inanchor:Norton 
+location: EC-Council
+info:eccouncil.org 
+
+Find the Company’s Domains, Subdomains, and Hosts using Netcraft and DNSdumpster
+https://www.netcraft.com.
+https://dnsdumpster.com/  asn number open service
+
+Gather Personal Information from Various Social Networking Sites using Sherlock
+sudo su 
+apt update
+sudo apt install pipx
+pipx ensurepath - to ensure that the directory used by pipx to store globally accessible Python tools is included in your system’s PATH environment variable.
+pipx install sherlock-project  - to install Sherlock package in ParrotOS.
+pipx ensurepath -to ensure again that pipx is added to the PATH environment variable. 
+sherlock --version
+sherlock "Elon Musk" 
+you will get all the URLs related to Elon Musk. Scroll down to view all the results. 
+
+Perform Whois Lookup using DomainTools
+http://whois.domaintools.com  name server 
+
+
+Gather DNS Information using nslookup Command Line Utility and Online Tool
+to gather the target domain’s IP address and DNS information. 
+cmd
+nsloookup
+set type=a 
+site.com
+Non-authoritative answer. When the response comes from the server that hosts the target, it is considered the Authoritative answer. 
+
+set type=cname
+site.com
+CNAME records for a domain because CNAME lookup is performed directly against the Authoritative name server of the target domain.
+set type=a
+ns1.bluehost.com  -nsame server 
+
+
+
+http://kloth.net/services/nslookup.php
+
+Perform Network Tracerouting in Windows and Linux Machines
+cmd
+tracert site.com
+tracert /? 
+traceroute certifiedhacker.com 
+
+You can also use tools like Traceroute NG (https://www.solarwinds.com) and Visual Route (http://visualroute.com). 
+
+Gather Information about a Target by Tracing Emails using eMailTrackerPro
+
+Email headers field in eMailTrackerPro. Click on the Trace button.
+You can also use email tracking tools such as MxToolbox (https://mxtoolbox.com/), Social Catfish (https://socialcatfish.com/), IP2Location Email Header Tracer (https://www.ip2location.com/), etc. to monitor an email and retrieve target data, including the sender’s IP address, mail server, location, and other details.
+
+
+Footprinting a Target using Recon-ng
+sudo su 
+recon-ng
+help
+marketplace install all - command to install the available modules
+modules search  - command to list the category-wise available modules
+workspaces  - to see the commands related to workspaces.
+workspaces create CEH 
+workspaces list
+db insert domains
+site.com
+show domains
+modules load keyword - command to search for the module to be loaded. It searches for the brute keyword and lists the modules.
+modules load brute
+modules load recon/domains-hosts/brute-hosts 
+run
+modules load recon/domains-hosts/brute-hosts 
+modules load recon/hosts-hosts/reverse-resolve
+show hosts
+modules load reporting/html 
+Options set FILENAME /home/user/Desktop/ result.html
+Options set CREATOR CEH-author
+Options set CUSTOMER Certifiedhacker Networks
+run
+Go to the path /home/user/Desktop/result.html and open the result.html file via any web browser. 
+
+open new terminal
+sudo su 
+recon-ng
+workspaces create reconnaissance
+options set SOURCE site.com  - command, where site.com is the target domain
+run
+
+This module gathers the contact details associated with the target domain. 
+Try another module, recon/profiles-profiles/namechk. Set the target name using the options set SOURCE MarkZuckerberg command. Enter run to collect data.
+module load recon/profiles-profiles/namechk
+back
+module load recon/profiles-profiles/profiler
+options set SOURCE MarkZuckerberg 
+run
+
+
+module load recon/domains-hosts/hackertarget
+options set SOURCE certifiedhacker.com 
+run
+
+shell command 
+run sgpt --chat footprint --shell “Use theHarvester to gather email accounts associated with 'microsoft.com', limiting results to 200, and leveraging 'baidu' as a data source” 
+
+To perform website footprinting using ShellGPT, run sgpt --chat footprint --shell “Footprint the target website www.certifiedhacker.com and save the result in website_footprint.txt” command. 
+
+
+
+
+
+---------------------------------------------------------------------
 Detect Web Application Vulnerabilities using Wapiti Web Application Security Scanner
 The Wapiti web-application vulnerability scanner identifies security weaknesses in web applications by crawling websites and performing black-box testing. It detects issues like SQL injections, XSS, and other vulnerabilities.
 Parrot 
