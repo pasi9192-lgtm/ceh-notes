@@ -1039,6 +1039,9 @@ nmap -p 445 -sV -A 172.30.10.200    - smb
 open vas or initallize from parrot secuirty and wait
 docker run -d -p 443:443 --name openvas mikesplain/openvas
 
+nmap -p 22 172.30.10.0/24 --open to check ip
+and scan 
+
 
 
 
