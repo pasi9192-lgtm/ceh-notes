@@ -846,6 +846,21 @@ In Firefox web browser, select Settings from the context menu.
 On the Settings page, search for Certificates and open View Certificates
 
 Navigate to Authorities tab and click on Import…
+--
+Intercept HTTP Traffic using Hetty
+
+hetty.exe.
+If an Open File - Security Warning window appears, click Run.
+ Go to http://localhost:8080 to open Hetty dashboard.
+	5. In the Hetty dashboard, click MANAGE PROJECTS button.
+
+create new project - go to server set proxy ip of target server 
+	15. In the Manual proxy setup section, make the following changes:
+	• Under the Use a proxy server option, click the Off button to switch it On.
+	• In the Address field, type 10.10.1.11 (the IP address of the attacker's machine, here, Windows 11).
+In the Port field, type 8080.
+
+
 
 
 
