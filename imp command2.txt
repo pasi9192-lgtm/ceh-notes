@@ -287,7 +287,7 @@ john hash.txt
  
 Gain Access to a Remote System using Reverse Shell Generator
 
-run docker run -d -p 80:80 reverse_shell_generator command to start Reverse Shell Generator
+run docker run -d -p 80:80 reverse_shell_generator command to start Reverse Shell Generator  , if any error run service apache2 stop
 	• docker run: Starts a new container.
 	• -d: Detached mode — runs the container in the background.
 	• -p 80:80: Maps host port 80 to container port 80, allowing access to the container's service via http://localhost.
