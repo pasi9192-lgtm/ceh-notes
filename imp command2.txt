@@ -501,7 +501,7 @@ shred ~/.bash_history && cat /dev/null > .bash_history && history -c && exit.
 Perform Active Directory (AD) Attacks Using Various Tools
 
 
- Perform Initial Scans to Obtain Domain Controller IP and Domain Name
+-- Perform Initial Scans to Obtain Domain Controller IP and Domain Name
   nmap 10.10.1.0/24 command to scan the entire subnet
  
 map shows that host 10.10.1.22 has port 88/TCP kerberos-sec and port 389/TCP LDAP opened
