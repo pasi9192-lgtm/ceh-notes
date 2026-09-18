@@ -659,6 +659,31 @@ Rubeus is a tool for exploiting Kerberos weaknesses in Windows environments. Ker
 
 
 -----------------------------------------
+Malware 
+
+Malware 
+
+njRAT is a RAT with powerful data-stealing capabilities. In addition to logging keystrokes, it is capable of accessing a victim's camera, stealing credentials stored in browsers, uploading and downloading files, performing process and file manipulations, and viewing the victim's desktop. 
+Malware Scanning using Hybrid Analysis
+
+https://www.hybrid-analysis.com 
+
+
+
+
+Analyze ELF Executable File using Detect It Easy (DIE)
+The Executable and Linkable Format (ELF) is a generic executable file format in Linux environment. It contains three main components including ELF header, sections, and segments. Each component plays an independent role in the loading and execution of ELF executables. The
+
+ Perform Malware Disassembly using IDA and OllyDbg
+Static analysis also includes the dismantling of a given executable into binary format to study its functionalities and features. 
+
+IDA As a disassembler, IDA explores binary programs, for which the source code might not be available, to create maps of their execution. The primary purpose of a disassembler is to display the instructions actually executed by the processor in a symbolic representation called "assembly language." However, in real life, things are not always simple. Hostile code usually does not cooperate with the analyst. Viruses, worms, and Trojans are often armored and obfuscated; as such, more powerful tools are required. The debugger in IDA complements the static analysis capabilities of the disassembler. By allowing an analyst to single-step through the code being investigated, the debugger often bypasses the obfuscation. It helps obtain data that the more powerful static disassembler will be able to process in depth.
+OllyDbg OllyDbg is a debugger that emphasizes binary code analysis, which is useful when source code is unavailable. It traces registers, recognizes procedures, API calls switches, tables, constants, and strings, and locates routines from object files and libraries.
+
+
+
+
+
 7 Perform Process Monitoring using Process Monitor
 
 
@@ -1559,9 +1584,95 @@ ftp credential
 ls -a for hiddenfile 
 
 
+=----------------------------
+
+You said:
 
 
 
+
+givem me other method dvwa
+Method 2: Install DVWA Directly on Parrot (No Docker)
+
+Install required packages:
+
+Shell
+1
+sudo apt update
+2
+sudo apt install apache2 mariadb-server php php-mysqli git -y
+Show more lines
+
+Download DVWA:
+
+Shell
+1
+cd /var/www/html
+2
+sudo git clone https://github.com/digininja/DVWA.git
+Show more lines
+
+Create database:
+
+Shell
+1
+sudo mysql
+Show more lines
+
+Inside MySQL:
+
+SQL
+1
+CREATE DATABASE dvwa;
+2
+CREATE USER 'dvwa'@'localhost' IDENTIFIED BY 'password';
+3
+GRANT ALL PRIVILEGES ON dvwa.* TO 'dvwa'@'localhost';
+4
+FLUSH PRIVILEGES;
+5
+EXIT;
+Show more lines
+
+Configure DVWA:
+
+Shell
+1
+cd /var/www/html/DVWA/config
+2
+sudo cp config.inc.php.dist config.inc.php
+3
+sudo nano config.inc.php
+Show more lines
+
+Update:
+
+PHP
+1
+$_DVWA['db_user'] = 'dvwa';
+2
+$_DVWA['db_password'] = 'password';
+3
+$_DVWA['db_database'] = 'dvwa';
+Show more lines
+
+Restart services:
+
+Shell
+1
+sudo systemctl restart apache2
+2
+sudo systemctl restart mariadb
+Show more lines
+
+Open:
+
+Plain Text
+1
+http://localhost/DVWA/setup.php
+Show more lines
+
+Click Create / Reset Database
 
 
 
