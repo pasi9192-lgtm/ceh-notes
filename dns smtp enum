@@ -1,0 +1,26 @@
+Perform DNS Enumeration using Zone Transfer
+
+ dig ns [Target Domain]
+ 
+ dig @[NameServer] [Target Domain] axfr. The axfr command gets zone information. The result indicates that the server is available but that the transfer failed.
+ 
+ 
+ In the nslookup interactive mode, execute the following command: set querytype=soa.
+Enter the target domain certifiedhacker.com and press Enter. This resolves the target domain information.
+set querytype=soa retrieves administrative information about the target domain certifiedhacker.com DNS zone using the SOA (Start of Authority) record.
+The result shows information about the target domain, including the principal name server and responsible mail address.
+In the nslookup interactive mode, execute the following command: ls -d [Name Server]. In this command, ls -d requests a zone transfer for the given name server.
+
+
+Perform SMTP Enumeration using Nmap
+
+nmap -p 25 --script=smtp-enum-users [Target IP Address]. The -p defines the port, while the --script argument runs a provided script, smtp-enum-users. The output shows a list of all potential mail users on the target system.
+
+
+ nmap -p 25 --script=smtp-open-relay [Target IP Address]. The script we are using in this command is smtp-open-relay. The output shows a list of open SMTP relays on the target machine.
+ 
+ 
+ nmap -p 25 --script=smtp-commands [Target IP Address]. The script we are using in this command is smtp-commands. A list of all SMTP commands found in the Nmap directory is displayed. You can further investigate the commands to find out more about the target host.
+ 
+ Enumerate Information using Global Network Inventory
+Scenario
