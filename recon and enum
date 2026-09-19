@@ -1,0 +1,272 @@
+Advanced Reconnaissance & OSINT Notes (CEH‑Level)
+🔍 1. Google Advanced Search Operators (Google Dorks)
+These operators allow precise filtering of Google’s index. They are essential for passive reconnaissance.
+
+Core Operators
+site: — Restrict results to a domain
+Example: site:eccouncil.org
+
+intitle: — Term must appear in page title
+Example: intitle:login site:eccouncil.org
+
+allintitle: — All terms must appear in title
+Example: allintitle: detect malware
+
+inurl: — Term must appear in URL
+Example: inurl:admin site:target.com
+
+allinurl: — All terms must appear in URL
+Example: allinurl: EC-Council career
+
+filetype: — Search specific file formats
+Example: EC-Council filetype:pdf ceh
+
+inanchor: — Term must appear in anchor text
+Example: Anti-virus inanchor:Norton
+
+allinanchor: — All terms must appear in anchor text
+Example: allinanchor: best cloud service provider
+
+info: — Google’s info page about a domain
+Example: info:eccouncil.org
+
+🌐 2. DNS & Infrastructure Recon (Netcraft + DNSdumpster)
+Tools
+Netcraft — https://www.netcraft.com
+Use for: hosting info, technologies, risk ratings.
+
+DNSdumpster — https://dnsdumpster.com
+Use for: DNS records, MX, TXT, subdomains, IP mapping, GeoIP.
+
+DNSdumpster Workflow
+Go to DNSdumpster.com
+
+Enter target domain (e.g., certifiedhacker.com)
+
+Collect:
+
+DNS Servers
+
+GeoIP
+
+Subdomains
+
+Host mappings
+
+MX records
+
+Export the visual map.
+
+🕵️ 3. Sherlock — Social Media Username Enumeration
+
+
+
+
+Netcraft** — https://www.netcraft.com  
+Use for: hosting info, technologies, risk ratings.
+
+DNSdumpster — https://dnsdumpster.com  
+Use for: DNS records, MX, TXT, subdomains, IP mapping, GeoIP.
+
+DNSdumpster Workflow
+Go to DNSdumpster.com
+
+Enter target domain (e.g., certifiedhacker.com)
+
+Collect:
+
+DNS Servers
+
+GeoIP
+
+Subdomains
+
+Host mappings
+
+MX records
+
+Export the visual map.
+
+🕵️ 3. Sherlock — Social Media Username Enumeration
+Installation (ParrotOS)
+Commands:
+
+Code
+sudo su
+apt update
+sudo apt install pipx
+pipx ensurepath
+pipx install sherlock-project
+pipx ensurepath
+sherlock --version
+Usage
+Code
+sherlock username
+Finds accounts across dozens of platforms.
+
+🧰 4. Recon-ng — Automated Recon Framework
+
+
+
+
+Marketplace & Modules
+Install all modules
+
+Code
+marketplace install all
+Search modules
+
+Code
+modules search
+Workspaces
+
+Code
+workspaces
+workspaces create CEH
+workspaces list
+🧩 DNS & Host Enumeration in Recon-ng
+Insert domain
+Code
+db insert domains
+certifiedhacker.com
+show domains
+Brute-force hosts
+Code
+modules load recon/domains-hosts/brute-hosts
+run
+Reverse resolve
+Code
+modules load recon/hosts-hosts/reverse-resolve
+run
+show hosts
+Generate HTML report
+Code
+modules load reporting/html
+options set FILENAME /home/user/Desktop/result.html
+options set CREATOR CEH-author
+options set CUSTOMER Certifiedhacker Networks
+run
+🧭 5. WHOIS & DNS Enumeration (CLI Tools)
+DomainTools
+Website: http://whois.domaintools.com
+
+nslookup
+Code
+nslookup
+set type=a
+certifiedhacker.com
+
+set type=cname
+certifiedhacker.com
+
+set type=a
+ns1.bluehost.com
+📧 6. Email Tracing Tools
+eMailTrackerPro — trace sender IP, mail server path
+
+MxToolbox — https://mxtoolbox.com
+
+Social Catfish — https://socialcatfish.com
+
+IP2Location Email Header Tracer — https://www.ip2location.com/
+
+Use these to:
+
+Extract sender IP
+
+Identify mail servers
+
+Detect spoofing
+
+Map geolocation
+
+🧪 7. theHarvester — Email & Host Harvesting
+Example (sgpt shell command)
+Code
+sgpt --chat footprint --shell “Use theHarvester to gather email accounts associated with 'microsoft.com', limiting results to 200, and leveraging 'baidu' as a data source”
+📝 8. CEWL — Custom Wordlist Generator
+Example (sgpt shell command)
+Code
+sgpt --chat footprint --shell “Use cewl to gather a wordlist from https://www.certifiedhacker.com and save the result in recon4.csv”
+👤 9. Recon-ng — Contact & Profile Modules
+WHOIS Contacts
+Code
+modules load recon/domains-contacts/whois_pocs
+options set SOURCE facebook.com
+run
+Profile Enumeration
+Code
+modules load recon/profiles-profiles/namechk
+options set SOURCE MarkZuckerberg
+run
+If no output:
+
+Code
+modules load recon/profiles-profiles/profiler
+options set SOURCE MarkZuckerberg
+run
+Generate HTML report
+Code
+modules load reporting/html
+options set FILENAME /home/user/Desktop/recon.html
+options set CREATOR CEH_author
+options set CUSTOMER MarkZuckerberg
+run
+🌐 10. HackerTarget Module (Recon-ng)
+Code
+modules load recon/domains-hosts/hackertarget
+options set SOURCE certifiedhacker.com
+run
+Finds:
+
+IP addresses
+
+Subdomains
+
+Host info
+------------
+
+msfdb init command to initialize the database. 
+Use the service postgresql start command to start the PostgreSQL service. Postgresql is connected to the Metasploit initialized database. Use the msfconsole command to launch the Metasploit Framework.
+use the db_status command to check the database status; it is connected to msf. 
+nmap -Pn -sS -A -oX Test 192.168.2.0/24 command to scan the entire subnet. 
+-Pn flag scans without DNS resolution (-n = no DNS resolution) because it is slow.
+-sS flag specifies the TCP SYN Scan.
+-A flag specifies the aggressive mode.
+-oX Test flag puts the XML output in a file named Test. 
+ db_import Test command to import and save the gathered data into the Test file
+ hosts
+ services
+ search protscan
+  use auxiliary/scanner/portscan/syn command to use this module for SYN scanning. Use the following commands to set the parameters;
+set PORTS 80
+set RHOSTS target_IP
+set THREADS number_of_threads
+run
+
+use auxiliary/scanner/smb/smb_version command to find the SMB version. Use the following commands to set the parameters and run the scan;
+set RHOSTS target_IP  
+set THREADS 10
+run
+
+run sgpt--chat scan --shell "Use Hping3 to perform ICMP scanning on the target IP address 10.0.2.20 and stop after 10 iterations"
+
+
+
+---
+
+ cd .. command to return to the previous directory. Execute the following command: git clone https://github.com/hegusung/RPCScan.git to install the RPCSacn GitHub repository. Then execute the cd RPCScan command to go inside the RPCScan directory. 
+ 
+ Execute the following command: python3 rpc-scan.py [Target IP address] --rpc.
+The --rpc parameter lists the RPC (portmapper). The result indicates that port 2049 is open, and the NFS service is running on it.
+
+-------------------
+
+docker ps -a
+docker rm -f openvas
+docker rename openvas openvas_old
+docker run -d -p 443:443 --name openvas mikesplain/openvas
+docker ps
+
+docker rm -f $(docker ps -aq) remove all dovcker id do not use 
+ 
