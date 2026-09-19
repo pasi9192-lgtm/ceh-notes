@@ -759,6 +759,23 @@ http.request.method == POST  - TO CHECK USERNAME AND PASSWOD
 
 Detect ARP Poisoning and Promiscuous Mode in a Switch-Based Network
 
+	2. In the Desktop window, click windows Search icon and search for cain in the search bar and launch it.
+The Cain & Abel main window appears, click Configure from the menu bar to configure an ethernet card.
+
+	4. The Configuration Dialog window appears. The Sniffer tab is selected by default. Ensure that the Adapter associated with the IP address of the machine is selected and click OK.
+
+
+	5. Click the Start/Stop Sniffer icon on the toolbar to begin sniffing.
+	
+
+
+	6. The Cain pop-up appears with a Warning message, click OK.
+	7. Now, click the Sniffer tab.
+	8. Click the plus (+) icon or right-click in the window and select Scan MAC Addresses to scan the network for hosts.
+	9. The MAC Address Scanner window appears. Check the All hosts in my subnet radio button. Select the All Tests checkbox; then, click OK.
+
+
+
 
 Run cd command to jump to root directory.
 Run hping3 [Target IP Address] -c 100000 command (here, target IP address is 10.10.1.11 [Windows 11]).
