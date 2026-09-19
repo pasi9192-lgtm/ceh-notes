@@ -755,6 +755,8 @@ wireshark
 cd to navigate to the root directory
 Run yersinia -I to open Yersinia in interactive mode
 
+http.request.method == POST  - TO CHECK USERNAME AND PASSWOD 
+
 Detect ARP Poisoning and Promiscuous Mode in a Switch-Based Network
 
 
