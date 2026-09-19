@@ -134,6 +134,97 @@ docker pull nginx:1.19.6 to pull the vulnerable image.
 
 	9. Execute command trivy image nginx:1.19.6 to scan the image.
 
+-----
+
+
+
+Cryptography 
+
+Multi-layer Hashing using CyberChef
+MD5, SHA-1, SHA-256, SHA-512, etc., and encoding techniques such as text to hexadecimal, binary, Base64, or URL encoding.
+A multi-layer hash - Instead of just applying a single hash function to a piece of data, multiple hash functions are employed in layers or stages, with the output of one hash function serving as the input to the next one.
+
+
+CryptoForge is a file encryption software for personal and professional data security. It allows you to protect the privacy of sensitive files, folders, or email messages by encrypting them with strong encryption algorithms. Once the information has been encrypted, it can be stored on insecure media or transmitted on an insecure network-such as the Internet-and remain private. Later, the information can be decrypted into its original form.
+
+
+cfd format cryptoforge
+
+disk encryption using VeraCrypt
+VeraCrypt is a software used for establishing and maintaining an on-the-fly-encrypted volume (data storage device). On-the-fly encryption means that data is automatically encrypted just before it is saved, and decrypted just after it is loaded, without any user intervention. 
+
+MD5 (Message Digest Algorithm 5) is a widely-used cryptographic hash function producing a 128-bit hash value, typically rendered as a 32-character hexadecimal number. It is commonly used to verify data integrity.
+
+IOT 
+
+As a professional ethical hacker or pen tester, your first step is to gather maximum information about the target IoT and OT devices by performing footprinting through search engines, advanced Google hacking, Whois lookup, etc.
+The first step in IoT and OT device hacking is to extract information such as IP address, protocols used (MQTT, ModBus, ZigBee, BLE, 5G, IPv6LoWPAN, etc.), open ports, device type, geolocation of the device, manufacturing number, and manufacturer of the device.
+
+
+
+performing footprinting on the MQTT protocol, which is a machine-to-machine (M2M)/"Internet of Things" connectivity protocol. It is useful for connections with remote locations where a small code footprint is required and/or network bandwidth is at a premium.
+
+
+	16. The Shodan main page appears; type port:1883 in the address bar and press Enter.
+Port:1883 is the default MQTT port; 1883 is defined by IANA as MQTT over TCP.
+
+
+MQTT is a lightweight messaging protocol that uses a publish/subscribe communication pattern. Since the protocol is meant for devices with a low-bandwidth, it is considered ideal for machine-to-machine (M2M) communication or IoT applications. We can create virtual IoT devices over the virtual network using the Bevywise IoT simulator on the client side and communicate these devices to the server using the MQTT Broker web interface. This interface collects data and displays the status and messages of connected devices over the network.
+
+
+To install the MQTT Broker  Bevywise_MQTTRoute_4.exe
+To create IoT devices, we must install the IoT simulator  Bevywise_IoTSimulator_3.exe
+After restarting, Bevywise IoT Simulator is installed successfully. To launch the IoT simulator, navigate to the C:\Bevywise\IotSimulator\bin directory and double-click on the runsimulator.bat file.
+Upon double-clicking the runsimulator.bat file opens in the command prompt. If How do you want to open this? pop-up appears, select Microsoft Edge browser and click OK to open the URL http://127.0.0.1:9000/setnetwork?network=HEALTH_CARE.
+If the URL directly opens in Microsoft Edge browser, then continue.
+Create new network deivce 
+
+	46. To verify the communication, we have executed Wireshark application, switch to the Wireshark traffic capturing window.
+	47. Type mqtt under the filter field and press Enter. To display only the MQTT protocol packets.
+Select any Publish Message packet from the Packet List pane. In the Packet Details pane at the middle of the window, expand the Transmission Control Protocol, MQ Telemetry Transport Protocol, and Header Flags nodes.
+		48. Select any Publish Message packet from the Packet List pane. In the Packet Details pane at the middle of the window, expand the Transmission Control Protocol, MQ Telemetry Transport Protocol, and Header Flags nodes.
+	49. Under the MQ Telemetry Transport Protocol nodes, you can observe details such as Msg Len, Topic Length, Topic, and Message.
+	50. Publish Message can be used to obtain the message sent by the MQTT client to the broker.
+	
+	
+		Note: After establishing a successful connection with the MQTT broker, the MQTT client can publish messages. The headers in the Publish Message packet are given below:
+	• Header Flags: Contains information regarding the MQTT control packet type.
+	• DUP flag: If the DUP flag is 0, it indicates the first attempt at sending this PUBLISH packet; if the flag is 1, it indicates a possible re-attempt at sending the message.
+	• QoS: Determines the assurance level of a message.
+	• Retain Flag: If the retain flag is set to 1, the server must store the message and its QoS, so it can cater to future subscriptions matching the topic.
+	• Topic Name: Contains a UTF-8 string that can also include forward slashes when it needs to be hierarchically structured.
+	• Message: Contains the actual data to be transmitted.
+	• Payload: Contains the message that is being published.
+	51. Select any Publish Release packet from the Packet List pane. In the Packet Details pane at the middle of the window, expand the Transmission Control Protocol, MQ Telemetry Transport Protocol, and Header Flags nodes.
+	52. Under the MQ Telemetry Transport Protocol nodes, you can observe details such as Msg Len, Message Type, Message Identifier.
+	53. Now, scroll down, look for the Publish Complete packet from the Packet List pane, and click on it. In the Packet Details pane at the middle of the window, expand the Transmission Control Protocol, MQ Telemetry Transport Protocol, and Header Flags nodes.
+Under the MQ Telemetry Transport Protocol nodes, you can observe details such as Msg Len and Message Identifier.
+	55. Now, scroll down, look for the Publish Received packet from the Packet List pane, and click on it. In the Packet Details pane at the middle of the window, expand the Transmission Control Protocol, MQ Telemetry Transport Protocol, and Header Flags nodes.
+	56. Under the MQ Telemetry Transport Protocol nodes, you can observe details such as Message Type, Msg Len and Message Identifier.
+
+
+Question 18.2.1.1
+Use Wireshark and Bevywise MQTT Route and Bevywise IoT Simulator to capture and analyze traffic between IoT devices. What is the default TCP port used by Bevywise MQTT Route to establish connection with Bevywise IoT Simulator?
+
+Question 18.2.1.2
+What is the default WebSocket port used by Bevywise MQTT IoT Simulator to establish connection with Bevywise MQTT Route?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
