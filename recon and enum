@@ -269,4 +269,140 @@ docker run -d -p 443:443 --name openvas mikesplain/openvas
 docker ps
 
 docker rm -f $(docker ps -aq) remove all dovcker id do not use 
+
+
+
+
+-----
+
+
+advanced search operators such as site, intitle, inurl, filetype
+
+intitle:login site:eccouncil.org
+
+EC-Council filetype:pdf ceh 
+allinurl: EC-Council career. The allinurl operator restricts results to pages containing all the query terms specified in the URL
+
+allintitle: detect malware
+
+Anti-virus inanchor:Norton query returns only pages with anchor text on links to the pages containing the word “Norton” and the page containing the word “Anti-virus.”
+allinanchor: best cloud service provider in the search bar. The allinanchor operator restricts results to pages containing all query terms specified in the anchor text on links to the page.
+ info:eccouncil.org in the search bar. The info operator finds information for the specified web page. The query info:eccouncil.org returns details about the homepage of www.eccouncil.org.
  
+ Netcraft and DNSdumpster, two powerful tools for mapping the organization’s public-facing infrastructure. These tools allow you to collect detailed information about the company’s DNS records, subdomains, and associated hosts, which may not be immediately obvious from a casual website inspection.
+ 
+ 
+ https://www.netcraft.com.
+ 
+ https://dnsdumpster.com
+ 
+ now find the company’s DNS Servers, Geo IP, and domain mapping using the DNSdumpster website
+ 
+ sherlock 
+ 
+ sudo su 
+ apt update 
+ Sherlock is a Python application that looks through social media platforms to find details about a specific person. Sherlock searches numerous social networking sites for a specific target user, locates the person, and displays the results along with the complete URL linked to the target person.
+ sudo apt install pipx
+ pipx ensurepath 
+ pipx install sherlock-project to install Sherlock package in ParrotOS.
+  pipx ensurepath 
+ sherlock --version
+ 
+ Enter the marketplace install all command to install the available modules. 
+
+4. Enter the modules search command to list the category-wise available modules.
+
+5. Enter workspaces to see the commands related to workspaces.
+
+6. Create a workspace named CEH using the workspaces create CEH command. Ignore the error messages. 
+
+7. Use the workspaces list command to list all the workspaces. 
+
+8. Use the db insert domains command to insert the target domain certifiedhacker.com. Enter the show domains command to see the inserted domains. 
+
+9. Use the modules load keyword command to search for the module to be loaded. It searches for the brute keyword and lists the modules. Copy the module name that you want to use. 
+
+10. Load the module using the modules load recon/domains-hosts/brute-hosts command and enter the run command to run the module. 
+
+11. Now, enter the modules load reverse-resolve command to search for modules related to reverse-resolve. Use the modules load recon/hosts-hosts/reverse-resolve command to load the module. Enter the run command to run it. 
+
+12. Enter the show hosts command to see the gathered hosts. 
+
+13. Now, enter the modules load reporting/html command to load the module. Use the following commands to set the filename, creator, and customer parameters:     
+Options set FILENAME /home/user/Desktop/ result.html
+Options set CREATOR CEH-author
+Options set CUSTOMER Certifiedhacker Networks
+Enter the run command to run it. 
+
+14. Go to the path /home/user/Desktop/result.html and open the result.html file via any web browser. It shows the result in an organized form. 
+
+
+15. Open a new Parrot terminal and launch Recon-ng using the recon-ng command. 
+
+16. Create a workspace named reconnaissance using the workspaces create reconnaissance command. 
+
+17. Use the modules load recon/domains-contacts/whois_pocs command to load the module. Enter the command info command to see the available options. 
+
+18. Set the target domain using the options set SOURCE facebook.com command, where facebook.com is the target domain. Enter run to execute.
+
+This module gathers the contact details associated with the target domain. 
+19. Try another module, recon/profiles-profiles/namechk. Set the target name using the options set SOURCE MarkZuckerberg command. Enter run to collect data.
+
+It is not displaying any data. You can try another module named recon/profiles-profiles/profiler to make it work properly. 
+20. Load the module and set the target name using the options set SOURCE MarkZuckerberg command. Enter run to execute. 
+
+21. It says that 100 new profiles have been found. Enter back to go one step back. Load the reporting/html module to create a report of the gathered data. Use the following commands to set the filename, creator, and customer parameters for the report;
+options set FILENAME /home/user/Desktop/recon.html (file name and destination path)
+options set CREATOR CEH_author (your name)
+options set CUSTOMER MarkZuckerberg (target name)
+Enter run to create the report. 
+
+22. Go to the file and open it via any web browser. It shows the report you just created.
+
+
+23. Expand the nodes to see the details. 
+
+24. Try the hackertarget module using the recon/domains-hosts/hackertarget command. Set the target using the options set SOURCE certifiedhacker.com command and enter the run. 
+
+This module searches for IP addresses, sub-domains, and other information.
+
+
+
+ 
+ 
+ http://whois.domaintools.com. for website dns 
+ 
+ nslookup
+ set type=a
+ sitename
+ 
+ set type=cname
+certifiedhacker.com
+
+
+Enter the following commands to find the IP address of the name server.
+set type=a
+ns1.bluehost.com
+
+Tracing Emails using eMailTrackerPro
+
+
+Email headers can be extracted and examined to determine the sender’s information. Use eMailTrackerPro to determine the origin of the email and gather information such as IP address, mail servers, and geolocation. Cross-reference suspicious URLs or email addresses to understand the scope of the attack.
+
+
+You can also use email tracking tools such as MxToolbox (https://mxtoolbox.com/), Social Catfish (https://socialcatfish.com/), IP2Location Email Header Tracer (https://www.ip2location.com/), etc. to monitor an email and retrieve target data, including the sender’s IP address, mail server, location, and other details.
+
+Recon-ng allows you to automate the information-gathering process, saving time and improving accuracy. The framework includes various modules for gathering information, such as DNS enumeration, Google searches, and WHOIS lookups.
+
+
+run sgpt --chat footprint --shell “Use theHarvester to gather email accounts associated with 'microsoft.com', limiting results to 200, and leveraging 'baidu' as a data source” command to a target organization for harvesting emails.
+
+run the sgpt --chat footprint --shell “Use cewl to gather a wordlist from the target website https://www.certifiedhacker.com and save the result in recon4.csv file” command. I
+
+ Buffer Overflow Tools\vulnserver.execute
+ Buffer Overflow Tools\Immunity Debugger
+ 
+
+
+
