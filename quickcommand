@@ -354,3 +354,236 @@ searchsploit -p 7618[.c] // Show complete path
 searchsploit — nmap file.xml // Search vulns inside a Nmap XML result
 
 From <https://github.com/TheCyberpunker/CEH-Practical-Notes/blob/main/8%20-%20CEH-Notes.md> 
+
+
+
+----
+
+
+nbtstat -a [IP address of the remote machine]  in cmd nbtstat
+nbtstat -c
+net use
+
+
+snmpwalk -v1 -c public [target IP]
+
+snmpwalk -v2c -c public [Target IP Address]
+
+
+
+sudo nmap -sn 192.168.10.4/24    (check gateway ip and  remove one that is gateway )
+
+
+sudo nmap -p 22 --open -sV 192.168.10.0/24   The -sV flag reveals the OS/service version.)
+
+sudo nmap -sU --script nbstat -p 137 192.168.0.222            
+
+Perform a host discovery scanning and identify the NetBIOS_Domain_Name of the host at 192.168.0.222. (Format: AAAAA.AAA)
+
+sudo nmap --script smb-os-discovery -p 445 192.168.0.222
+WILL GIVE OS , COMPUTERNAME , NETBIOS COMPUTERNAME , NETBIOS AND WORKGROUP NAME I.E NETBIOS NAME 
+
+
+sudo nmap -p 88,389,445,53,3268 --open 192.168.0.0/24
+
+
+sudo nmap -p- 192.168.0.0/24
+
+
+nfs enumeration port check 
+
+
+ nmap -p 2049 [Target IP Address] command  
+ 
+ 	11. Run cd SuperEnum command to navigate to the SuperEnum folder.
+	12. Run echo "10.10.1.19" >> Target.txt command to create a file having a target machine's IP address (10.10.1.19).
+You may enter multiple IP addresses in the Target.txt file. However, in this task we are targeting only one machine, the Windows Server 2019 (10.10.1.19).
+	
+
+
+xecute ./superenum command. Under Enter IP List filename with path, type Target.txt, and press Enter.
+If you get an error running the ./superenum script, execute chmod +x superenum command, then repeat Step#13.
+
+
+
+	18. Now, we will perform NFS enumeration using RPCScan. To do so, run cd RPCScan command.
+	19. Execute python3 rpc-scan.py [Target IP address] --rpc command (here, the target IP address is 10.10.1.19, the Windows Server 2019 machine).
+--rpc: lists the RPC (portmapper).
+
+	4. Run dig ns [Target Domain] command (here, the target domain is www.certifiedhacker.com).
+In this command, ns returns name servers in the result
+	6. Run dig @[NameServer] [Target Domain] axfr command (here, the name server is ns1.bluehost.com and the target domain is www.certifiedhacker.com).
+In this command, axfr retrieves zone information.
+
+
+	12. The Command Prompt window appears; execute command nslookup.
+	13. In the nslookup interactive mode, execute command set querytype=soa.
+	14. Type the target domain certifiedhacker.com and press Enter. This resolves the target domain information.
+set querytype=soa sets the query type to SOA (Start of Authority) record to retrieve administrative information about the DNS zone of the target domain certifiedhacker.com.
+
+
+
+	16. In the nslookup interactive mode, execute command ls -d [Name Server] (here, the name is ns1.bluehost.com).
+In this command, ls -d requests a zone transfer of the specified name server.
+	17. The result appears, displaying that the DNS server refused the zone transfer, as shown in the screenshot.
+
+
+
+	18. After retrieving DNS name server information, the attacker can use one of the servers to test whether the target DNS allows zone transfers or not. Here, the zone transfer was refused for the target domain. A penetration tester should attempt DNS zone transfers on different domains of the target organization.
+
+
+we will use the Nmap to perform SMTP enumeration.
+	1. In the Parrot Security machine, open a Terminal window and execute sudo su to run the programs as a root user (When prompted, enter the password toor).
+	2. Run nmap -p 25 --script=smtp-enum-users [Target IP Address] command (here, the target IP address is 10.10.1.19).
+-p: specifies the port, and --script: argument is used to run a given script (here, the script is smtp-enum-users).
+
+
+	4. Run nmap -p 25 --script=smtp-open-relay [Target IP Address] command (here, the target IP address is 10.10.1.19).
+-p: specifies the port, and -script: argument is used to run a given script (here, the script is smtp-open-relay).
+	5. The result appears displaying a list of open SMTP relays on the target machine (10.10.1.19), as shown in the screenshot below.
+
+
+	6. Run nmap -p 25 --script=smtp-commands [Target IP Address] command (here, the target IP address is 10.10.1.19).
+-p: specifies the port, and -script: argument is used to run a given script (here, the script is smtp-commands).
+	7. A list of all the SMTP commands available in the Nmap directory appears. You can further explore the commands to obtain more information on the target host.
+	
+	8. Using this information, the attackers can perform password spraying attacks to gain unauthorized access to the user accounts.
+	9. This concludes the demonstration of SMTP enumeration using Nmap.
+
+
+
+	3. After configuring the ShellGPT in Parrot Security machine, in the terminal window run sgpt
+	4. --shell "Perform NetBIOS enumeration on target IP 10.10.1.11" command to perform NetBIOS enumeration on target system.
+In the prompt type E and press Enter to execute the command.
+
+
+
+Run sgpt --shell "Get NetBIOS info for IP 10.10.1.11 and display the associated names" command to view the associated names of target system.
+
+To perform NetBIOS enumeration using Nmap run sgpt --shell "Enumerate NetBIOS on target IP 10.10.1.22 with nmap" command.
+
+	7. We will now perform SNMP enumeration using ShellGPT, to do so, run sgpt --chat enum --shell "Perform SNMP enumeration on target IP 10.10.1.22 using SnmpWalk and display the result here" command.
+In the prompt type E and press Enter to execute the command.
+
+
+	8. Run sgpt --chat enum --shell "Perform SNMP enumeration on target IP 10.10.1.22 using nmap and display the result here" command to perform SNMP enumeration using Nmap.
+In the prompt type E and press Enter to execute the command.
+
+
+
+Run sgpt --chat enum --shell "Perform SNMP processes on target IP 10.10.1.22 using nmap and display the result here" command.
+
+
+
+To perform SMTP enumeration on a target IP run sgpt --chat enum --shell "Perform SMTP enumeration on target IP 10.10.1.19." command.
+
+
+
+
+	11. We will perform DNS enumeration with Nmap using ShellGPT, to do so run sgpt --chat enum --shell "Use Nmap to perform DNS Enumeration on target domain www.certifiedhacker.com" command.
+In the prompt type E and press Enter to execute the command.
+...
+
+
+To perform DNS cache snooping on target domain run sgpt --chat enum --shell "Use dig command to perform DNS cache snooping on target domain www.certifiedhacker.com using recursive method. Use DNS server IP as 162.241.216.11" command.
+
+
+
+Run sgpt --chat enum --shell "Use dig command to perform DNS cache snooping on the target domain www.certifiedhacker.com using non-recursive method. Use DNS server IP as 162.241.216.11" command.
+In the prompt type E and press Enter to execute the command
+
+
+To perform IPsec enumeration using ShellGPT run sgpt --shell "Perform IPsec enumeration on target IP 10.10.1.22 with Nmap" command.
+
+
+
+	15. We will now perform SMB enumeration using ShellGPT, to do so, run sgpt --shell "Scan the target IP 10.10.1.22 for the port using SMB with Nmap" command.
+In the prompt type E and press Enter to execute the command.
+.
+
+To create and execute a custom script to automate network enumeration tasks run sgpt --chat enum --shell "Develop and execute a script which will automate various network enumeration tasks on target IP range 10.10.1.0/24" command.
+
+
+
+We will perform LDAP enumeration using ShellGPT, to do so, run sgpt --shell "Use nmap script to perform ldap-brute-force on IP 10.10.1.22" command.
+
+
+
+	18. To perform FTP enumeration, run sgpt --shell "Use Nmap to perform FTP Enumeration on www.certifiedhacker.com" command.
+In the prompt type E and press Enter to execute the command.
+	
+	3. After configuring the ShellGPT in Parrot Security machine, in the terminal window, run sgpt --chat nikto --shell "Scan the URL https://www.certifiedhacker.com to identify potential vulnerabilities with nikto" to launch Nikto scan on the target website.
+In the prompt, type E and press Enter to execute the command.
+
+
+
+	5. In the terminal, run sgpt --chat vuln --shell "Perform vulnerability scan on target url http://www.moviescope.com with Nmap" command to perform vulnerability scan on the target website. The result appears displaying open ports and services running on the target website.
+
+
+
+Run sgpt --chat vuln --shell "Perform a vulnerability scan on target url http://testphp.vulnweb.com with skipfish" to scan the target URL using skipfish tool.
+	7. The skipfish begins scanning the target url. After the successful completion of the scan, report is saved at the /tmp/skipfish_scan_output/ location, named as index.html. Navigate to the location, right-click on index.html and open with Firefox ESR Web Browser, as shown in the screenshot.
+The location of scan report might differ. You can view the location in the skipfish command generated by ShellGPT.
+
+
+
+https://jacinthpaul.github.io/Claude-Certified-Architect/associate-foundations/
+
+
+
+
+
+Task 1: Perform Active Online Attack to Crack the System's Password using Responder
+
+
+
+sudo responder -I eth0
+
+
+	6. Click Windows 11-M6 to switch to the Windows 11 machine, right-click on the Start icon, and click Run.
+The Run window appears; type \\CEH-Tools in the Open field and click OK.
+
+
+	9. Responder starts capturing the access logs of the Windows 11 machine. It collects the hashes of the logged-in user of the target machine, as shown in the screenshot.
+By default, Responder stores the logs in /usr/share/responder/logs.
+
+
+
+Now, select the hash value of Jason and copy it as shown in the screenshot.
+
+
+After copying the hash value open a terminal window, run sudo su command and run pluma hash.txt command to open a hash.txt file.
+In the password for attacker field
+
+
+	14. In the terminal window run john hash.txt command to crack the password of Jason.
+
+
+
+	2. In the terminal window, run docker run -d -p 80:80 reverse_shell_generator command to start Reverse Shell Generator.
+If you receive an error run service apache2 stop command and perform Step#2 again.
+	• docker run: Starts a new container.
+	• -d: Detached mode — runs the container in the background.
+	• -p 80:80: Maps host port 80 to container port 80, allowing access to the container's service via http://localhost.
+	
+
+
+
+now, launch Firefox web browser and go to http://localhost to access Reverse Shell Generator GUI.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
