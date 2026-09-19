@@ -1,0 +1,21 @@
+always scan all IP range 
+
+
+
+sudo find / -type f -name "temp.txt" 2>/dev/null    search for file location  adb
+
+move file to another machine 
+sudo apt install smbclient
+smbclient //ip/Share -U user
+put //home/attacker/anyfile.mp4 any file.mp4     source and destintion need to define 
+
+
+
+Cryptography tools 
+
+Cryptoanalysis tool - crypto tool and alphapeeler.
+cryptographytool -adavanced encryption package ,BCTEXTEncoder ,Cryptoforge
+Disk encryption tool - veracrypt , roho disk encryption
+md and m6 hash calculation - HashCalc , Hashmyfiles , md5 calculator 
+
+
