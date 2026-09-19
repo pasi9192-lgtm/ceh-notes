@@ -1,0 +1,140 @@
+md5 value - use md5 calculator and to comapre hash file 
+
+hex file use crypto tool
+
+cryt-128-06encr.hex  - check all 128 crypto Algortham and 
+need to try all algorithms with 128 bit key length with key 06
+
+https://gchq.github.io/CyberChef/  
+encrypt  - multilayer hashing 
+
+
+CryptoForge is a file encryption software for personal and professional data security. It allows you to protect the privacy of sensitive files, folders, or email messages by encrypting them with strong encryption algorithms. Once the information has been encrypted, it can be stored on insecure media or transmitted on an insecure network-such as the Internet-and remain private. Later, the information can be decrypted into its original form.
+
+
+veracrypt 
+
+www.goodshopping.com hosted on the machine at 10.10.1.19
+
+-----
+
+
+cd C:\Users\Admin\Downloads\AADInternals
+Install-Module AADInternals
+run Import-Module AADInternals command, to import AADInternals module.
+
+Invoke-AADIntReconAsOutsider -DomainName company.com | Format-table. In this command, replace the company.com with the target company's domain here, we are using eccouncil.org.
+
+we can gather information such as DNS, MX, SPF, DMARC, DKIM, etc.
+
+, we will perform user enumeration in Azure AD. In the PowerShell window, execute the following command: Invoke-AADIntUserEnumerationAsOutsider -UserName user@company.com. In this command, replace the user@company.com with the target user’s email address.
+
+
+ We can see that the result appears True under Exists field which implies that the Azure account with the given username exists and the attacker can perform further attacks.
+ 
+ Get-Content .\users.txt | Invoke-AADIntUserEnumerationAsOutsider -Method Normal where the users.txt file contains the target email addresses.
+12. Now, to get login information for a domain, execute the following command: Get-AADIntLoginInformation -Domain company.com. In this command, replace the company.com with the target company's domain here, we are using eccouncil.org.
+
+
+ Now, to get login information for a user, execute the following command: Get-AADIntLoginInformation -Domain user@company. In this command, replace the user@company.com with the target user’s email address.
+ 
+ 
+ Get-AADIntTenantID -Domain company.com. In this command, replace the company.com with the target company's domain here, we are using eccouncil.org.
+ 
+ 
+ Get-AADIntTenantDomains -Domain company.com. We can see that all the domains associated with the tenant will be listed.
+ 
+ 
+ --
+ 
+ 
+  pip3 install awscli and press Enter to install AWS CLI.
+  
+  we need to configure AWS CLI. To configure AWS CLI in the terminal window, type aws configure and press Enter.
+	
+
+
+	5. It will ask for the following details:
+	• AWS Access Key ID
+	• AWS Secret Access Key
+	• Default region name
+	• Default output format
+	6. To provide these details, you need to login to your AWS account.
+	7. Click Firefox icon from the top-section of the Desktop.
+	8. Login to your AWS account that you created at the beginning of this task. Click the Firefox browser icon in the menu, type https://console.aws.amazon.com in the address bar, and press Enter.
+If you do not have an AWS account, create one with the Basic Free Plan, and then proceed with the tasks.
+	9. The Amazon Web Services Sign-In page appears; type your email account in the Root user email address field and click Next.
+
+
+	11. Click the AWS account drop-down menu and click Security credentials, as shown in the screenshot.
+
+
+	12. Scroll down to Access Keys section.
+	13. Click the Create Access Key button. In Continue to create access key?; check the check box and click Create access key.
+
+
+	15. In the terminal window, right-click your mouse; select Paste from the context menu to paste the copied AWS Access Key ID and press Enter. It will prompt you to the AWS Secret Access Key. Switch to your AWS Account in the browser.
+	16. Copy the Secret Access Key and minimize the browser window. Switch to the Terminal window.
+	17. In the terminal window, right-click your mouse, select Paste from the context menu to paste the copied Secret Access Key and press Enter. It will prompt you for the default region name.
+	18. In the Default region name field, type eu-west-1 and press Enter.
+	19. The Default output format prompt appears; leave it as default and press Enter.
+
+
+vor demonstration purposes, we have created an open S3 bucket with the name certifiedhacker02 in the AWS service. We are going to use that bucket in this task.
+The public S3 buckets can be found during the enumeration phase.
+	21. Let us list the directories in the certifiedhacker02 bucket. In the terminal window, type aws s3 ls s3://[Bucket Name] (here, Bucket Name is certifiedhacker02) and press Enter.
+The bucket name may be different in your lab environment depending on the bucket you are targeting.
+	22. This will show you the list of directories in the certifiedhacker02 S3 bucket, as shown in the screenshot.
+
+
+
+	23. Now, maximize the browser window, type certifiedhacker02.s3.amazonaws.com in the address bar, and press Enter.
+	24. This will show you the complete list of directories and files available in this bucket.
+
+
+
+	25. Minimize the browser window and switch to Terminal.
+	26. Let us move some files to the certifiedhacker02 bucket. To do this, in the terminal window, type echo "You have been hacked" >> Hack.txt and press Enter.
+	27. By issuing this command, you are creating a file named Hack.txt.
+
+
+
+	28. Let us try to move the Hack.txt file to the certifiedhacker02 bucket. In the terminal window, type aws s3 mv Hack.txt s3://certifiedhacker02 and press Enter.
+	29. You have successfully moved the Hack.txt file to the certifiedhacker02 bucket.
+
+
+
+	30. To verify whether the file is moved, switch to the browser window and maximize it. Reload the page.
+	31. You can observe that the Hack.txt file is moved to the certifiedhacker02 bucket, as shown in the screenshot.
+	
+
+
+
+	32. Minimize the browser window and switch to the Terminal window.
+	33. Let us delete the Hack.txt file from the certifiedhacker02 bucket. In the terminal window, type aws s3 rm s3://certifiedhacker02/Hack.txt and press Enter.
+	34. By issuing this command, you have successfully deleted the Hack.txt file from the certifiedhacker02 bucket.
+
+
+
+---
+
+docuker 
+
+
+docker pull ubuntu to install the first docker image.
+
+
+	6. Once the image is pulled we will be performing vulnerability assessment. Execute command trivy image ubuntu.
+
+
+
+
+docker pull nginx:1.19.6 to pull the vulnerable image.
+
+
+	9. Execute command trivy image nginx:1.19.6 to scan the image.
+
+
+
+
+
