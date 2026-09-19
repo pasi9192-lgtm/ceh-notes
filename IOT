@@ -1,0 +1,78 @@
+Iot 
+
+https://www.whois.com/whois
+
+ www.oasis-open.org in the search field and click SEARCH. 
+Oasis is an organization that has published the MQTT v5.0 standard, which represents a significant leap in the refinement and capability of the messaging protocol that already powers IoT.
+
+
+https://www.exploit-db.com/google-hacking-database
+
+
+Open a new tab and go to https://www.google.com. In the search field, enter "login" intitle:"scada login". pasi9192-lgtm Naruto@503085098
+
+ intitle:"index of" scada to search sensitive SCADA directories that are exposed on sites.
+ 
+ 
+ Z:\CEHv13 Module 18 IoT and OT Hacking\Bevywise IoT Simulator folder and double-click on the Bevywise_MQTTRoute_4.exe file.
+ 
+ 
+	10. Navigate to Z:\CEHv13 Module 18 IoT and OT Hacking\Bevywise IoT Simulator folder and double-click on the Bevywise_IoTSimulator_3.exe file.
+
+
+	14. After restarting, Bevywise IoT Simulator is installed successfully. To launch the IoT simulator, navigate to the C:\Bevywise\IotSimulator\bin directory and double-click on the runsimulator.bat file.
+
+
+
+Upon double-clicking the runsimulator.bat file opens in the command prompt. If How do you want to open this? pop-up appears, select Microsoft Edge browser and click OK to open the URL http://127.0.0.1:9000/setnetwork?network=HEALTH_CARE.
+
+The web interface of the IoT Simulator opens in Edge browser. In the IoT Simulator, you can view the default network named HEALTH_CARE and several devices.
+
+The Create New Network popup appears. Type any name (here, CEH_FINANCE_NETWORK) and description. Click on Create.
+
+The Create New Device popup opens. Type the device name (here, we use Temperature_Sensor), enter Device Id (here, we use TS1), provide a Description and click on Save.
+
+To connect the Network and the added devices to the server or Broker, click on the Start Network red color circular icon in right corner.
+
+
+Open a web browser, and go to http://localhost:8080 and login using admin/admin (here, we are using Firefox Browser).
+
+
+
+
+	48. Select any Publish Message packet from the Packet List pane. In the Packet Details pane at the middle of the window, expand the Transmission Control Protocol, MQ Telemetry Transport Protocol, and Header Flags nodes.
+	49. Under the MQ Telemetry Transport Protocol nodes, you can observe details such as Msg Len, Topic Length, Topic, and Message.
+
+
+
+	Note: After establishing a successful connection with the MQTT broker, the MQTT client can publish messages. The headers in the Publish Message packet are given below:
+	• Header Flags: Contains information regarding the MQTT control packet type.
+	• DUP flag: If the DUP flag is 0, it indicates the first attempt at sending this PUBLISH packet; if the flag is 1, it indicates a possible re-attempt at sending the message.
+	• QoS: Determines the assurance level of a message.
+	• Retain Flag: If the retain flag is set to 1, the server must store the message and its QoS, so it can cater to future subscriptions matching the topic.
+	• Topic Name: Contains a UTF-8 string that can also include forward slashes when it needs to be hierarchically structured.
+	• Message: Contains the actual data to be transmitted.
+	• Payload: Contains the message that is being published.
+	51. Select any Publish Release packet from the Packet List pane. In the Packet Details pane at the middle of the window, expand the Transmission Control Protocol, MQ Telemetry Transport Protocol, and Header Flags nodes.
+	52. Under the MQ Telemetry Transport Protocol nodes, you can observe details such as Msg Len, Message Type, Message Identifier.
+	
+
+
+	Note: A Publish Release (PUBREL) packet is the response to a Publish Received (PUBREC) packet.
+	53. Now, scroll down, look for the Publish Complete packet from the Packet List pane, and click on it. In the Packet Details pane at the middle of the window, expand the Transmission Control Protocol, MQ Telemetry Transport Protocol, and Header Flags nodes.
+	54. Under the MQ Telemetry Transport Protocol nodes, you can observe details such as Msg Len and Message Identifier.
+	
+
+
+	57. Similarly you can select Ping Request, Ping Response and Publish Ack packets and observe the details.
+	58. This concludes the demonstration of capturing and analyzing MQTT protocol packets. Here, we analyzed different processes involved in the communication between an MQTT client and an MQTT broker using Wireshark. Understanding these metrics as well as the workflow can help you in quickly identifying the MQTT-related issues.
+	59. Close all open windows and document all the acquired information.
+
+
+
+
+
+
+
+ 
+ 
