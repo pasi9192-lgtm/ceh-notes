@@ -1,0 +1,19 @@
+Aircrack-ng
+
+aircrack-ng -a2 -b [Target BSSID] -w /home/attacker/Desktop/Wordlist/password.txt '/home/attacker/Desktop/Sample Captures/WPA2crack-01.cap'. Here, the BSSID of the target is 22:7F:AC:6D:E6:8B.
+
+
+
+the BSSID of the target is 22:7F:AC:6D:E6:8B
+
+run aircrack-ng -a2 -b [Target BSSID] -w /home/attacker/Desktop/Wordlist/password.txt '/home/attacker/Desktop/Sample Captures/WPA2crack-01.cap'. Here, the BSSID of the target is 22:7F:AC:6D:E6:8B.
+	• -a is the technique used to crack the handshake, 2=WPA technique.
+	• -b refers to bssid; replace with the BSSID of the target router.
+-w stands for wordlist; provide the path to a wordlist.
+
+
+	7. The result appears, showing the WPA handshake packet captured with airodump-ng. The target access point's password is cracked and displayed in plain text next to the message KEY FOUND!, as shown in the screenshot.
+If the password is complex, aircrack-ng will take a long time to crack it.
+
+
+
