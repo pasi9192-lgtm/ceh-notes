@@ -1,0 +1,3 @@
+docker run -d -p 443:443 --name openvas mikesplain/openvas 
+
+https://127.0.0.1/. 
