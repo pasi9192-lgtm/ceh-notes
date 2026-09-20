@@ -23,6 +23,18 @@ Find the IP address of the Domain Controller machine in 192.168.0.0/24. (Format:
 
 Answer: 192.168.0.222
 
+A Domain Controller exposes Active Directory services, which means it will have:
+	• LDAP (port 389)
+	• Kerberos (port 88)
+	• SMB (port 445)
+	• DNS (port 53)
+	• Global Catalog (port 3268)
+So the DC is the machine where all these ports are open together.
+
+sudo nmap --script smb-os-discovery -p 445 192.168.0.0/24
+
+
+
 **Challenge 5:**
 Perform a host discovery scanning and identify the NetBIOS_Domain_Name of the host at 192.168.0.222. (Format: AAAAA.AAA)
 - nmap -sV -A 192.168.0.222
@@ -32,7 +44,7 @@ Answer: SKILL.CEH
 **Challenge 6:**
 Perform an intense scan on 192.168.0.222 and find out the DNS_Tree_Name of the machine in the network. (Format: AAAAA.AAA.aaa)
 - nmap -sV -A 192.168.0.222
-
+sudo nmap -T4 -A -v 192.168.0.222
 Answer: SKILL.CEH.com
 
 **Challenge 7:**
@@ -60,6 +72,10 @@ Perform a DNS enumeration on www.certifiedhacker.com and find out the name serve
 
 Answer: ns1.bluehost.com, ns2.bluehost.com
 
+• host -t ns certifiedhacker.com
+dig ns certifiedhacker.com
+
+
 **Challenge 11:**
 Find the IP address of the machine running SMTP service on the 172.30.10.0/24 network. (Format: NNN.NN.NN.NNN)
 - nmap -p 25 172.30.10.0/24 --open
@@ -69,7 +85,8 @@ Answer: 172.30.10.200
 **Challenge 12:**
 Perform an SMB Enumeration on 172.30.10.200 and check whether the Message signing feature is required. Give your response as Yes/No.
 - nmap -p 445 -sV -A 172.30.10.200
-
+or 
+sudo nmap -sV --script smb2-security-mode -p 445 172.30.10.200
 Answer: No
 
 **Challenge 13:**
