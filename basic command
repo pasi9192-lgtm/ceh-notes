@@ -19,3 +19,18 @@ Disk encryption tool - veracrypt , roho disk encryption
 md and m6 hash calculation - HashCalc , Hashmyfiles , md5 calculator 
 
 
+docker ps -a
+
+
+docker rm <container_name_or_ID>
+
+
+
+docker rm -f <container_name_or_ID>
+
+
+docker system prune -a  unsuded docker data
+
+
+
+
