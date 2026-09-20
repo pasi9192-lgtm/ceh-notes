@@ -1,2 +1,48 @@
 exper information t- checck servrity like warning , note , chat 
 high tempearture or humidity - searchgwith ,mqtt
+
+
+The PROPER way to identify session hijacking in Wireshark
+1️⃣ Filter attacker subnet
+The challenge says the attacker is from:
+Code
+
+172.30.10.0/24
+So filter:
+Code
+
+ip.addr == 172.30.10.0/24
+This shows all attacker‑related packets.
+2️⃣ Identify the TCP session being hijacked
+Right‑click any attacker packet → Follow → TCP Stream
+Inside the stream you will see two IPs:
+	• One IP is 172.30.10.x → attacker
+	• The other IP is the victim
+In your capture, the two IPs are:
+	• 172.30.10.200
+	• 20.189.173.3
+3️⃣ Look for hijacking indicators
+Use this filter:
+Code
+
+tcp.analysis.flags
+This highlights:
+	• Retransmissions
+	• Out‑of‑order packets
+	• Duplicate ACKs
+	• Spurious retransmissions
+These appear because the attacker is injecting packets into the victim’s session.
+Your screenshot already shows:
+	• TCP Retransmission
+	• ACK anomalies
+This confirms hijacking.
+4️⃣ Determine the victim
+The challenge says:
+	“Attacker tried to perform session hijacking on a machine from 172.30.10.0/24 subnet.”
+So the victim is the machine inside that subnet.
+Between the two IPs:
+	• 172.30.10.200 → victim
+	• 20.189.173.3 → remote server
+This matches the challenge exactly.
+🎯 Final Answer (Victim IP)
+172.30.10.200
