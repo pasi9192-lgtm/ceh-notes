@@ -49,3 +49,8 @@ type $ollers.txt
 more $ollers.txt
 bye
 
+
+ssh 
+find file 
+find / -type f -name "filename.txt" 2>/dev/null
+
