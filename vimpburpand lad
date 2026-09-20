@@ -1,0 +1,180 @@
+youtube metadata - yuotunbe url paste all information 
+
+searchftp.net - 
+
+IOT - SHODAN.IO
+SEARCH MICORSFY OR PORT 
+
+
+
+https://sitereport.netcraft.com    dpmain information 
+peekyou.com  - search name of user 
+censys search  - target url - it will give os , dns geo location 
+
+
+
+censys.io
+
+sudo git clone  https://github.com/sherlock-project/sherlock.git
+
+sherlock 
+
+cd sherlock 
+sudo python3 -m pip install -r req.txt
+sudo python3 sherlock usernameofperson
+sudo python3 sherlock --timeout 1 cberetg
+ 
+ extract company data - web data extractor tools 
+ type - http site name 
+ start
+ 
+ gat  wordlist from target site 
+ wordlist from Cewl
+ 
+ cewl --help 
+ cewl -d 2 -m 4 google.com
+ nano wordlist.txt
+ can do brute force 
+ 
+ 
+ email foot pronting email ticket pro 
+ 
+ who is looklup+
+ whois.com
+ 
+nslookup 
+set type =a
+ google.com
+ set type=cname
+google.com
+set type=a
+ns1.google.com
+
+nslookup.io
+
+
+reverse ip domain check dnsrecon 
+
+
+yougetsignal.com - reverse ip domain
+
+dnsrecon -r 1.1.1.1-2.2.2.2
+dnsrecon -d google.com
+
+
+nslookup.io chekc for ip - got ip 
+arin.net - network range got 
+treacert 
+
+tracert -h 5 google.com
+traceroute 
+ 
+recon-ng
+market place install  - to installl all module 
+help
+modules search 
+workspace create information 
+
+workspaces list
+db insert domain 
+show domains
+certified hacker.com
+modules load brute_force  (type justname will get details
+run 
+
+back
+modules load recon/hosts-hosts/reverse_resolve
+run
+show hosts
+back 
+
+module load reporting/html
+module load past above result
+optionS set FILENAME  /HOME./ATT/CREATOTE.HTML
+options set CREATIOR username
+options set CUSTOMER CERTIFIHACKER.COM
+RUN 
+
+
+back 
+
+module load profiler
+options set SOURCE  madvi
+show profiles
+
+
+git clone https://github.com/i3visio/osframework
+cd osframework 
+ls 
+pip3 install osframework 
+pip3 install osframework --upgrade
+
+usufy.py -n billgates -p facebook twittwer    -P platform 
+
+domainfy.py -n eccouncil -t all
+
+foot pritning - maltego 
+open Malego tools
+free one 
+do regi
+go to website option type website url right click many option we can use 
+
+
+
+billcipher - footprinting 
+type billcipher 
+git clone https://github.com.bahataphill/billcipher
+ls
+cd billcipher 
+python3 billciphor.py 
+type website name 
+www.certi.com
+----
+
+
+BURPSUITE 
+GET - DATA RETIRVE 
+POST - SUBMITTING DATA
+REPEATER - GRAB REQUEST AND CHANGE HOWVER WE WANT 
+LOGIN 302 SUCCESS CODE 
+DIFFERENT LEGNTH USER NAME FOUND 
+
+intruder 
+X-Forwarded-For: $1$ send to intrurdere avoid lock 
+
+
+Decoder 
+
+https://www.youtube.com/watch?v=rae9ZKEeKms&list=PLER8V8QTZGT0&index=14
+
+
+cookie send to decode base 64 
+found some has - check in crackstation dound md5 hash 
+
+
+osint framwework  .com 
+
+
+---
+dvwa burpsuit 
+
+found login issue 
+
+sent to intruder 
+
+.php=..\..\..\..\..\etc\passwd
+pr ../phpinfo.php   get php version 
+
+sensitivie file /etc/passwd
+
+rfi  - http://google.com
+
+
+
+
+
+
+
+ 
+ 
+ 
