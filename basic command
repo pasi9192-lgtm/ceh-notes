@@ -31,6 +31,7 @@ docker rm -f <container_name_or_ID>
 
 docker system prune -a  unsuded docker data
 
-
-
+parrot secuity 
+find ~ -name "username.txt"
+ls -l ~/username.txt
 
