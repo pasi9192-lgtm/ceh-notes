@@ -378,6 +378,7 @@ You are a penetration tester assigned to a new task. A list of websites is store
 - Connect to the ip with password found in **Challenge** 5
 - get file from music folder of user Martin
 - whatweb "url"
+or curl url 
 
 Answer: EC-Council
 
@@ -385,6 +386,8 @@ Answer: EC-Council
 
 You have recently joined GoodShopping Inc. as a web application security administrator. Eager to understand the security landscape of the company’s website, www.goodshopping.com, you decide to investigate the security updates that have been made over time. Your specific task is to identify the attack category of the oldest Common Vulnerabilities and Exposures (CVEs) affected the website. (Format: aaaaa*aaaa aaaaaaaaaa (AAA) )
 - I found manually you can use Owasp zap or open vas or vega to confirm 
+
+zaprpoxy 
 
 Answer: cross-site scripting (XSS)
 
