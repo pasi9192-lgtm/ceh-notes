@@ -1176,6 +1176,43 @@ Enter encrypt button
 
 
 
+VERSION OF SSH 
+
+nmap -sSV -T4 -p 22 site.com 
+
+
+ftp
+nmap -sSV -T4 -p 21 site.com 
+
+nikto -h www.site.com | grep -i uncommon
+
+got content 
+
+echo contendetails 	|base64 -d 
+
+
+crac hash locatted 
+
+wget mdlinu/Hash
+cat hash 
+john hash 
+/root/.john
+
+
+dig site.com TXT 
+
+GOT FLAG 5 DETAILS 
+
+ECHO DETAILS |base64d
+
+lbd cert.com  to check loadbalancing 
+
+nmap localhost 
+got rpcbind 
+
+host ww.site.com 
+
+nmap -sn -T5 	1.11.-254
 
 
 
