@@ -332,6 +332,7 @@ Dir
 type $ollers.txt
 more $ollers.txt
 bye
+find / -type f -name "*report*" 2>/dev/null
 
 
 Answer: i2tr&^72546HJ*
